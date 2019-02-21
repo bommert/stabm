@@ -60,7 +60,6 @@ intersection.mbm = list(
             even = seq_len(n.eds) * 2
             odd = even - 1
 
-            ##### because of igraph bug #######
             sim.part.i = sort(unique(sim.part@i)) + 1
             sim.part.j = sort(unique(sim.part@j)) + 1
             sim.part = sim.part[sim.part.i, sim.part.j, drop = FALSE]
@@ -68,13 +67,9 @@ intersection.mbm = list(
             nj = length(sim.part.j)
             ids.i = seq_len(ni)
             ids.j = ni + seq_len(nj)
-            ####################################
-
 
             eds[odd] = ids.i[sim.part@i + 1]
             eds[even] = ids.j[sim.part@j + 1]
-            # eds[odd] = as.character(indices.1not2[sim.part@i + 1])
-            # eds[even] = as.character(indices.2not1[sim.part@j + 1])
 
             types = c(rep(0, ni), rep(1, nj))
             g = igraph::make_bipartite_graph(edges = eds, types = types, directed = FALSE)

@@ -34,7 +34,7 @@ calculate.expectation = function(features, F.all, fun, ...) {
       combs.single = lapply(seq_along(ns), function(i) {
         ni = ns[i]
         if (ni > 0) {
-          df = as.data.frame(gtools::combinations(p, ni, F.all), stringsAsFactors = FALSE)
+          df = as.data.frame(t(utils::combn(F.all, ni)), stringsAsFactors = FALSE)
           colnames(df) = paste0("V", seq_len(ncol(df)), ".", i)
         } else {
           df = data.frame(NA)

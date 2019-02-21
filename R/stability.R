@@ -16,12 +16,9 @@ stability = function(features, measure, correction.for.chance, N,
   is.adj.measure = measure %in% adjusted.measures
 
   # correction.for.chance
-  if (is.adj.measure && measure != "zucknick") {
+  if (measure == "intersection.common") {
     checkmate::assertSubset(correction.for.chance, empty.ok = FALSE,
-      choices = c("estimate", "exact", "none")) ## added none
-  } else if (measure == "intersection.common") {
-    checkmate::assertSubset(correction.for.chance, empty.ok = FALSE,
-      choices = c("unadjusted"))
+      choices = "unadjusted")
   } else {
     checkmate::assertSubset(correction.for.chance, empty.ok = FALSE,
       choices = c("estimate", "exact", "none"))
@@ -139,7 +136,12 @@ stability = function(features, measure, correction.for.chance, N,
     calc.sim.feats = measure %in% c("intersection.mbm", "intersection.greedy")
 
     if (calc.sim.feats) {
-      maxs = unlist(lapply(1:nrow(sim.mat), function(i) max(sim.mat[i, -i])))
+      if (nrow(sim.mat) > 1) {
+        maxs = unlist(lapply(seq_len(nrow(sim.mat)), function(i) max(sim.mat[i, -i])))
+      } else {
+        maxs = -Inf
+      }
+
       sim.feats = which(maxs >= threshold)
 
       # if no similar features at all

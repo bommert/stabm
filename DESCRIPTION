@@ -1,24 +1,24 @@
 Package: stabm
 Title: Stability Measures for Feature Selection
-Version: 0.0.1
+Version: 1.0.0
 Authors@R: person("Andrea", "Bommert", email = "bommert@statistik.tu-dortmund.de", role = c("aut", "cre"))
 Description: An implementation of many measures for the assessment of the stability
     of feature selection. Both simple measures and measures which take into account
-    the similarity between features are available.
+    the similarities between features are available.
 Depends: R (>= 3.5.0)
 Imports: 
-    stats (>= 3.5.0),
-    methods (>= 3.5.0),
     BBmisc (>= 1.11),
     checkmate (>= 1.8.5),
+    Matrix (>= 1.2-14),
+  	methods,
+  	stats,
+  	utils
+Suggests:
     cowplot (>= 0.9.2),
     data.table (>= 1.11.4),
     ggdendro (>= 0.1-20),
     ggplot2 (>= 3.0.0),
-    gtools (>= 3.5.0),
     igraph (>= 1.2.1),
-    Matrix (>= 1.2-14)
-Suggests:
     testthat (>= 2.0.0)
 License: LGPL-3
 Encoding: UTF-8

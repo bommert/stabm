@@ -36,6 +36,7 @@ feats2 = list(1:5, 1:5, numeric(0L), numeric(0L), 1:3, 2:4)
 feats3 = list(numeric(0L), numeric(0L))
 feats4 = lapply(feats1, function(f) paste0("V", f))
 feats5 = list(1:2, 1:2)
+feats6 = list(3, 3)
 p = 5
 
 test_that("set 1: p", {
@@ -144,5 +145,30 @@ test_that("set 5: constant selection gives value 1", {
     expect_equal(
       get(m)(feats5, p = p, correction.for.chance = "exact"),
       1, info = m)
+  })
+})
+
+
+test_that("set 6: only one feature in dataset", {
+  lapply(measures.need.p, function(m) {
+    checkmate::expect_number(get(m)(feats6, p = 1),
+      na.ok = TRUE, null.ok = FALSE, info = m)
+  })
+
+  lapply(measures.not.need.p, function(m) {
+    checkmate::expect_number(get(m)(feats6),
+      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+  })
+
+  lapply(uncorrected, function(m) {
+    checkmate::expect_number(get(m)(feats6, p = 1,
+      correction.for.chance = "exact"),
+      na.ok = TRUE, null.ok = FALSE, info = m)
+  })
+
+  lapply(uncorrected, function(m) {
+    checkmate::expect_number(get(m)(feats6, p = 1,
+      correction.for.chance = "estimate", N = 100),
+      na.ok = TRUE, null.ok = FALSE, info = m)
   })
 })

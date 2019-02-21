@@ -6,12 +6,15 @@
 \arguments{
 \item{correction.for.chance}{\code{character(1)}\cr
 How should the expected value of the stability score (see Details)
-be assessed? Options are "estimate" and "exact".
+be assessed? Options are "estimate", "exact" and "none".
 For "estimate", \code{N} random feature sets of the same sizes as the input feature
 sets (\code{features}) are generated.
 For "exact", all possible combinations of feature sets of the same
 sizes as the input feature sets are used. Computation is only feasible for very
-small numbers of features and numbers of considered datasets (\code{length(features)}).}
+small numbers of features and numbers of considered datasets (\code{length(features)}).
+For "none", the transformation \eqn{(score - expected) / (maximum - expected)}
+is not conducted, i.e. only \eqn{score} is used.
+This is not recommended.}
 }
 \description{
 Adjusted Stability Measures

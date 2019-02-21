@@ -8,7 +8,7 @@
 \description{
 An implementation of many measures for the assessment of the stability
     of feature selection. Both simple measures and measures which take into account
-    the similarity between features are available.
+    the similarities between features are available.
 }
 \seealso{
 Useful links:

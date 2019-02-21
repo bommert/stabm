@@ -33,12 +33,14 @@ diag(sim.mat4) = 1
 sim.mat5 = Matrix(sim.mat1)
 sim.mat6 = Matrix(sim.mat1, sparse = TRUE)
 sim.mat7 = as(sim.mat6, "dgCMatrix")
+sim.mat8 = matrix(1, nrow = 1, ncol = 1)
 
 feats1 = list(1:3, 2:5)
 feats2 = list(1:5, 1:5, numeric(0L), numeric(0L), 1:2, 2:4)
 feats3 = list(numeric(0L), numeric(0L))
 feats4 = lapply(feats1, function(f) paste0("V", f))
 feats5 = list(1:2, 1:2)
+feats6 = list(1, 1)
 
 
 test_that("set 1: basic", {
@@ -158,4 +160,25 @@ test_that("set 5: constant selection gives value 1", {
         threshold = 0.85, correction.for.chance = "exact"),
       1, info = m)
   })
+})
+
+test_that("set 6: only one feature in dataset", {
+  lapply(measures, function(m) {
+    checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
+      threshold = 0.85, correction.for.chance = "exact"),
+      na.ok = TRUE, null.ok = FALSE, info = m)
+  })
+
+  lapply(measures, function(m) {
+    checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
+      threshold = 0.85, correction.for.chance = "estimate", N = 100),
+      na.ok = TRUE, null.ok = FALSE, info = m)
+  })
+
+  lapply(measures, function(m) {
+    checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
+      threshold = 0.85, correction.for.chance = "none"),
+      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+  })
+
 })
