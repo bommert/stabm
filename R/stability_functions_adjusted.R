@@ -23,12 +23,7 @@
 #' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilityZucknick(features = feats, sim.mat = mat)
 stabilityZucknick = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "none", N = 1e4, impute.na = NULL) {
@@ -66,12 +61,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilityZhang(features = feats, sim.mat = mat, N = 1000)
 stabilityZhang = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
@@ -98,12 +88,7 @@ stabilityZhang = function(features, sim.mat, threshold = 0.9,
 #' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilityIntersectionMBM(features = feats, sim.mat = mat, N = 1000)
 stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
@@ -128,12 +113,7 @@ stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
 #' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilityIntersectionGreedy(features = feats, sim.mat = mat, N = 1000)
 stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
@@ -156,12 +136,7 @@ stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
 #' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilityIntersectionCount(features = feats, sim.mat = mat, N = 1000)
 stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
@@ -185,12 +160,7 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 #' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilityIntersectionMean(features = feats, sim.mat = mat, N = 1000)
 stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {

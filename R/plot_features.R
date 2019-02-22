@@ -8,12 +8,7 @@
 #' @return Object of class \code{ggplot}.
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
-#' mat = matrix(1, nrow = 10, ncol = 10)
-#' for (i in 1:10) {
-#'   for(j in i:10) {
-#'     mat[i, j] = mat[j, i] = 0.92 ^ (j - i)
-#'   }
-#' }
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' plotFeatures(features = feats)
 #' plotFeatures(features = feats, sim.mat = mat)
 #' @export
