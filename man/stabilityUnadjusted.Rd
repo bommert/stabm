@@ -51,8 +51,7 @@ for the \eqn{m} datasets, i.e. \code{features} has length \eqn{m} and
 Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 is chosen.
-Also, let \eqn{q = \sum_{j=1}^p h_j}, \eqn{V = \bigcup_{i=1}^m V_i} and
-\eqn{k = \frac{1}{m} \sum_{i=1}^m |V_i|}.
+Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 }
 
 \examples{

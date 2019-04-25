@@ -3,12 +3,13 @@ stability = function(features, measure, correction.for.chance, N,
 
   # Checks
 
-  adjusted.measures = c("zucknick", "zhang", "intersection.mbm",
+  adjusted.measures = c("yu", "zucknick", "intersection.mbm",
     "intersection.greedy", "intersection.count", "intersection.mean")
-  unadjusted.measures = c("davis", "dice", "jaccard", "kappa.coefficient", "lustgarten",
-    "nogueira", "novovicova", "ochiai", "phi.coefficient", "somol", "intersection.common")
-  need.p = c("davis", "lustgarten", "phi.coefficient", "somol", "kappa.coefficient",
-    "nogueira", "intersection.common")
+  unadjusted.measures = c("davis", "dice", "hamming", "intersection.common",
+    "jaccard", "kappa.coefficient", "lustgarten", "nogueira", "novovicova",
+    "ochiai", "phi.coefficient", "somol", "wald")
+  need.p = c("davis", "hamming", "intersection.common", "lustgarten",
+    "phi.coefficient", "somol", "kappa.coefficient", "nogueira", "wald")
 
   # measure
   checkmate::assertSubset(measure, empty.ok = FALSE, choices = c(adjusted.measures, unadjusted.measures))

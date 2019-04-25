@@ -109,8 +109,8 @@ stabilityKappa = function(features, p, impute.na = NULL) {
 #' @inherit stabilityDocumentation
 #' @inherit correctedDocumentation
 #' @details The stability measure is defined as (see Notation)
-#' \deqn{1 - \frac{\frac{m}{m-1} \sum_{j=1}^p \frac{h_j}{m} \left(1 - \frac{h_j}{m}\right)}
-#' {k (1 - \frac{k}{p})}.}
+#' \deqn{1 - \frac{\frac{1}{p} \sum_{j=1}^p \frac{m}{m-1} \frac{h_j}{m} \left(1 - \frac{h_j}{m}\right)}
+#' {\frac{q}{mp} (1 - \frac{q}{mp})}.}
 #' @references S. Nogueira, "Quantifying the Stability of Feature Selection",
 #' Diss. PhD thesis, University of Manchester, 2018.
 #' @examples
@@ -140,5 +140,28 @@ stabilityNogueira = function(features, p, impute.na = NULL) {
 stabilityUnadjusted = function(features, p, impute.na = NULL) {
   stability(features = features, p = p, measure = "intersection.common",
     correction.for.chance = "unadjusted",
+    N = NULL, impute.na = impute.na)
+}
+
+
+#' @export
+#' @title Stability Measure Wald
+#' @inherit stabilityDocumentation
+#' @inherit correctedDocumentation
+#' @details The stability measure is defined as (see Notation)
+#' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
+#' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
+#' {\min \{|V_i|, |V_j|\} - \frac{|V_i| \cdot |V_j|}{p}}.}
+#' @references
+#' * Wald, R., T. M. Khoshgoftaar, and A. Napolitano (2013). “Stability of filter-and wrapper-based feature
+#' subset selection.” In: 2013 IEEE 25th International Conference on Tools with Artificial Intelligence, pp. 374–380.
+#' @encoding UTF-8
+#' @md
+#' @examples
+#' feats = list(1:3, 1:4, 1:5)
+#' stabilityWald(features = feats, p = 10)
+stabilityWald = function(features, p, impute.na = NULL) {
+  stability(features = features, p = p, measure = "wald",
+    correction.for.chance = "none",
     N = NULL, impute.na = impute.na)
 }

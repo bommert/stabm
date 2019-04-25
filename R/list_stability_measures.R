@@ -18,6 +18,7 @@ listStabilityMeasures = function() {
   l = list(
     list("stabilityDavis", FALSE, FALSE, 0, 1),
     list("stabilityDice", FALSE, FALSE, 0, 1),
+    list("stabilityHamming", FALSE, FALSE, 0, 1),
     list("stabilityIntersectionCount", TRUE, TRUE, NA, 1),
     list("stabilityIntersectionGreedy", TRUE, TRUE, NA, 1),
     list("stabilityIntersectionMBM", TRUE, TRUE, NA, 1),
@@ -31,7 +32,8 @@ listStabilityMeasures = function() {
     list("stabilityPhi", TRUE, FALSE, -1, 1),
     list("stabilitySomol", TRUE, FALSE, 0, 1),
     list("stabilityUnadjusted", TRUE, FALSE, -1, 1),
-    list("stabilityZhang", TRUE, TRUE, NA, 1),
+    list("stabilityWald", TRUE, FALSE, "1-p", 1),
+    list("stabilityYu", TRUE, TRUE, NA, 1),
     list("stabilityZucknick", FALSE, TRUE, 0, 1)
   )
 

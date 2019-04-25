@@ -2,8 +2,8 @@ context("stability adjusted")
 library(Matrix)
 
 measures = list(
+  "stabilityYu",
   "stabilityZucknick",
-  "stabilityZhang",
   "stabilityIntersectionMBM",
   "stabilityIntersectionGreedy",
   "stabilityIntersectionCount",

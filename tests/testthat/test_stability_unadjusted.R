@@ -3,15 +3,17 @@ context("stability unadjusted")
 measures = list(
   "stabilityDavis",
   "stabilityDice",
+  "stabilityHamming",
   "stabilityJaccard",
+  "stabilityKappa",
   "stabilityLustgarten",
+  "stabilityNogueira",
   "stabilityNovovicova",
   "stabilityOchiai",
   "stabilityPhi",
   "stabilitySomol",
-  "stabilityKappa",
   "stabilityUnadjusted",
-  "stabilityNogueira"
+  "stabilityWald"
 )
 
 corrected = list(
@@ -20,16 +22,19 @@ corrected = list(
   "stabilitySomol",
   "stabilityKappa",
   "stabilityUnadjusted",
-  "stabilityNogueira"
+  "stabilityNogueira",
+  "stabilityWald"
 )
 
 uncorrected = setdiff(measures, corrected)
 
-measures.need.p = c(corrected, list("stabilityDavis"))
+measures.need.p = c(corrected, list("stabilityDavis", "stabilityHamming"))
 measures.not.need.p = setdiff(measures, measures.need.p)
 
-can.deal.with.two.empty.sets = list("stabilityDavis", "stabilityNovovicova", "stabilitySomol", "stabilityNogueira")
+can.deal.with.two.empty.sets = list("stabilityDavis",  "stabilityHamming",
+  "stabilityNogueira", "stabilityNovovicova", "stabilitySomol")
 cant.deal.with.two.empty.sets = setdiff(measures, can.deal.with.two.empty.sets)
+
 
 feats1 = list(1:4, 2:4, 2:5)
 feats2 = list(1:5, 1:5, numeric(0L), numeric(0L), 1:3, 2:4)
@@ -86,7 +91,7 @@ test_that("set 2: impute NAs", {
 })
 
 test_that("set 3: NAs", {
-  lapply(measures, function(m) {
+  lapply(setdiff(measures, "stabilityHamming"), function(m) {
     checkmate::expect_scalar_na(get(m)(feats3, p = p), null.ok = FALSE, info = m)
   })
 })
@@ -137,7 +142,7 @@ test_that("set 5: constant selection gives value 1", {
 
   lapply(max.prop.uc, function(m) {
     expect_equal(
-      get(m)(feats5, correction.for.chance = "none"),
+      get(m)(feats5, p = p, correction.for.chance = "none"),
       1, info = m)
   })
 

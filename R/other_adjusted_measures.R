@@ -1,4 +1,4 @@
-zhang = list(
+yu = list(
   scoreFun = function(features, F.all, sim.mat, ...) {
     measureScoreHelper(features = features,
       measureFun = function(F1, F2) {

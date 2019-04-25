@@ -35,8 +35,8 @@ using stability measures.
 }
 \details{
 The stability measure is defined as (see Notation)
-\deqn{1 - \frac{\frac{m}{m-1} \sum_{j=1}^p \frac{h_j}{m} \left(1 - \frac{h_j}{m}\right)}
-{k (1 - \frac{k}{p})}.}
+\deqn{1 - \frac{\frac{1}{p} \sum_{j=1}^p \frac{m}{m-1} \frac{h_j}{m} \left(1 - \frac{h_j}{m}\right)}
+{\frac{q}{mp} (1 - \frac{q}{mp})}.}
 }
 \section{Notation}{
  For the definition of all stability measures in this package,
@@ -47,8 +47,7 @@ for the \eqn{m} datasets, i.e. \code{features} has length \eqn{m} and
 Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 is chosen.
-Also, let \eqn{q = \sum_{j=1}^p h_j}, \eqn{V = \bigcup_{i=1}^m V_i} and
-\eqn{k = \frac{1}{m} \sum_{i=1}^m |V_i|}.
+Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 }
 
 \examples{

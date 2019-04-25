@@ -52,6 +52,30 @@ stabilityDice = function(features, p = NULL,
     N = N, impute.na = impute.na)
 }
 
+
+#' @export
+#' @title Stability Measure Hamming
+#' @inherit stabilityDocumentation
+#' @inherit uncorrectedDocumentation
+#' @details The stability measure is defined as (see Notation)
+#' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
+#' \frac{|V_i \cap V_j| + |V_i^c \cap V_j^c|}{p}.}
+#' @references
+#' * K. Dunne, P. Cunningham, and F. Azuaje, "Solutions to instability
+#' problems with sequential wrapper-based approaches to feature selection",
+#' Technical Report, 2002.
+#' @encoding UTF-8
+#' @md
+#' @examples
+#' feats = list(1:3, 1:4, 1:5)
+#' stabilityHamming(features = feats, p = 10)
+stabilityHamming = function(features, p,
+  correction.for.chance = "none", N = 1e4, impute.na = NULL) {
+  stability(features = features, p = p, measure = "hamming",
+    correction.for.chance = correction.for.chance,
+    N = N, impute.na = impute.na)
+}
+
 #' @export
 #' @title Stability Measure Jaccard
 #' @inherit stabilityDocumentation

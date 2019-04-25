@@ -251,3 +251,44 @@ nogueira = list(
     1
   }
 )
+
+
+wald = list(
+  scoreFun = function(features, p, ...) {
+    measureScoreHelper(features = features,
+      measureFun = function(F1, F2) {
+        n1 = length(F1)
+        n2 = length(F2)
+
+        if (n1 == 0 || n2 == 0) {
+          return(NA_real_)
+        }
+
+        size.intersection = length(intersect(F1, F2))
+        part1 = size.intersection - n1 * n2 / p
+        part2 = min(n1, n2) - n1 * n2 / p
+        score = part1 / part2
+
+        return(score)
+      })
+  },
+  maxValueFun = function(features, ...) {
+    1
+  }
+)
+
+
+hamming = list(
+  scoreFun = function(features, p, ...) {
+    measureScoreHelper(features = features,
+      measureFun = function(F1, F2) {
+        size.intersection1 = length(intersect(F1, F2))
+        size.intersection2 = p - length(union(F1, F2))
+        score = (size.intersection1 + size.intersection2) / p
+        return(score)
+      })
+  },
+  maxValueFun = function(features, ...) {
+    1
+  }
+)

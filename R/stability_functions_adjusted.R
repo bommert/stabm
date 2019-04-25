@@ -35,7 +35,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 
 
 #' @export
-#' @title Stability Measure Zhang
+#' @title Stability Measure Yu
 #' @inherit stabilityDocumentation
 #' @inherit adjustedDocumentation
 #' @details Let \eqn{O_{ij}} denote the number of features in \eqn{V_i} that are not
@@ -47,7 +47,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{1 - E(I(V_i, V_j))}} with
 #' \deqn{I(V_i, V_j) = \frac{|V_i \cap V_j| + \frac{O_{ij} + O_{ji}}{2}}{\frac{|V_i| + |V_j|}{2}}.}
 #' Note that this definition slightly differs from its original in order to make it suitable
-#' for arbitrary datasets and similarity measures.
+#' for arbitrary datasets and similarity measures and applicable in situations with \eqn{|V_i| \neq |V_j|}.
 #' @references
 #' * L. Yu, Y. Han, and M. E. Berens,
 #' "Stable gene selection from microarray data via sample weighting",
@@ -62,10 +62,10 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
-#' stabilityZhang(features = feats, sim.mat = mat, N = 1000)
-stabilityZhang = function(features, sim.mat, threshold = 0.9,
+#' stabilityYu(features = feats, sim.mat = mat, N = 1000)
+stabilityYu = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
-  stability(features = features, measure = "zhang",
+  stability(features = features, measure = "yu",
     sim.mat = sim.mat, threshold = threshold,
     correction.for.chance = correction.for.chance,
     N = N, impute.na = impute.na)
