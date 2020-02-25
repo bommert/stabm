@@ -87,7 +87,7 @@ plotFeatures = function(features, sim.mat = NULL) {
   colnames(mat) = paste0("V", all.feats[o.feats])
   rownames(mat) = paste0("S", o.repls)
 
-  mat.data = data.table::melt(mat, id.vars = rownames(mat))
+  mat.data = reshape2::melt(mat, id.vars = rownames(mat))
   colnames(mat.data) = c("repl", "feature", "selected")
   mat.data$selected = factor(ifelse(mat.data$selected, "Yes", "No"), levels = c("No", "Yes"))
 

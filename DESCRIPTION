@@ -1,6 +1,6 @@
 Package: stabm
 Title: Stability Measures for Feature Selection
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: person("Andrea", "Bommert", email = "bommert@statistik.tu-dortmund.de", role = c("aut", "cre"))
 Description: An implementation of many measures for the assessment of the stability
     of feature selection. Both simple measures and measures which take into account
@@ -19,6 +19,7 @@ Suggests:
     ggdendro (>= 0.1-20),
     ggplot2 (>= 3.0.0),
     igraph (>= 1.2.1),
+    reshape2 (>= 1.4.3),
     testthat (>= 2.0.0)
 License: LGPL-3
 Encoding: UTF-8
