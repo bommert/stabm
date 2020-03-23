@@ -44,8 +44,8 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' Similarity(x,y) \geq threshold \}|.}
 #' Then the stability measure is defined as (see Notation)
 #'  \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{1 - E(I(V_i, V_j))}} with
-#' \deqn{I(V_i, V_j) = \frac{|V_i \cap V_j| + \frac{O_{ij} + O_{ji}}{2}}{\frac{|V_i| + |V_j|}{2}}.}
+#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\frac{|V_i| + |V_j|}{2} - E(I(V_i, V_j))}} with
+#' \deqn{I(V_i, V_j) = |V_i \cap V_j| + \frac{O_{ij} + O_{ji}}{2}.}
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary datasets and similarity measures and applicable in situations with \eqn{|V_i| \neq |V_j|}.
 #' @references
@@ -78,14 +78,13 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' @inherit adjustedDocumentation
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\max(I(V_i, V_j)) - E(I(V_i, V_j))}}
+#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
 #' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + MBM(V_i \backslash V_j, V_j \backslash V_i).}
 #' \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)} denotes the size of the
 #' maximum bipartite matching based on the graph whose vertices are the features
 #' of \eqn{V_i \backslash V_j} on the one side and the features of \eqn{V_j \backslash V_i}
 #' on the other side. Vertices x and y are connected if and only if \eqn{Similarity(x, y)
-#' \geq threshold}
-#' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
+#' \geq threshold.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -106,11 +105,10 @@ stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
 #' @inherit adjustedDocumentation
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\max(I(V_i, V_j)) - E(I(V_i, V_j))}} with
+#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}} with
 #' \deqn{I(V_i, V_j) = |V_i \cap V_j| + GMBM(V_i \backslash V_j, V_j \backslash V_i).}
 #' \eqn{GMBM(V_i \backslash V_j, V_j \backslash V_i)} denotes a greedy approximation
-#' of \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}
-#' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
+#' of \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -129,11 +127,10 @@ stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
 #' @inherit adjustedDocumentation
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\max(I(V_i, V_j)) - E(I(V_i, V_j))}}
-#' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i)),}
+#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
+#' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i))} and
 #' \deqn{C(V_k, V_l) = |\{x \in  V_k \backslash V_l : \exists y \in
-#' V_l \backslash V_k \ with \ Similarity (x,y) \geq threshold \}|}
-#' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
+#' V_l \backslash V_k \ with \ Similarity (x,y) \geq threshold \}|.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -152,12 +149,11 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 #' @inherit adjustedDocumentation
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\max(I(V_i, V_j)) - E(I(V_i, V_j))}}
+#' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
 #' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i)),}
 #' \deqn{C(V_k, V_l) = \sum_{x \in V_k \backslash V_l : |G^{kl}_x| > 0}
-#' \frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ Similarity (x,y),}
-#' \deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ Similarity (x, y) \geq threshold \}}
-#' and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
+#' \frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ Similarity (x,y)} and
+#' \deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ Similarity (x, y) \geq threshold \}.}
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))

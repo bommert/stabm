@@ -26,12 +26,14 @@ yu = list(
         o = (o12 + o21) / 2
         k = length(intersect(F1, F2))
 
-        score = (k + o) / l
+        score = k + o
         return(score)
       })
   },
   maxValueFun = function(features, ...) {
-    1
+    measureScoreHelper(features = features,
+      measureFun = function(F1, F2) (length(F1) + length(F2)) / 2
+    )
   }
 )
 

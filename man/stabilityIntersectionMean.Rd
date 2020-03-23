@@ -64,12 +64,11 @@ using stability measures.
 \details{
 The stability measure is defined as (see Notation)
 \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-\frac{I(V_i, V_j) - E(I(V_i, V_j))}{\max(I(V_i, V_j)) - E(I(V_i, V_j))}}
+\frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
 with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i)),}
 \deqn{C(V_k, V_l) = \sum_{x \in V_k \backslash V_l : |G^{kl}_x| > 0}
-\frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ Similarity (x,y),}
-\deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ Similarity (x, y) \geq threshold \}}
-and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
+\frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ Similarity (x,y)} and
+\deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ Similarity (x, y) \geq threshold \}.}
 }
 \section{Notation}{
  For the definition of all stability measures in this package,

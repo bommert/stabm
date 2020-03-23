@@ -1,6 +1,6 @@
 Package: stabm
 Title: Stability Measures for Feature Selection
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: person("Andrea", "Bommert", email = "bommert@statistik.tu-dortmund.de", role = c("aut", "cre"))
 Description: An implementation of many measures for the assessment of the stability
     of feature selection. Both simple measures and measures which take into account

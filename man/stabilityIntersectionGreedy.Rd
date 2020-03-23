@@ -64,11 +64,10 @@ using stability measures.
 \details{
 The stability measure is defined as (see Notation)
 \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-\frac{I(V_i, V_j) - E(I(V_i, V_j))}{\max(I(V_i, V_j)) - E(I(V_i, V_j))}} with
+\frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}} with
 \deqn{I(V_i, V_j) = |V_i \cap V_j| + GMBM(V_i \backslash V_j, V_j \backslash V_i).}
 \eqn{GMBM(V_i \backslash V_j, V_j \backslash V_i)} denotes a greedy approximation
-of \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}
-and \deqn{\max(I(V_i, V_j)) =  \sqrt{|V_i| \cdot |V_j|}.}
+of \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
 }
 \section{Notation}{
  For the definition of all stability measures in this package,

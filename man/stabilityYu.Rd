@@ -68,8 +68,8 @@ shared with \eqn{V_j} but that have a highly simlar feature in \eqn{V_j}:
 Similarity(x,y) \geq threshold \}|.}
 Then the stability measure is defined as (see Notation)
 \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
-\frac{I(V_i, V_j) - E(I(V_i, V_j))}{1 - E(I(V_i, V_j))}} with
-\deqn{I(V_i, V_j) = \frac{|V_i \cap V_j| + \frac{O_{ij} + O_{ji}}{2}}{\frac{|V_i| + |V_j|}{2}}.}
+\frac{I(V_i, V_j) - E(I(V_i, V_j))}{\frac{|V_i| + |V_j|}{2} - E(I(V_i, V_j))}} with
+\deqn{I(V_i, V_j) = |V_i \cap V_j| + \frac{O_{ij} + O_{ji}}{2}.}
 Note that this definition slightly differs from its original in order to make it suitable
 for arbitrary datasets and similarity measures and applicable in situations with \eqn{|V_i| \neq |V_j|}.
 }
