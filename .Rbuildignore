@@ -4,3 +4,4 @@
 ^\.Rproj\.user$
 .Rhistory
 Rplots.pdf
+^README\.Rmd$
