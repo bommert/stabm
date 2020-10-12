@@ -5,8 +5,13 @@
 \alias{stabilityNovovicova}
 \title{Stability Measure Novovičová}
 \usage{
-stabilityNovovicova(features, p = NULL, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityNovovicova(
+  features,
+  p = NULL,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

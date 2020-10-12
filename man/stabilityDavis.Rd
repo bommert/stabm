@@ -5,8 +5,14 @@
 \alias{stabilityDavis}
 \title{Stability Measure Davis}
 \usage{
-stabilityDavis(features, p, correction.for.chance = "none", N = 10000,
-  impute.na = NULL, penalty = 0)
+stabilityDavis(
+  features,
+  p,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL,
+  penalty = 0
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

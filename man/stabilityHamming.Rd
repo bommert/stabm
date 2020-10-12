@@ -5,8 +5,13 @@
 \alias{stabilityHamming}
 \title{Stability Measure Hamming}
 \usage{
-stabilityHamming(features, p, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityHamming(
+  features,
+  p,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

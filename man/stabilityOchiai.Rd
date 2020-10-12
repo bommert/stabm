@@ -5,8 +5,13 @@
 \alias{stabilityOchiai}
 \title{Stability Measure Ochiai}
 \usage{
-stabilityOchiai(features, p = NULL, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityOchiai(
+  features,
+  p = NULL,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

@@ -5,8 +5,13 @@
 \alias{stabilityDice}
 \title{Stability Measure Dice}
 \usage{
-stabilityDice(features, p = NULL, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityDice(
+  features,
+  p = NULL,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

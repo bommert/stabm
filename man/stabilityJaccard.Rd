@@ -5,8 +5,13 @@
 \alias{stabilityJaccard}
 \title{Stability Measure Jaccard}
 \usage{
-stabilityJaccard(features, p = NULL, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityJaccard(
+  features,
+  p = NULL,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

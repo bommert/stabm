@@ -5,8 +5,14 @@
 \alias{stabilityZucknick}
 \title{Stability Measure Zucknick}
 \usage{
-stabilityZucknick(features, sim.mat, threshold = 0.9,
-  correction.for.chance = "none", N = 10000, impute.na = NULL)
+stabilityZucknick(
+  features,
+  sim.mat,
+  threshold = 0.9,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr

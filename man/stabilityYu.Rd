@@ -4,8 +4,14 @@
 \alias{stabilityYu}
 \title{Stability Measure Yu}
 \usage{
-stabilityYu(features, sim.mat, threshold = 0.9,
-  correction.for.chance = "estimate", N = 10000, impute.na = NULL)
+stabilityYu(
+  features,
+  sim.mat,
+  threshold = 0.9,
+  correction.for.chance = "estimate",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr
