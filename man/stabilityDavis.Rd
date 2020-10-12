@@ -5,8 +5,14 @@
 \alias{stabilityDavis}
 \title{Stability Measure Davis}
 \usage{
-stabilityDavis(features, p, correction.for.chance = "none", N = 10000,
-  impute.na = NULL, penalty = 0)
+stabilityDavis(
+  features,
+  p,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL,
+  penalty = 0
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr
@@ -81,16 +87,14 @@ feats = list(1:3, 1:4, 1:5)
 stabilityDavis(features = feats, p = 10)
 }
 \references{
-\itemize{
-\item C. A. Davis, F. Gerick, V. Hintermair, C. C. Friedel, K. Fundel,
-R. Küffner, and R. Zimmer, "Reliable gene signatures
-for microarray classification: assessment of stability and performance",
-Bioinformatics, vol. 22, no. 19, pp. 2356-2363, 2006.
-\item A. Bommert, J. Rahnenführer, and M. Lang,
-"A multi-criteria approach to find predictive and sparse models with
-stable feature selection for high-dimensional data",
-Computational and mathematical methods in medicine, 2017.
-}
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
+Davis CA, Gerick F, Hintermair V, Friedel CC, Fundel K, Kuffner R, Zimmer R (2006).
+\dQuote{Reliable gene signatures for microarray classification: assessment of stability and performance.}
+\emph{Bioinformatics}, \bold{22}(19), 2356--2363.
+\doi{10.1093/bioinformatics/btl400}.
 }
 \seealso{
 \link{listStabilityMeasures}

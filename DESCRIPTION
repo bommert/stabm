@@ -24,6 +24,6 @@ Suggests:
 License: LGPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 URL: https://github.com/bommert/stabm
 BugReports: https://github.com/bommert/stabm/issues

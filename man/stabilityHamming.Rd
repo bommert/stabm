@@ -5,8 +5,13 @@
 \alias{stabilityHamming}
 \title{Stability Measure Hamming}
 \usage{
-stabilityHamming(features, p, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityHamming(
+  features,
+  p,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr
@@ -78,11 +83,9 @@ feats = list(1:3, 1:4, 1:5)
 stabilityHamming(features = feats, p = 10)
 }
 \references{
-\itemize{
-\item K. Dunne, P. Cunningham, and F. Azuaje, "Solutions to instability
-problems with sequential wrapper-based approaches to feature selection",
-Technical Report, 2002.
-}
+Dunne, Kevin, Cunningham, Padraig, Azuaje, Francisco (2002).
+\dQuote{Solutions to instability problems with sequential wrapper-based approaches to feature selection.}
+Machine Learning Group, Department of Computer Science, Trinity College, Dublin.
 }
 \seealso{
 \link{listStabilityMeasures}

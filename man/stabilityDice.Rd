@@ -5,8 +5,13 @@
 \alias{stabilityDice}
 \title{Stability Measure Dice}
 \usage{
-stabilityDice(features, p = NULL, correction.for.chance = "none",
-  N = 10000, impute.na = NULL)
+stabilityDice(
+  features,
+  p = NULL,
+  correction.for.chance = "none",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr
@@ -78,14 +83,14 @@ feats = list(1:3, 1:4, 1:5)
 stabilityDice(features = feats)
 }
 \references{
-\itemize{
-\item L. R. Dice, "Measures of the amount of ecologic association
-between species", Ecology, vol. 26, no. 3, pp. 297-302, 1945.
-\item A. Bommert, J. Rahnenführer, and M. Lang,
-"A multi-criteria approach to find predictive and sparse models with
-stable feature selection for high-dimensional data",
-Computational and mathematical methods in medicine, 2017.
-}
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
+Dice LR (1945).
+\dQuote{Measures of the Amount of Ecologic Association Between Species.}
+\emph{Ecology}, \bold{26}(3), 297--302.
+\doi{10.2307/1932409}.
 }
 \seealso{
 \link{listStabilityMeasures}

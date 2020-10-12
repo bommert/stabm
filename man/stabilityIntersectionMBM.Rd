@@ -4,8 +4,14 @@
 \alias{stabilityIntersectionMBM}
 \title{Stability Measure Adjusted Intersection MBM}
 \usage{
-stabilityIntersectionMBM(features, sim.mat, threshold = 0.9,
-  correction.for.chance = "estimate", N = 10000, impute.na = NULL)
+stabilityIntersectionMBM(
+  features,
+  sim.mat,
+  threshold = 0.9,
+  correction.for.chance = "estimate",
+  N = 10000,
+  impute.na = NULL
+)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr
