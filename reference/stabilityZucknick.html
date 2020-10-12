@@ -80,7 +80,7 @@ using stability measures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stabm</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
       </span>
     </div>
 
@@ -91,6 +91,9 @@ using stability measures." />
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/stabm.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -133,8 +136,14 @@ The stability of the feature selection is assessed based on the sets of chosen f
 using stability measures.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stabilityZucknick</span><span class='op'>(</span><span class='va'>features</span>, <span class='va'>sim.mat</span>, threshold <span class='op'>=</span> <span class='fl'>0.9</span>,
-  correction.for.chance <span class='op'>=</span> <span class='st'>"none"</span>, N <span class='op'>=</span> <span class='fl'>10000</span>, impute.na <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>stabilityZucknick</span><span class='op'>(</span>
+  <span class='va'>features</span>,
+  <span class='va'>sim.mat</span>,
+  threshold <span class='op'>=</span> <span class='fl'>0.9</span>,
+  correction.for.chance <span class='op'>=</span> <span class='st'>"none"</span>,
+  N <span class='op'>=</span> <span class='fl'>10000</span>,
+  impute.na <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
