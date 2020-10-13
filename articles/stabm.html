@@ -85,7 +85,7 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The <code>R</code> package <code>stabm</code> provides functionality for quantifying the similarity of two or more sets. The anticipated usecase is comparing sets of selected features, but other sets, e.g. gene list, can be analyzed as well. Quantifying the similarity of feature sets is necessary when assessing the feature selection stability. The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution <span class="citation">(Kalousis, Prados, and Hilario 2007)</span>. Stability measures quantify the similarity of the sets of selected features for different training data sets. Many stability measures have been proposed in the literature, see for example <span class="citation">Bommert, Rahnenführer, and Lang (2017)</span>, <span class="citation">Bommert and Rahnenführer (2020)</span>, and <span class="citation">Nogueira (2018)</span> for comparative studies. The <code>R</code> package <code>stabm</code> provides an implementation of many stability measures.</p>
+<p>The <code>R</code> package <code>stabm</code> provides functionality for quantifying the similarity of two or more sets. The anticipated usecase is comparing sets of selected features, but other sets, e.g. gene list, can be analyzed as well. Quantifying the similarity of feature sets is necessary when assessing the feature selection stability. The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution <span class="citation">(Kalousis, Prados, and Hilario 2007)</span>. Stability measures quantify the similarity of the sets of selected features for different training data sets. Many stability measures have been proposed in the literature, see for example <span class="citation">Bommert, Rahnenführer, and Lang (2017)</span>, <span class="citation">Bommert and Rahnenführer (2020)</span>, and <span class="citation">(<span class="citeproc-not-found" data-reference-id="nogueira2018quantifying"><strong>???</strong></span>)</span> for comparative studies. The <code>R</code> package <code>stabm</code> provides an implementation of many stability measures.</p>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
@@ -115,7 +115,7 @@
 ## 19           stabilityZucknick     FALSE     TRUE       0       1</code></pre>
 <p>This list states the names of the stability measures and some information about them.</p>
 <ul>
-<li>Corrected: Does a measure fulfill the property <em>correction for chance</em> as defined in <span class="citation">Nogueira (2018)</span>? This property indicates whether the expected value of the stability measure is independent of the number of selected features. Stability measures not fulfilling this property, usually attain the higher values, the more features are selected. For the measures that are not corrected for chance in their original definition, <code>stabm</code> provides the possibility to transform these measures, such that they are corrected for chance.</li>
+<li>Corrected: Does a measure fulfill the property <em>correction for chance</em> as defined in <span class="citation">Nogueira, Sechidis, and Brown (2018)</span>? This property indicates whether the expected value of the stability measure is independent of the number of selected features. Stability measures not fulfilling this property, usually attain the higher values, the more features are selected. For the measures that are not corrected for chance in their original definition, <code>stabm</code> provides the possibility to transform these measures, such that they are corrected for chance.</li>
 <li>Adjusted: Does a measure consider similarities between features when evaluating the feature selection stability? Adjusted measures have been created based on traditional stability measures by including an adjustment term that takes into account feature similarities, see <span class="citation">Bommert and Rahnenführer (2020)</span> for details.</li>
 <li>Minimum and Maximum: Bounds for the stability measures, useful for interpreting obtained stability values.</li>
 </ul>
@@ -149,16 +149,16 @@
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
 <div id="ref-bommert2020adjusted">
-<p>Bommert, Andrea, and Jörg Rahnenführer. 2020. “Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features.” In <em>International Conference on Machine Learning, Optimization, and Data Science - LOD 2020, in Print, Preprint: ArXiv:2009.12075</em>.</p>
+<p>Bommert, Andrea, and Jörg Rahnenführer. 2020. “Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features.” In <em>International Conference on Machine Learning, Optimization, and Data Science - LOD 2020, in Print</em>. <a href="https://arxiv.org/abs/2009.12075">https://arxiv.org/abs/2009.12075</a>.</p>
 </div>
 <div id="ref-bommert2017multicriteria">
-<p>Bommert, Andrea, Jörg Rahnenführer, and Michel Lang. 2017. “A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.” <em>Computational and Mathematical Methods in Medicine</em> 2017.</p>
+<p>Bommert, Andrea, Jörg Rahnenführer, and Michel Lang. 2017. “A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.” <em>Computational and Mathematical Methods in Medicine</em> 2017. <a href="https://doi.org/10.1155/2017/7907163">https://doi.org/10.1155/2017/7907163</a>.</p>
 </div>
 <div id="ref-kalousis2007stability">
-<p>Kalousis, Alexandros, Julien Prados, and Melanie Hilario. 2007. “Stability of Feature Selection Algorithms: A Study on High-Dimensional Spaces.” <em>Knowledge and Information Systems</em> 12 (1): 95–116.</p>
+<p>Kalousis, Alexandros, Julien Prados, and Melanie Hilario. 2007. “Stability of Feature Selection Algorithms: A Study on High-Dimensional Spaces.” <em>Knowledge and Information Systems</em> 12 (1): 95–116. <a href="https://doi.org/10.1007/s10115-006-0040-8">https://doi.org/10.1007/s10115-006-0040-8</a>.</p>
 </div>
-<div id="ref-nogueira2018quantifying">
-<p>Nogueira, Sarah. 2018. “Quantifying the Stability of Feature Selection.” PhD thesis, University of Manchester, United Kingdom.</p>
+<div id="ref-nogueira2018stability">
+<p>Nogueira, Sarah, Konstantinos Sechidis, and Gavin Brown. 2018. “On the Stability of Feature Selection Algorithms.” <em>Journal of Machine Learning Research</em> 18 (174): 1–54. <a href="http://jmlr.org/papers/v18/17-514.html">http://jmlr.org/papers/v18/17-514.html</a>.</p>
 </div>
 </div>
 </div>
