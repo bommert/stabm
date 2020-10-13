@@ -5,3 +5,5 @@
 .Rhistory
 Rplots.pdf
 ^README\.Rmd$
+^doc$
+^Meta$

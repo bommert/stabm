@@ -16,7 +16,7 @@
 #' on the similarity structure.
 listStabilityMeasures = function() {
   l = list(
-    list("stabilityDavis", FALSE, FALSE, 0, 1),
+    data.frame(Name = "stabilityDavis", Corrected = FALSE, Adjusted = FALSE, Minimum = 0, Maximum = 1),
     list("stabilityDice", FALSE, FALSE, 0, 1),
     list("stabilityHamming", FALSE, FALSE, 0, 1),
     list("stabilityIntersectionCount", TRUE, TRUE, NA, 1),
@@ -37,7 +37,6 @@ listStabilityMeasures = function() {
     list("stabilityZucknick", FALSE, TRUE, 0, 1)
   )
 
-  l = BBmisc::convertListOfRowsToDataFrame(l, strings.as.factors = FALSE)
-  colnames(l) = c("Name", "Corrected", "Adjusted", "Minimum", "Maximum")
+  l = Reduce(rbind, l)
   return(l)
 }

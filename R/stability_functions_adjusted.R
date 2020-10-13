@@ -76,8 +76,7 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' stabilityIntersectionMBM(features = feats, sim.mat = mat, N = 1000)
 stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
-  BBmisc::requirePackages(c("igraph"), why = "stabilityIntersectionMBM",
-    default.method = "load")
+  requireNamespace("igraph")
   stability(features = features, measure = "intersection.mbm",
     sim.mat = sim.mat, threshold = threshold,
     correction.for.chance = correction.for.chance,

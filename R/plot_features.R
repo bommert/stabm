@@ -14,8 +14,8 @@
 #' @export
 plotFeatures = function(features, sim.mat = NULL) {
 
-  BBmisc::requirePackages(c("cowplot", "data.table", "ggdendro", "ggplot2"),
-    why = "plotFeatures", default.method = "load")
+  packages = c("ggplot2", "cowplot", "ggdendro")
+  rn = lapply(packages, requireNamespace)
 
   # Checks
   checkmate::assertList(features, any.missing = FALSE, min.len = 2L,

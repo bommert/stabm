@@ -69,10 +69,12 @@ stability = function(features, measure, correction.for.chance, N,
       }
 
       gt = which(sim.mat >= threshold)
-      gt.mat = BBmisc::convertListOfRowsToDataFrame(lapply(gt, trafoIndex, nr = nrow(sim.mat)))
+      gt.tmp = lapply(gt, trafoIndex, nr = nrow(sim.mat))
+      gt.mat = do.call(rbind, gt.tmp)
       w = which(gt.mat[, 1] >= gt.mat[, 2])
 
-      sparse.mat = sparseMatrix(gt.mat[w, 1], gt.mat[w, 2], x = sim.mat[gt[w]], symmetric = TRUE)
+      sparse.mat = sparseMatrix(gt.mat[w, 1], gt.mat[w, 2], x = sim.mat[gt[w]],
+        symmetric = TRUE, dims = c(nrow(sim.mat), ncol(sim.mat)))
       colnames(sparse.mat) = rownames(sparse.mat) = colnames(sim.mat)
       sim.mat = sparse.mat
       sim.mat = as(sim.mat, "dsTMatrix")
