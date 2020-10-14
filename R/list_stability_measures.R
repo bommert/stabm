@@ -37,6 +37,5 @@ listStabilityMeasures = function() {
     list("stabilityZucknick", FALSE, TRUE, 0, 1)
   )
 
-  l = Reduce(rbind, l)
-  return(l)
+  do.call(rbind, l)
 }

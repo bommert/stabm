@@ -7,4 +7,3 @@ measureScoreHelper = function(features, measureFun) {
   }))
   return(scores)
 }
-

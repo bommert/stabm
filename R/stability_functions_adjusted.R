@@ -70,6 +70,7 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' of \eqn{V_i \backslash V_j} on the one side and the features of \eqn{V_j \backslash V_i}
 #' on the other side. Vertices x and y are connected if and only if \eqn{Similarity(x, y)
 #' \geq threshold.}
+#' Requires the package \CRANpkg{igraph}.
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))

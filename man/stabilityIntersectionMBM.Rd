@@ -77,6 +77,7 @@ maximum bipartite matching based on the graph whose vertices are the features
 of \eqn{V_i \backslash V_j} on the one side and the features of \eqn{V_j \backslash V_i}
 on the other side. Vertices x and y are connected if and only if \eqn{Similarity(x, y)
 \geq threshold.}
+Requires the package \CRANpkg{igraph}.
 }
 \section{Notation}{
  For the definition of all stability measures in this package,
