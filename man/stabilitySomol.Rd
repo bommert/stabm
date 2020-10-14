@@ -58,16 +58,14 @@ feats = list(1:3, 1:4, 1:5)
 stabilitySomol(features = feats, p = 10)
 }
 \references{
-\itemize{
-\item P. Somol and J. Novovičová, "Evaluating stability and comparing
-output of feature selectors that optimize feature subset
-cardinality", IEEE Transactions on Pattern Analysis and Machine
-Intelligence, vol. 32, no. 11, pp. 1921-1939, 2010.
-\item A. Bommert, J. Rahnenführer, and M. Lang,
-"A multi-criteria approach to find predictive and sparse models with
-stable feature selection for high-dimensional data",
-Computational and mathematical methods in medicine, 2017.
-}
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
+Somol P, Novovičová J (2010).
+\dQuote{Evaluating Stability and Comparing Output of Feature Selectors that Optimize Feature Subset Cardinality.}
+\emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, \bold{32}(11), 1921--1939.
+\doi{10.1109/tpami.2010.34}.
 }
 \seealso{
 \link{listStabilityMeasures}

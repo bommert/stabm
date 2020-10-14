@@ -57,10 +57,10 @@ feats = list(1:3, 1:4, 1:5)
 stabilityWald(features = feats, p = 10)
 }
 \references{
-\itemize{
-\item Wald, R., T. M. Khoshgoftaar, and A. Napolitano (2013). “Stability of filter-and wrapper-based feature
-subset selection.” In: 2013 IEEE 25th International Conference on Tools with Artificial Intelligence, pp. 374–380.
-}
+Wald R, Khoshgoftaar TM, Napolitano A (2013).
+\dQuote{Stability of Filter- and Wrapper-Based Feature Subset Selection.}
+In \emph{2013 IEEE 25th International Conference on Tools with Artificial Intelligence}.
+\doi{10.1109/ictai.2013.63}.
 }
 \seealso{
 \link{listStabilityMeasures}

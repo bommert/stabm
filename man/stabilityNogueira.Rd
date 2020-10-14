@@ -55,8 +55,7 @@ feats = list(1:3, 1:4, 1:5)
 stabilityNogueira(features = feats, p = 10)
 }
 \references{
-S. Nogueira, "Quantifying the Stability of Feature Selection",
-Diss. PhD thesis, University of Manchester, 2018.
+`r tools::toRd(bibentries[c("Nogueira2018")])`
 }
 \seealso{
 \link{listStabilityMeasures}
