@@ -82,16 +82,14 @@ feats = list(1:3, 1:4, 1:5)
 stabilityNovovicova(features = feats)
 }
 \references{
-\itemize{
-\item J. Novovičová, P. Somol, and P. Pudil, "A new measure of feature
-selection algorithms’ stability", in Proceedings of the 2009 IEEE
-International Conference on Data Mining Workshops,
-ICDMW 2009, pp. 382–387, December 2009.
-\item A. Bommert, J. Rahnenführer, and M. Lang,
-"A multi-criteria approach to find predictive and sparse models with
-stable feature selection for high-dimensional data",
-Computational and mathematical methods in medicine, 2017.
-}
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
+Novovičová J, Somol P, Pudil P (2009).
+\dQuote{A New Measure of Feature Selection Algorithms' Stability.}
+In \emph{2009 IEEE International Conference on Data Mining Workshops}.
+\doi{10.1109/icdmw.2009.32}.
 }
 \seealso{
 \link{listStabilityMeasures}

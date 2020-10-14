@@ -83,15 +83,14 @@ feats = list(1:3, 1:4, 1:5)
 stabilityJaccard(features = feats)
 }
 \references{
-\itemize{
-\item P. Jaccard, "Étude comparative de la distribution florale dans
-une portion des alpes et du jura", Bulletin de la Société Vaudoise des
-Sciences Naturelles, vol. 37, pp. 547-579, 1901.
-\item A. Bommert, J. Rahnenführer, and M. Lang,
-"A multi-criteria approach to find predictive and sparse models with
-stable feature selection for high-dimensional data",
-Computational and mathematical methods in medicine, 2017.
-}
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
+Jaccard, Paul (1901).
+\dQuote{Étude comparative de la distribution florale dans une portion des Alpes et du Jura.}
+\emph{Bulletin de la Société Vaudoise des Sciences Naturelles}, \bold{37}, 547-579.
+\doi{10.5169/SEALS-266450}.
 }
 \seealso{
 \link{listStabilityMeasures}

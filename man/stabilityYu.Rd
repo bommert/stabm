@@ -97,17 +97,14 @@ mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 stabilityYu(features = feats, sim.mat = mat, N = 1000)
 }
 \references{
-\itemize{
-\item L. Yu, Y. Han, and M. E. Berens,
-"Stable gene selection from microarray data via sample weighting",
-IEEE/ACM Transactions on Computational Biology and Bioinformatics,
-vol. 9, no. 1, pp. 262-272, 2012.
-\item M. Zhang, L. Zhang, J. Zou, C. Yao, H. Xiao, Q. Liu, J. Wang, D. Wang,
-C. Wang, and Z. Guo,
-"Evaluating reproducibility of differential expression discoveries in microarray
-studies by considering correlated molecular changes", Bioinformatics,
-vol. 25, no. 13, pp. 1662-1668, 2009.
-}
+Yu L, Han Y, Berens ME (2012).
+\dQuote{Stable Gene Selection from Microarray Data via Sample Weighting.}
+\emph{IEEE/ACM Transactions on Computational Biology and Bioinformatics}, \bold{9}(1), 262--272.
+\doi{10.1109/tcbb.2011.47}.
+Zhang M, Zhang L, Zou J, Yao C, Xiao H, Liu Q, Wang J, Wang D, Wang C, Guo Z (2009).
+\dQuote{Evaluating reproducibility of differential expression discoveries in microarray studies by considering correlated molecular changes.}
+\emph{Bioinformatics}, \bold{25}(13), 1662--1668.
+\doi{10.1093/bioinformatics/btp295}.
 }
 \seealso{
 \link{listStabilityMeasures}

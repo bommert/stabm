@@ -11,14 +11,7 @@
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary similarity measures.
 #' @references
-#' * M. Zucknick, S. Richardson, and E. Stronach, "Comparing the
-#' characteristics of gene expression profiles derived by univariate
-#' andmultivariate classification methods", Statistical Applications
-#' in Genetics and Molecular Biology, vol. 7, no. 1, pp. 1-34, 2008.
-#' * A. Bommert, J. Rahnenführer, and M. Lang,
-#' "A multi-criteria approach to find predictive and sparse models with
-#' stable feature selection for high-dimensional data",
-#' Computational and mathematical methods in medicine, 2017.
+#' `r tools::toRd(bibentries[c("Zucknick2008", "Bommert2017")])`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -49,15 +42,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary datasets and similarity measures and applicable in situations with \eqn{|V_i| \neq |V_j|}.
 #' @references
-#' * L. Yu, Y. Han, and M. E. Berens,
-#' "Stable gene selection from microarray data via sample weighting",
-#' IEEE/ACM Transactions on Computational Biology and Bioinformatics,
-#' vol. 9, no. 1, pp. 262-272, 2012.
-#' * M. Zhang, L. Zhang, J. Zou, C. Yao, H. Xiao, Q. Liu, J. Wang, D. Wang,
-#' C. Wang, and Z. Guo,
-#' "Evaluating reproducibility of differential expression discoveries in microarray
-#' studies by considering correlated molecular changes", Bioinformatics,
-#' vol. 25, no. 13, pp. 1662-1668, 2009.
+#' `r tools::toRd(bibentries[c("LeiYu2012", "Zhang2009")])`
 #' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)

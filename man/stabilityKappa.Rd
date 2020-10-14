@@ -58,8 +58,7 @@ feats = list(1:3, 1:4, 1:5)
 stabilityKappa(features = feats, p = 10)
 }
 \references{
-J. Cohen, "A coefficient of agreement for nominal scales",
-Educational and psychological measurement, vol. 20, no. 1, pp. 37-46, 1960.
+`r tools::toRd(bibentries[c("Cohen1960")])`
 }
 \seealso{
 \link{listStabilityMeasures}
