@@ -1,17 +1,32 @@
 Package: stabm
 Title: Stability Measures for Feature Selection
 Version: 1.1.3
-Authors@R: person("Andrea", "Bommert", email = "bommert@statistik.tu-dortmund.de", role = c("aut", "cre"))
-Description: An implementation of many measures for the assessment of the stability
-    of feature selection. Both simple measures and measures which take into account
-    the similarities between features are available, see Bommert et al. (2017) <doi:10.1155/2017/7907163>.
-Depends: R (>= 3.5.0)
+Authors@R: 
+    c(person(given = "Andrea",
+             family = "Bommert",
+             role = c("aut", "cre"),
+             email = "bommert@statistik.tu-dortmund.de"),
+      person(given = "Michel",
+             family = "Lang",
+             role = "aut",
+             email = "michellang@gmail.com",
+             comment = c(ORCID = "0000-0001-9754-0393")))
+Description: An implementation of many measures for the
+    assessment of the stability of feature selection. Both simple measures
+    and measures which take into account the similarities between features
+    are available, see Bommert et al. (2017) <doi:10.1155/2017/7907163>.
+License: LGPL-3
+URL: https://bommert.github.io/stabm,
+    https://github.com/bommert/stabm
+BugReports: https://github.com/bommert/stabm/issues
+Depends: 
+    R (>= 3.5.0)
 Imports: 
     checkmate (>= 1.8.5),
     Matrix (>= 1.2-14),
-  	methods,
-  	stats,
-  	utils
+    methods,
+    stats,
+    utils
 Suggests:
     cowplot (>= 0.9.2),
     ggdendro (>= 0.1-20),
@@ -21,10 +36,7 @@ Suggests:
     reshape2 (>= 1.4.3),
     rmarkdown,
     testthat (>= 2.0.0)
-License: LGPL-3
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
-LazyData: true
-VignetteBuilder: knitr
 RoxygenNote: 7.1.1
-URL: https://github.com/bommert/stabm
-BugReports: https://github.com/bommert/stabm/issues
