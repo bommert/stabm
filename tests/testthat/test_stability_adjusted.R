@@ -4,6 +4,7 @@ library(Matrix)
 measures = list(
   "stabilityYu",
   "stabilityZucknick",
+  "stabilitySechidis",
   "stabilityIntersectionMBM",
   "stabilityIntersectionGreedy",
   "stabilityIntersectionCount",
@@ -175,10 +176,26 @@ test_that("set 6: only one feature in dataset", {
       na.ok = TRUE, null.ok = FALSE, info = m)
   })
 
-  lapply(measures, function(m) {
+  lapply(setdiff(measures, "stabilitySechidis"), function(m) {
     checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
       threshold = 0.85, correction.for.chance = "none"),
       na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
   })
+})
 
+test_that("No similarities: equalities", {
+  smas = paste0("stabilityIntersection", c("MBM", "Greedy", "Count", "Mean"))
+  smu = stabilityUnadjusted(features = feats1, p = ncol(sim.mat3))
+  lapply(smas, function(m) {
+    expect_equal(
+      get(m)(features = feats1, sim.mat = sim.mat3,
+        threshold = 0.85, correction.for.chance = "exact"),
+      smu, info = m)
+  })
+
+  smn = stabilityNogueira(features = feats1, p = ncol(sim.mat3))
+  expect_equal(
+    stabilitySechidis(features = feats1, sim.mat = sim.mat3,
+      threshold = 0.85, correction.for.chance = "none"),
+    smn, info = " stabilitySechidis")
 })

@@ -73,3 +73,38 @@ zucknick = list(
     )
   }
 )
+
+
+sechidis = list(
+  scoreFun = function(features, sim.mat, F.all, ...) {
+    ns = lengths(features)
+    ns.mean = mean(ns)
+    p = ncol(sim.mat)
+    if (ns.mean == 0 || ns.mean == p) {
+      return(NA_real_)
+    }
+
+    n = length(features)
+    Z = matrix(0, nrow = n, ncol = p)
+    for (i in seq_along(features)) {
+      Z[i, ] = as.numeric(F.all %in% features[[i]])
+    }
+    S = cov(Z)
+
+    k.bar = mean(rowSums(Z))
+    k2.bar = mean(rowSums(Z)^2)
+    diag.element = k.bar/p * (1  - k.bar/p)
+    off.diag.element = (k2.bar - k.bar) / (p^2 - p) - k.bar^2 / p^2
+    Sigma0 = matrix(off.diag.element, nrow = p, ncol = p)
+    diag(Sigma0) = diag.element
+
+    num = sum(diag(sim.mat %*% S))
+    denom = sum(diag(sim.mat %*% Sigma0))
+
+    score = 1 - num / denom
+    return(score)
+  },
+  maxValueFun = function(features, ...) {
+    1
+  }
+)
