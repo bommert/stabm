@@ -37,9 +37,10 @@ stability = function(features, measure, correction.for.chance, N,
   # features
   checkmate::assertList(features, any.missing = FALSE, min.len = 2L,
     types = c("integerish", "character"))
-  type.numeric = sapply(features, is.numeric)
   type.character = sapply(features, is.character)
-  checkmate::assertTRUE(all(type.numeric) || all(type.character))
+  if (any(type.character) && !all(type.character)) {
+    stop("All features must numeric or all features must be character")
+  }
 
   if (is.adj.measure) {
     # sim.mat
@@ -47,7 +48,7 @@ stability = function(features, measure, correction.for.chance, N,
 
     if (is.null(pck) || pck != "Matrix") {
       checkmate::assertMatrix(sim.mat, any.missing = FALSE, min.rows = 1L, min.cols = 1L, null.ok = FALSE)
-      checkmate::assertTRUE(base::isSymmetric(unname(sim.mat)))
+      checkmate::assertTRUE(isSymmetric(unname(sim.mat)))
       checkmate::assertNumeric(sim.mat, lower = 0, upper = 1)
     } else {
       checkmate::assertTRUE(Matrix::isSymmetric(sim.mat))
