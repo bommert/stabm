@@ -34,7 +34,6 @@ Suggests:
     ggplot2 (>= 3.0.0),
     igraph (>= 1.2.1),
     knitr,
-    reshape2 (>= 1.4.3),
     rmarkdown,
     testthat (>= 2.0.0)
 VignetteBuilder: 
