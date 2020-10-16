@@ -73,7 +73,7 @@
       <h1 data-toc-skip>stabm</h1>
                         <h4 class="author">Andrea Bommert</h4>
             
-            <h4 class="date">2020-10-14</h4>
+            <h4 class="date">2020-10-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bommert/stabm/blob/master/vignettes/stabm.Rmd"><code>vignettes/stabm.Rmd</code></a></small>
       <div class="hidden name"><code>stabm.Rmd</code></div>
@@ -108,11 +108,12 @@
 ## 12         stabilityNovovicova     FALSE    FALSE       0       1
 ## 13             stabilityOchiai     FALSE    FALSE       0       1
 ## 14                stabilityPhi      TRUE    FALSE      -1       1
-## 15              stabilitySomol      TRUE    FALSE       0       1
-## 16         stabilityUnadjusted      TRUE    FALSE      -1       1
-## 17               stabilityWald      TRUE    FALSE     1-p       1
-## 18                 stabilityYu      TRUE     TRUE    &lt;NA&gt;       1
-## 19           stabilityZucknick     FALSE     TRUE       0       1</code></pre>
+## 15           stabilitySechidis     FALSE     TRUE    &lt;NA&gt;       1
+## 16              stabilitySomol      TRUE    FALSE       0       1
+## 17         stabilityUnadjusted      TRUE    FALSE      -1       1
+## 18               stabilityWald      TRUE    FALSE     1-p       1
+## 19                 stabilityYu      TRUE     TRUE    &lt;NA&gt;       1
+## 20           stabilityZucknick     FALSE     TRUE       0       1</code></pre>
 <p>This list states the names of the stability measures and some information about them.</p>
 <ul>
 <li>Corrected: Does a measure fulfill the property <em>correction for chance</em> as defined in <span class="citation">Nogueira, Sechidis, and Brown (2018)</span>? This property indicates whether the expected value of the stability measure is independent of the number of selected features. Stability measures not fulfilling this property, usually attain the higher values, the more features are selected. For the measures that are not corrected for chance in their original definition, <code>stabm</code> provides the possibility to transform these measures, such that they are corrected for chance.</li>

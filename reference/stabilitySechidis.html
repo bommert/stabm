@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Stability Measure Ochiai — stabilityOchiai • stabm</title>
+<title>Stability Measures Sechidis — stabilitySechidis • stabm</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Stability Measure Ochiai — stabilityOchiai" />
+<meta property="og:title" content="Stability Measures Sechidis — stabilitySechidis" />
 <meta property="og:description" content="The stability of feature selection is defined as the robustness of
 the sets of selected features with respect to small variations in the data on which the
 feature selection is conducted. To quantify stability, several datasets from the
@@ -119,9 +119,9 @@ using stability measures." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Stability Measure Ochiai</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bommert/stabm/blob/master/R/stability_functions_uncorrected.R'><code>R/stability_functions_uncorrected.R</code></a></small>
-    <div class="hidden name"><code>stabilityOchiai.Rd</code></div>
+    <h1>Stability Measures Sechidis</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bommert/stabm/blob/master/R/stability_functions_adjusted.R'><code>R/stability_functions_adjusted.R</code></a></small>
+    <div class="hidden name"><code>stabilitySechidis.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -136,9 +136,10 @@ The stability of the feature selection is assessed based on the sets of chosen f
 using stability measures.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stabilityOchiai</span><span class='op'>(</span>
+    <pre class="usage"><span class='fu'>stabilitySechidis</span><span class='op'>(</span>
   <span class='va'>features</span>,
-  p <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>sim.mat</span>,
+  threshold <span class='op'>=</span> <span class='fl'>0.9</span>,
   correction.for.chance <span class='op'>=</span> <span class='st'>"none"</span>,
   N <span class='op'>=</span> <span class='fl'>10000</span>,
   impute.na <span class='op'>=</span> <span class='cn'>NULL</span>
@@ -154,10 +155,22 @@ Chosen features per dataset. Each element of the list contains the features for 
 The features must be given by their names (<code>character</code>) or indices (<code>integerish</code>).</p></td>
     </tr>
     <tr>
-      <th>p</th>
+      <th>sim.mat</th>
+      <td><p><code>numeric matrix</code><br />
+Similarity matrix which contains the similarity structure of all features based on
+all datasets. The similarity values must be in the range of [0, 1] where 0 indicates
+very low similarity and 1 indicates very high similarity. If the list elements of
+<code>features</code> are integerish vectors, then the feature numbering must correspond to the
+ordering of <code>sim.mat</code>. If the list elements of <code>features</code> are character
+vectors, then <code>sim.mat</code> must be named and the names of <code>sim.mat</code> must correspond
+to the entries in <code>features</code>.</p></td>
+    </tr>
+    <tr>
+      <th>threshold</th>
       <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
-Total number of features in the datasets.
-Required, if <code>correction.for.chance</code> is set to "estimate" or "exact".</p></td>
+Threshold for indicating which features are similar and which are not. Two features
+are considered as similar, if and only if the corresponding entry of <code>sim.mat</code> is greater
+than or equal to <code>threshold</code>.</p></td>
     </tr>
     <tr>
       <th>correction.for.chance</th>
@@ -197,9 +210,13 @@ With which value should these missing values be imputed? <code>NULL</code> means
     <p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code> Stability value.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The stability measure is defined as (see Notation)
-$$\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
-\frac{|V_i \cap V_j|}{\sqrt{|V_i| \cdot |V_j|}}.$$</p>
+    <p>The stability measure is defined as
+$$1 - \frac{trace(CS)}{trace(C \Sigma)}$$ with (\(p \times p\))-matrices
+$$(S)_{ij} = \frac{m}{m-1}\left(\frac{h_{ij}}{m} - \frac{h_i}{m} \frac{h_j}{m}\right)$$ and
+$$(\Sigma)_{ii} = \frac{q}{mp} \left(1 - \frac{q}{mp}\right),$$
+$$(\Sigma)_{ij} = \frac{\frac{1}{m} \sum_{i=1}^{m} |V_i|^2 - \frac{q}{m}}{p^2 - p} - \frac{q^2}{m^2 p^2}, i \neq j.$$
+The matrix \(C\) is created from matrix <code>sim.mat</code> by setting all values of <code>sim.mat</code> that are smaller
+than <code>threshold</code> to 0. If you want to \(C\) to be equal to <code>sim.mat</code>, use <code>threshold = 0</code>.</p>
     <h2 class="hasAnchor" id="notation"><a class="anchor" href="#notation"></a>Notation</h2>
 
     <p>For the definition of all stability measures in this package,
@@ -214,15 +231,11 @@ Analogously, let \(h_{ij}\) denote the number of sets that include both \(X_i\) 
 Also, let \(q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|\) and \(V = \bigcup_{i=1}^m V_i\).</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Bommert A, Rahnenführer J, Lang M (2017).
-&#8220;A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.&#8221;
-<em>Computational and Mathematical Methods in Medicine</em>, <b>2017</b>, 1--18.
-doi: <a href='https://doi.org/10.1155/2017/7907163'>10.1155/2017/7907163</a>
-.
-Ochiai A (1957).
-&#8220;Zoogeographical Studies on the Soleoid Fishes Found in Japan and its Neighbouring Regions-III.&#8221;
-<em>Nippon Suisan Gakkaishi</em>, <b>22</b>(9), 531-535.
-doi: <a href='https://doi.org/10.2331/suisan.22.531'>10.2331/suisan.22.531</a>
+    <p>Sechidis K, Papangelou K, Nogueira S, Weatherall J, Brown G (2020).
+&#8220;On the Stability of Feature Selection in the Presence of Feature Correlations.&#8221;
+In <em>Machine Learning and Knowledge Discovery in Databases</em>, 327--342.
+Springer International Publishing.
+doi: <a href='https://doi.org/10.1007/978-3-030-46150-8_20'>10.1007/978-3-030-46150-8_20</a>
 .</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -230,8 +243,9 @@ doi: <a href='https://doi.org/10.2331/suisan.22.531'>10.2331/suisan.22.531</a>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>feats</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>
-<span class='fu'>stabilityOchiai</span><span class='op'>(</span>features <span class='op'>=</span> <span class='va'>feats</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.8450164</div></pre>
+<span class='va'>mat</span> <span class='op'>=</span> <span class='fl'>0.92</span> <span class='op'>^</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/outer.html'>outer</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='st'>"-"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>stabilitySechidis</span><span class='op'>(</span>features <span class='op'>=</span> <span class='va'>feats</span>, sim.mat <span class='op'>=</span> <span class='va'>mat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.5322911</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
