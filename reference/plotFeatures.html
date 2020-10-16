@@ -44,7 +44,9 @@
 The sets are ordered according to average linkage hierarchical clustering based on the Manhattan
 distance. If sim.mat is given, the features are ordered according to average linkage
 hierarchical clustering based on 1 - sim.mat. Otherwise, the features are ordered in
-the same way as the feature sets." />
+the same way as the feature sets.
+Note that this function needs the packages ggplot2, cowplot and 
+ggdendro installed." />
 
 
 
@@ -126,6 +128,8 @@ The sets are ordered according to average linkage hierarchical clustering based 
 distance. If <code>sim.mat</code> is given, the features are ordered according to average linkage
 hierarchical clustering based on <code>1 - sim.mat</code>. Otherwise, the features are ordered in
 the same way as the feature sets.</p>
+<p>Note that this function needs the packages <a href='https://CRAN.R-project.org/package=ggplot2'><span class="pkg">ggplot2</span></a>, <a href='https://CRAN.R-project.org/package=cowplot'><span class="pkg">cowplot</span></a> and 
+<a href='https://CRAN.R-project.org/package=ggdendro'><span class="pkg">ggdendro</span></a> installed.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plotFeatures</span><span class='op'>(</span><span class='va'>features</span>, sim.mat <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
