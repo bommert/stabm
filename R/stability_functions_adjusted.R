@@ -71,6 +71,10 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' on the other side. Vertices x and y are connected if and only if \eqn{Similarity(x, y)
 #' \geq threshold.}
 #' Requires the package \CRANpkg{igraph}.
+#' @references
+#' `r tools::toRd(bibentries["Bommert2020"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -94,6 +98,10 @@ stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
 #' \deqn{I(V_i, V_j) = |V_i \cap V_j| + GMBM(V_i \backslash V_j, V_j \backslash V_i).}
 #' \eqn{GMBM(V_i \backslash V_j, V_j \backslash V_i)} denotes a greedy approximation
 #' of \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
+#' @references
+#' `r tools::toRd(bibentries["Bommert2020"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -116,6 +124,10 @@ stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
 #' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i))} and
 #' \deqn{C(V_k, V_l) = |\{x \in  V_k \backslash V_l : \exists y \in
 #' V_l \backslash V_k \ with \ Similarity (x,y) \geq threshold \}|.}
+#' @references
+#' `r tools::toRd(bibentries["Bommert2020"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -139,6 +151,10 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 #' \deqn{C(V_k, V_l) = \sum_{x \in V_k \backslash V_l : |G^{kl}_x| > 0}
 #' \frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ Similarity (x,y)} and
 #' \deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ Similarity (x, y) \geq threshold \}.}
+#' @references
+#' `r tools::toRd(bibentries["Bommert2020"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
@@ -146,6 +162,33 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
   correction.for.chance = "estimate", N = 1e4, impute.na = NULL) {
   stability(features = features, measure = "intersection.mean",
+    sim.mat = sim.mat, threshold = threshold,
+    correction.for.chance = correction.for.chance,
+    N = N, impute.na = impute.na)
+}
+
+#' @export
+#' @title Stability Measures Sechidis
+#' @inherit stabilityDocumentation
+#' @inherit uncorrectedDocumentation
+#' @details The stability measure is defined as
+#' \deqn{1 - \frac{trace(CS)}{trace(C \Sigma)}} with (\eqn{p \times p})-matrices
+#' \deqn{(S)_{ij} = \frac{m}{m-1}\left(\frac{h_{ij}}{m} - \frac{h_i}{m} \frac{h_j}{m}\right)} and
+#' \deqn{(\Sigma)_{ii} = \frac{q}{mp} \left(1 - \frac{q}{mp}\right),}
+#' \deqn{(\Sigma)_{ij} = \frac{\frac{1}{m} \sum_{i=1}^{m} |V_i|^2 - \frac{q}{m}}{p^2 - p} - \frac{q^2}{m^2 p^2}, i \neq j.}
+#' The matrix \eqn{C} is created from matrix \code{sim.mat} by setting all values of \code{sim.mat} that are smaller
+#' than \code{threshold} to 0. If you want to \eqn{C} to be equal to \code{sim.mat}, use \code{threshold = 0}.
+#' @references
+#' `r tools::toRd(bibentries["Sechidis2020"])`
+#' @encoding UTF-8
+#' @md
+#' @examples
+#' feats = list(1:3, 1:4, 1:5)
+#' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
+#' stabilitySechidis(features = feats, sim.mat = mat)
+stabilitySechidis = function(features, sim.mat, threshold = 0.9,
+  correction.for.chance = "none", N = 1e4, impute.na = NULL) {
+  stability(features = features, measure = "sechidis",
     sim.mat = sim.mat, threshold = threshold,
     correction.for.chance = correction.for.chance,
     N = N, impute.na = impute.na)

@@ -21,7 +21,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Andrea Bommert \email{bommert@statistik.tu-dortmund.de}
+\strong{Maintainer}: Andrea Bommert \email{bommert@statistik.tu-dortmund.de} (\href{https://orcid.org/0000-0002-1005-9351}{ORCID})
 
 Authors:
 \itemize{

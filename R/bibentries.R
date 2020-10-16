@@ -25,7 +25,6 @@ bibentries       = c(
     journal      = "Statistical Applications in Genetics and Molecular Biology"
   ),
 
-
   Bommert2017    = bibentry("article",
     doi          = "10.1155/2017/7907163",
     year         = "2017",
@@ -35,6 +34,14 @@ bibentries       = c(
     author       = "Andrea Bommert and J\u00f6rg Rahnenf\u00fchrer and Michel Lang",
     title        = "A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data",
     journal      = "Computational and Mathematical Methods in Medicine"
+  ),
+
+  Bommert2020    = bibentry("inproceedings",
+    title        = "Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features",
+    author       = "Andrea Bommert and J\u00f6rg Rahnenf\u00fchrer",
+    booktitle    = "International Conference on Machine Learning, Optimization, and Data Science - {LOD} 2020, in print",
+    year         = "2020",
+    url          = "https://arxiv.org/abs/2009.12075"
   ),
 
   LeiYu2012      = bibentry("article",
@@ -127,7 +134,6 @@ bibentries       = c(
     organization = "American Medical Informatics Association"
   ),
 
-
   Somol2010      = bibentry("article",
     doi          = "10.1109/tpami.2010.34",
     year         = "2010",
@@ -164,11 +170,25 @@ bibentries       = c(
     journal      = "Educational and Psychological Measurement"
   ),
 
-  Nogueira2018   = bibentry("phdthesis",
-    author       = "S. Nogueira",
-    year         = "2018",
-    title        = "Quantifying the Stability of Feature Selection",
-    school       = "University of Manchester"
+  Nogueira2018   = bibentry("article",
+    author  = "Sarah Nogueira and Konstantinos Sechidis and Gavin Brown",
+    title   = "On the Stability of Feature Selection Algorithms",
+    journal = "Journal of Machine Learning Research",
+    year    = "2018",
+    volume  = "18",
+    number  = "174",
+    pages   = "1--54",
+    url     = "http://jmlr.org/papers/v18/17-514.html"
+  ),
+
+  Sechidis2020   = bibentry("incollection",
+    doi          = "10.1007/978-3-030-46150-8_20",
+    year         = "2020",
+    publisher    = "Springer International Publishing",
+    pages        = "327--342",
+    author       = "Konstantinos Sechidis and Konstantinos Papangelou and Sarah Nogueira and James Weatherall and Gavin Brown",
+    title        = "On the Stability of Feature Selection in the Presence of Feature Correlations",
+    booktitle    = "Machine Learning and Knowledge Discovery in Databases"
   ),
 
   Wald2013       = bibentry("inproceedings",

@@ -72,8 +72,10 @@ stabilityPhi = function(features, p, impute.na = NULL) {
 #' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
 #' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
 #' {\frac{|V_i| + |V_j|}{2} - \frac{|V_i| \cdot |V_j|}{p}}.}
-#' @references 
-#' `r tools::toRd(bibentries[c("Cohen1960")])`
+#' @references
+#' `r tools::toRd(bibentries["Cohen1960"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' stabilityKappa(features = feats, p = 10)
@@ -90,8 +92,10 @@ stabilityKappa = function(features, p, impute.na = NULL) {
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{1 - \frac{\frac{1}{p} \sum_{j=1}^p \frac{m}{m-1} \frac{h_j}{m} \left(1 - \frac{h_j}{m}\right)}
 #' {\frac{q}{mp} (1 - \frac{q}{mp})}.}
-#' @references 
-#' `r tools::toRd(bibentries[c("Nogueira2018")])`
+#' @references
+#' `r tools::toRd(bibentries["Nogueira2018"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' stabilityNogueira(features = feats, p = 10)
@@ -113,6 +117,10 @@ stabilityNogueira = function(features, p, impute.na = NULL) {
 #' This is what \link{stabilityIntersectionMBM}, \link{stabilityIntersectionGreedy},
 #' \link{stabilityIntersectionCount} and \link{stabilityIntersectionMean}
 #' become, when there are no similar features.
+#' @references
+#' `r tools::toRd(bibentries["Bommert2020"])`
+#' @encoding UTF-8
+#' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
 #' stabilityUnadjusted(features = feats, p = 10)

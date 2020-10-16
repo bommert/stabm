@@ -3,7 +3,7 @@ stability = function(features, measure, correction.for.chance, N,
 
   # Checks
 
-  adjusted.measures = c("yu", "zucknick", "intersection.mbm",
+  adjusted.measures = c("yu", "zucknick", "sechidis", "intersection.mbm",
     "intersection.greedy", "intersection.count", "intersection.mean")
   unadjusted.measures = c("davis", "dice", "hamming", "intersection.common",
     "jaccard", "kappa.coefficient", "lustgarten", "nogueira", "novovicova",
