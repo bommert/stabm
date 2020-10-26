@@ -93,7 +93,7 @@ intersection.mbm = list(
 
 
 intersection.count = list(
-  scoreFun = function(features, F.all, sim.mat, threshold, sim.feats, ...) {
+  scoreFun = function(features, F.all, sim.mat, threshold, ...) {
     measureScoreHelper(features = features,
       measureFun = function(F1, F2) {
         indices.1not2 = which(F.all %in% setdiff(F1, F2))
@@ -119,7 +119,7 @@ intersection.count = list(
 )
 
 intersection.mean = list(
-  scoreFun = function(features, F.all, sim.mat, threshold, sim.feats, ...) {
+  scoreFun = function(features, F.all, sim.mat, threshold, ...) {
     measureScoreHelper(features = features,
       measureFun = function(F1, F2) {
         indices.1not2 = which(F.all %in% setdiff(F1, F2))
