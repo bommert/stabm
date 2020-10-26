@@ -136,14 +136,7 @@ The stability of the feature selection is assessed based on the sets of chosen f
 using stability measures.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stabilitySechidis</span><span class='op'>(</span>
-  <span class='va'>features</span>,
-  <span class='va'>sim.mat</span>,
-  threshold <span class='op'>=</span> <span class='fl'>0.9</span>,
-  correction.for.chance <span class='op'>=</span> <span class='st'>"none"</span>,
-  N <span class='op'>=</span> <span class='fl'>10000</span>,
-  impute.na <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>stabilitySechidis</span><span class='op'>(</span><span class='va'>features</span>, <span class='va'>sim.mat</span>, threshold <span class='op'>=</span> <span class='fl'>0.9</span>, impute.na <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -173,30 +166,6 @@ are considered as similar, if and only if the corresponding entry of <code>sim.m
 than or equal to <code>threshold</code>.</p></td>
     </tr>
     <tr>
-      <th>correction.for.chance</th>
-      <td><p><code><a href='https://rdrr.io/r/base/character.html'>character(1)</a></code><br />
-Should a correction for chance be applied? Correction for chance means that if
-features are chosen at random, the expected value must be independent of the number
-of chosen features. To correct for chance, the original score is transformed by
-\((score - expected) / (maximum - expected)\). For stability measures whose
-score is the average value of pairwise scores, this transformation
-is done for all components individually.
-Options are "none", "estimate" and "exact".
-For "none", no correction is performed, i.e. the original score is used.
-For "estimate", <code>N</code> random feature sets of the same sizes as the input
-feature sets (<code>features</code>) are generated.
-For "exact", all possible combinations of feature sets of the same
-sizes as the input feature sets are used. Computation is only feasible for very
-small numbers of features (<code>p</code>) and numbers of considered datasets
-(<code><a href='https://rdrr.io/r/base/length.html'>length(features)</a></code>).</p></td>
-    </tr>
-    <tr>
-      <th>N</th>
-      <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
-Number of random feature sets to consider. Only relevant if <code>correction.for.chance</code>
-is set to "estimate".</p></td>
-    </tr>
-    <tr>
       <th>impute.na</th>
       <td><p><code><a href='https://rdrr.io/r/base/numeric.html'>numeric(1)</a></code><br />
 In some scenarios, the stability cannot be assessed based on all feature sets.
@@ -217,6 +186,13 @@ $$(\Sigma)_{ii} = \frac{q}{mp} \left(1 - \frac{q}{mp}\right),$$
 $$(\Sigma)_{ij} = \frac{\frac{1}{m} \sum_{i=1}^{m} |V_i|^2 - \frac{q}{m}}{p^2 - p} - \frac{q^2}{m^2 p^2}, i \neq j.$$
 The matrix \(C\) is created from matrix <code>sim.mat</code> by setting all values of <code>sim.mat</code> that are smaller
 than <code>threshold</code> to 0. If you want to \(C\) to be equal to <code>sim.mat</code>, use <code>threshold = 0</code>.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>This stability measure is not corrected for chance.
+Unlike for the other stability measures in this R package, that are not corrected for chance,
+for <code>stabilitySechidis</code>, no <code>correction.for.chance</code> can be applied.
+This is because for <code>stabilitySechidis</code>, no finite upper bound is known at the moment,
+see <a href='listStabilityMeasures.html'>listStabilityMeasures</a>.</p>
     <h2 class="hasAnchor" id="notation"><a class="anchor" href="#notation"></a>Notation</h2>
 
     <p>For the definition of all stability measures in this package,
