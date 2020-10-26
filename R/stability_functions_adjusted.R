@@ -168,7 +168,7 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 }
 
 #' @export
-#' @title Stability Measures Sechidis
+#' @title Stability Measure Sechidis
 #' @inherit stabilityDocumentation
 #' @inherit uncorrectedDocumentation
 #' @details The stability measure is defined as
@@ -193,5 +193,6 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 #' stabilitySechidis(features = feats, sim.mat = mat)
 stabilitySechidis = function(features, sim.mat, threshold = 0.9, impute.na = NULL) {
   stability(features = features, measure = "sechidis",
-    sim.mat = sim.mat, threshold = threshold, impute.na = impute.na)
+    sim.mat = sim.mat, threshold = threshold,
+    correction.for.chance = "none", impute.na = impute.na)
 }
