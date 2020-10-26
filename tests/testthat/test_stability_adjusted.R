@@ -145,7 +145,7 @@ test_that("set 4: character input exact correction", {
     my_expect_number_adj(m, feats4, sim.mat2, "exact")
   })
 
-  lapply(measures, function(m) {
+  lapply(setdiff(measures, "stabilitySechidis"), function(m) {
     expect_equal(
       get(m)(features = feats4, sim.mat = sim.mat2,
         threshold = 0.85, correction.for.chance = "exact"),
@@ -157,7 +157,7 @@ test_that("set 4: character input exact correction", {
 
 
 test_that("set 5: constant selection gives value 1", {
-  lapply(measures, function(m) {
+  lapply(setdiff(measures, "stabilitySechidis"), function(m) {
     expect_equal(
       get(m)(features = feats5, sim.mat = sim.mat1,
         threshold = 0.85, correction.for.chance = "exact"),
