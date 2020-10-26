@@ -101,10 +101,14 @@ sechidis = list(
     num = sum(diag(sim.mat %*% S))
     denom = sum(diag(sim.mat %*% Sigma0))
 
-    score = 1 - num / denom
-    return(score)
+    if (denom == 0) {
+      return(NA_real_)
+    } else {
+      score = 1 - num / denom
+      return(score)
+    }
   },
   maxValueFun = function(features, ...) {
-    1
+    NA_real_
   }
 )

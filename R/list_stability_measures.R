@@ -31,7 +31,7 @@ listStabilityMeasures = function() {
     list("stabilityNovovicova", FALSE, FALSE, 0, 1),
     list("stabilityOchiai", FALSE, FALSE, 0, 1),
     list("stabilityPhi", TRUE, FALSE, -1, 1),
-    list("stabilitySechidis", FALSE, TRUE, NA, 1),
+    list("stabilitySechidis", FALSE, TRUE, NA, NA),
     list("stabilitySomol", TRUE, FALSE, 0, 1),
     list("stabilityUnadjusted", TRUE, FALSE, -1, 1),
     list("stabilityWald", TRUE, FALSE, "1-p", 1),
