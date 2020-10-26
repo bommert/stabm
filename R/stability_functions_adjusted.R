@@ -168,7 +168,7 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 }
 
 #' @export
-#' @title Stability Measures Sechidis
+#' @title Stability Measure Sechidis
 #' @inherit stabilityDocumentation
 #' @inherit uncorrectedDocumentation
 #' @details The stability measure is defined as
@@ -178,6 +178,11 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 #' \deqn{(\Sigma)_{ij} = \frac{\frac{1}{m} \sum_{i=1}^{m} |V_i|^2 - \frac{q}{m}}{p^2 - p} - \frac{q^2}{m^2 p^2}, i \neq j.}
 #' The matrix \eqn{C} is created from matrix \code{sim.mat} by setting all values of \code{sim.mat} that are smaller
 #' than \code{threshold} to 0. If you want to \eqn{C} to be equal to \code{sim.mat}, use \code{threshold = 0}.
+#' @note This stability measure is not corrected for chance.
+#' Unlike for the other stability measures in this R package, that are not corrected for chance,
+#' for \code{stabilitySechidis}, no \code{correction.for.chance} can be applied.
+#' This is because for \code{stabilitySechidis}, no finite upper bound is known at the moment,
+#' see \link{listStabilityMeasures}.
 #' @references
 #' `r tools::toRd(bibentries["Sechidis2020"])`
 #' @encoding UTF-8
@@ -186,10 +191,8 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 #' feats = list(1:3, 1:4, 1:5)
 #' mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 #' stabilitySechidis(features = feats, sim.mat = mat)
-stabilitySechidis = function(features, sim.mat, threshold = 0.9,
-  correction.for.chance = "none", N = 1e4, impute.na = NULL) {
+stabilitySechidis = function(features, sim.mat, threshold = 0.9, impute.na = NULL) {
   stability(features = features, measure = "sechidis",
     sim.mat = sim.mat, threshold = threshold,
-    correction.for.chance = correction.for.chance,
-    N = N, impute.na = impute.na)
+    correction.for.chance = "none", impute.na = impute.na)
 }

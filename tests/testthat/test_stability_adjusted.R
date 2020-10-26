@@ -43,80 +43,86 @@ feats4 = lapply(feats1, function(f) paste0("V", f))
 feats5 = list(1:2, 1:2)
 feats6 = list(1, 1)
 
+# repeatedly use checkmate functions the same way
+my_expect_number_adj = function(m, features, sim.mat, cfc, ...) {
+  if (m == "stabilitySechidis") {
+    checkmate::expect_number(stabilitySechidis(features = features,
+      sim.mat = sim.mat, threshold = 0.85, ...),
+      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = paste(m, cfc))
+  } else {
+    checkmate::expect_number(get(m)(features = features, sim.mat = sim.mat,
+      threshold = 0.85, correction.for.chance = cfc, N = 100, ...),
+      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = paste(m, cfc))
+  }
+}
+
+my_expect_na_adj = function(m, features, sim.mat, cfc, ...) {
+  if (m == "stabilitySechidis") {
+    checkmate::expect_scalar_na(stabilitySechidis(features = features,
+      sim.mat = sim.mat, threshold = 0.85, ...),
+      null.ok = FALSE, info = paste(m, cfc))
+  } else {
+    checkmate::expect_scalar_na(get(m)(features = features, sim.mat = sim.mat,
+      threshold = 0.85, correction.for.chance = cfc, N = 100, ...),
+      null.ok = FALSE, info = paste(m, cfc))
+  }
+}
 
 test_that("set 1: basic", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats1, sim.mat = sim.mat1,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = paste(m, "estimate"))
+    my_expect_number_adj(m, feats1, sim.mat1, "estimate")
   })
 
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats1, sim.mat = sim.mat1,
-      threshold = 0.85, correction.for.chance = "exact", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = paste(m, "exact"))
+    my_expect_number_adj(m, feats1, sim.mat1, "exact")
   })
 
-  checkmate::expect_number(stabilityZucknick(features = feats1, sim.mat = sim.mat1,
-    threshold = 0.85, correction.for.chance = "none", N = 100),
-    na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = paste("stabilityZucknick", "none"))
+  lapply(measures, function(m) {
+    my_expect_number_adj(m, feats1, sim.mat1, "none")
+  })
 })
 
 test_that("set 1: Matrix", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats1, sim.mat = sim.mat5,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats1, sim.mat5, "estimate")
   })
 })
 
 test_that("set 1: Matrix sparse", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats1, sim.mat = sim.mat6,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats1, sim.mat6, "estimate")
   })
 })
 
 test_that("set 1: Matrix non-symmetric format", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats1, sim.mat = sim.mat7,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats1, sim.mat7, "estimate")
   })
 })
 
 
 test_that("set 1: no similarities", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats1, sim.mat = sim.mat3,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats1, sim.mat3, "estimate")
   })
 })
 
 test_that("set 2: some empty sets: NAs", {
-  lapply(measures, function(m) {
-    checkmate::expect_scalar_na(get(m)(features = feats2, sim.mat = sim.mat1,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      null.ok = FALSE, info = m)
+  lapply(setdiff(measures, "stabilitySechidis"), function(m) {
+    my_expect_na_adj(m, feats2, sim.mat1, "estimate")
   })
 })
 
 test_that("set 2: some empty sets: impute NAs", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats2, sim.mat = sim.mat1,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100, impute.na = 0),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats2, sim.mat1, "estimate", impute.na = 0)
   })
 })
 
 
 test_that("set 3: only empty sets", {
   lapply(measures, function(m) {
-    checkmate::expect_scalar_na(get(m)(features = feats3, sim.mat = sim.mat1,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      null.ok = FALSE, info = m)
+    my_expect_na_adj(m, feats3, sim.mat1, "estimate")
   })
 })
 
@@ -130,20 +136,16 @@ test_that("set 4: unnamed", {
 
 test_that("set 4: named", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats4, sim.mat = sim.mat2,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats4, sim.mat2, "estimate")
   })
 })
 
 test_that("set 4: character input exact correction", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(features = feats4, sim.mat = sim.mat2,
-      threshold = 0.85, correction.for.chance = "exact"),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats4, sim.mat2, "exact")
   })
 
-  lapply(measures, function(m) {
+  lapply(setdiff(measures, "stabilitySechidis"), function(m) {
     expect_equal(
       get(m)(features = feats4, sim.mat = sim.mat2,
         threshold = 0.85, correction.for.chance = "exact"),
@@ -155,7 +157,7 @@ test_that("set 4: character input exact correction", {
 
 
 test_that("set 5: constant selection gives value 1", {
-  lapply(measures, function(m) {
+  lapply(setdiff(measures, "stabilitySechidis"), function(m) {
     expect_equal(
       get(m)(features = feats5, sim.mat = sim.mat1,
         threshold = 0.85, correction.for.chance = "exact"),
@@ -165,21 +167,15 @@ test_that("set 5: constant selection gives value 1", {
 
 test_that("set 6: only one feature in dataset", {
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
-      threshold = 0.85, correction.for.chance = "exact"),
-      na.ok = TRUE, null.ok = FALSE, info = m)
+    my_expect_na_adj(m, feats6, sim.mat8, "exact")
   })
 
   lapply(measures, function(m) {
-    checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
-      threshold = 0.85, correction.for.chance = "estimate", N = 100),
-      na.ok = TRUE, null.ok = FALSE, info = m)
+    my_expect_na_adj(m, feats6, sim.mat8, "estimate")
   })
 
   lapply(setdiff(measures, "stabilitySechidis"), function(m) {
-    checkmate::expect_number(get(m)(feats6, sim.mat = sim.mat8,
-      threshold = 0.85, correction.for.chance = "none"),
-      na.ok = FALSE, null.ok = FALSE, finite = TRUE, info = m)
+    my_expect_number_adj(m, feats6, sim.mat8, "none")
   })
 })
 
@@ -196,6 +192,6 @@ test_that("No similarities: equalities", {
   smn = stabilityNogueira(features = feats1, p = ncol(sim.mat3))
   expect_equal(
     stabilitySechidis(features = feats1, sim.mat = sim.mat3,
-      threshold = 0.85, correction.for.chance = "none"),
-    smn, info = " stabilitySechidis")
+      threshold = 0.85),
+    smn, info = "stabilitySechidis")
 })

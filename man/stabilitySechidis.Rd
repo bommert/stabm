@@ -5,14 +5,7 @@
 \alias{stabilitySechidis}
 \title{Stability Measures Sechidis}
 \usage{
-stabilitySechidis(
-  features,
-  sim.mat,
-  threshold = 0.9,
-  correction.for.chance = "none",
-  N = 10000,
-  impute.na = NULL
-)
+stabilitySechidis(features, sim.mat, threshold = 0.9, impute.na = NULL)
 }
 \arguments{
 \item{features}{\code{list (length >= 2)}\cr
@@ -32,26 +25,6 @@ to the entries in \code{features}.}
 Threshold for indicating which features are similar and which are not. Two features
 are considered as similar, if and only if the corresponding entry of \code{sim.mat} is greater
 than or equal to \code{threshold}.}
-
-\item{correction.for.chance}{\code{character(1)}\cr
-Should a correction for chance be applied? Correction for chance means that if
-features are chosen at random, the expected value must be independent of the number
-of chosen features. To correct for chance, the original score is transformed by
-\eqn{(score - expected) / (maximum - expected)}. For stability measures whose
-score is the average value of pairwise scores, this transformation
-is done for all components individually.
-Options are "none", "estimate" and "exact".
-For "none", no correction is performed, i.e. the original score is used.
-For "estimate", \code{N} random feature sets of the same sizes as the input
-feature sets (\code{features}) are generated.
-For "exact", all possible combinations of feature sets of the same
-sizes as the input feature sets are used. Computation is only feasible for very
-small numbers of features (\code{p}) and numbers of considered datasets
-(\code{length(features)}).}
-
-\item{N}{\code{numeric(1)}\cr
-Number of random feature sets to consider. Only relevant if \code{correction.for.chance}
-is set to "estimate".}
 
 \item{impute.na}{\code{numeric(1)}\cr
 In some scenarios, the stability cannot be assessed based on all feature sets.
@@ -80,6 +53,13 @@ The stability measure is defined as
 \deqn{(\Sigma)_{ij} = \frac{\frac{1}{m} \sum_{i=1}^{m} |V_i|^2 - \frac{q}{m}}{p^2 - p} - \frac{q^2}{m^2 p^2}, i \neq j.}
 The matrix \eqn{C} is created from matrix \code{sim.mat} by setting all values of \code{sim.mat} that are smaller
 than \code{threshold} to 0. If you want to \eqn{C} to be equal to \code{sim.mat}, use \code{threshold = 0}.
+}
+\note{
+This stability measure is not corrected for chance.
+Unlike for the other stability measures in this R package, that are not corrected for chance,
+for \code{stabilitySechidis}, no \code{correction.for.chance} can be applied.
+This is because for \code{stabilitySechidis}, no finite upper bound is known at the moment,
+see \link{listStabilityMeasures}.
 }
 \section{Notation}{
  For the definition of all stability measures in this package,
