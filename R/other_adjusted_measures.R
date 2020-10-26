@@ -42,6 +42,11 @@ zucknick = list(
   scoreFun = function(features, F.all, sim.mat, threshold, sim.feats, ...) {
     measureScoreHelper(features = features,
       measureFun = function(F1, F2) {
+        lu = length(union(F1, F2))
+        if (lu == 0) {
+          return(NA_real_)
+        }
+
         indices.1 = which(F.all %in% F1)
         indices.2 = which(F.all %in% F2)
 
@@ -61,7 +66,7 @@ zucknick = list(
         }
 
         res = length(intersect(F1, F2)) + add.sim1 + add.sim2
-        res = res / length(union(F1, F2))
+        res = res / lu
         return(res)
       })
   },

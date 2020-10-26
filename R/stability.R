@@ -130,38 +130,35 @@ stability = function(features, measure, correction.for.chance, N,
     }
   }
 
-  # Stability Assessment
 
-  measure.list = get(measure)
-
-  if (is.adj.measure) {
-
-    # similar features
-    calc.sim.feats = measure %in% c("intersection.mbm", "intersection.greedy")
-
-    if (calc.sim.feats) {
-      if (nrow(sim.mat) > 1) {
-        maxs = unlist(lapply(seq_len(nrow(sim.mat)), function(i) max(sim.mat[i, -i])))
-      } else {
-        maxs = -Inf
+  # avoid computation of expectation if no similar features in data set
+  intersection.based.adjusted.measures = c("yu",
+    paste("intersection", c("mbm", "greedy", "mean", "count"), sep = "."))
+  if (measure %in% intersection.based.adjusted.measures) {
+    if (nrow(sim.mat) > 1) {
+      any.sim.feats = FALSE
+      i = 1
+      while (!any.sim.feats && i <= nrow(sim.mat)) {
+        any.sim.feats = any(sim.mat[i, -i] >= threshold)
+        i = i + 1
       }
 
-      sim.feats = which(maxs >= threshold)
-
-      # if no similar features at all
-      if (length(sim.feats) == 0) {
+      if (!any.sim.feats) {
         measure = "intersection.common"
 
         if (correction.for.chance != "none") {
           correction.for.chance = "unadjusted"
         }
       }
-    } else {
-      sim.feats = NULL
     }
+  }
 
-    measure.args = list(features = features, F.all = F.all, sim.mat = sim.mat,
-      threshold = threshold, sim.feats = sim.feats)
+  # Stability Assessment
+  measure.list = get(measure)
+
+  if (is.adj.measure) {
+    measure.args = list(features = features, F.all = F.all,
+      sim.mat = sim.mat, threshold = threshold)
   } else {
     measure.args = list(features = features, p = p, penalty = penalty)
   }
@@ -187,6 +184,12 @@ stability = function(features, measure, correction.for.chance, N,
     maxima = do.call(measure.list$maxValueFun, measure.args)
 
     scores = (scores - expecteds) / (maxima - expecteds)
+
+    # replace NaN by NA
+    nan.scores = is.nan(scores)
+    if (length(nan.scores) > 0) {
+      scores[nan.scores] = NA_real_
+    }
   }
 
   if (!is.null(impute.na)) {

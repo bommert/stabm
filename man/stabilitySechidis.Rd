@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{stabilitySechidis}
 \alias{stabilitySechidis}
-\title{Stability Measures Sechidis}
+\title{Stability Measure Sechidis}
 \usage{
 stabilitySechidis(features, sim.mat, threshold = 0.9, impute.na = NULL)
 }
