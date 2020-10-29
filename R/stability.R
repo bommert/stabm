@@ -132,9 +132,8 @@ stability = function(features, measure, correction.for.chance, N,
 
 
   # avoid computation of expectation if no similar features in data set
-  intersection.based.adjusted.measures = c("yu",
-    paste("intersection", c("mbm", "greedy", "mean", "count"), sep = "."))
-  if (measure %in% intersection.based.adjusted.measures) {
+  adjusted.intersections = c("yu", paste("intersection", c("mbm", "greedy", "mean", "count"), sep = "."))
+  if (measure %in% adjusted.intersections) {
     if (nrow(sim.mat) > 1) {
       any.sim.feats = FALSE
       i = 1

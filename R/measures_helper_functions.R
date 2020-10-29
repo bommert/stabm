@@ -1,3 +1,14 @@
+measureScoreHelper = function(features, measureFun) {
+  n = length(features)
+  scores = unlist(lapply(1:(n - 1), function(i) {
+    sapply((i + 1):n, function(j) {
+      measureFun(features[[i]], features[[j]])
+    })
+  }))
+  return(scores)
+}
+
+
 meansWithoutZeros = function(x, dim.of.interest, len) {
   res = numeric(len)
   l = split(x, dim.of.interest)
@@ -14,3 +25,4 @@ colMeansWithoutZeros = function(m) {
 rowMeansWithoutZeros = function(m) {
   return(meansWithoutZeros(m@x, m@i, m@Dim[1]))
 }
+
