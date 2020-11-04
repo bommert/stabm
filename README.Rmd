@@ -38,3 +38,8 @@ For the development version, use [devtools](https://cran.r-project.org/package=d
 ```{r, eval = FALSE}
 devtools::install_github("bommert/stabm")
 ```
+
+
+## Pull requests
+
+Pull requests are welcome.

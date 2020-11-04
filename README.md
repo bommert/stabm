@@ -51,3 +51,7 @@ For the development version, use
 ``` r
 devtools::install_github("bommert/stabm")
 ```
+
+## Pull requests
+
+Pull requests are welcome.
