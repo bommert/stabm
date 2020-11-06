@@ -31,10 +31,14 @@ The latter is often achieved with subsampling or random perturbations [@awada201
 Then, the feature seleciton algorithm of interest is applied to each of the *m* data sets, resulting in *m* feature sets.
 To quantify the stability of the feature selection algorithm, the similarity of the *m* sets is calculated.
 In the context of feature selection stability, set similarity measures are called stability measures.
+
+# Statement of Need
 The R package *stabm* provides an implementation of many stability measures.
 For theoretical and empirical comparative studies of the stability measures implemented in *stabm*, we refer to @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018stability.
 It has be demonstrated that considering the feature selection stability when fitting a predictive model often is beneficial for obtaining models with high predictive accuracy [@bommert2017multicriteria; @schirra2016selection].
+The stability measures implemented in the R package *stabm* have been employed in @bommert2017multicriteria, @bommert2020benchmark, and @bommert2020adjusted.
 
+# Related Software
 Some stability measures are available in other R or Python packages.
 The R package *sets* [@meyer2009sets] and the Python package *Scikit-learn* [@pedregosa2011scikit] provide an implementation of the Jaccard index [@jaccard1901etude] to assess the similarity of two sets.
 The Python package *GSimPy* [@zhang2020gsimpy] implements several similarity measures including the Jaccard index and the Dice index [@dice1945measures].
