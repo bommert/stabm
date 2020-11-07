@@ -178,7 +178,7 @@ bibentries       = c(
     volume  = "18",
     number  = "174",
     pages   = "1--54",
-    url     = "http://jmlr.org/papers/v18/17-514.html"
+    url     = "https://jmlr.org/papers/v18/17-514.html"
   ),
 
   Sechidis2020   = bibentry("incollection",

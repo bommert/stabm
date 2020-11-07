@@ -17,7 +17,7 @@ Description: An implementation of many measures for the
     and measures which take into account the similarities between features
     are available, see Bommert et al. (2017) <doi:10.1155/2017/7907163>.
 License: LGPL-3
-URL: https://bommert.github.io/stabm,
+URL: https://bommert.github.io/stabm/,
     https://github.com/bommert/stabm
 BugReports: https://github.com/bommert/stabm/issues
 Depends: 
