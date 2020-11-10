@@ -14,7 +14,7 @@ An implementation of many measures for the
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://bommert.github.io/stabm}
+  \item \url{https://bommert.github.io/stabm/}
   \item \url{https://github.com/bommert/stabm}
   \item Report bugs at \url{https://github.com/bommert/stabm/issues}
 }

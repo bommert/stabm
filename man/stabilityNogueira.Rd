@@ -60,7 +60,7 @@ stabilityNogueira(features = feats, p = 10)
 Nogueira S, Sechidis K, Brown G (2018).
 \dQuote{On the Stability of Feature Selection Algorithms.}
 \emph{Journal of Machine Learning Research}, \bold{18}(174), 1--54.
-\url{http://jmlr.org/papers/v18/17-514.html}.
+\url{https://jmlr.org/papers/v18/17-514.html}.
 }
 \seealso{
 \link{listStabilityMeasures}
