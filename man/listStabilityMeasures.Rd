@@ -27,3 +27,6 @@ For the adjusted stability measures, the minimal value depends
 on the similarity structure.
 }
 
+\examples{
+listStabilityMeasures()
+}

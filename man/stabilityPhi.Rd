@@ -60,15 +60,16 @@ feats = list(1:3, 1:4, 1:5)
 stabilityPhi(features = feats, p = 10)
 }
 \references{
-Bommert A, Rahnenführer J, Lang M (2017).
-\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
-\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
-\doi{10.1155/2017/7907163}.
 Nogueira S, Brown G (2016).
 \dQuote{Measuring the Stability of Feature Selection.}
 In \emph{Machine Learning and Knowledge Discovery in Databases}, 442--457.
 Springer International Publishing.
 \doi{10.1007/978-3-319-46227-1_28}.
+
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
 }
 \seealso{
 \link{listStabilityMeasures}

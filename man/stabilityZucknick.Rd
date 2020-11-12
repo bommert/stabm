@@ -100,14 +100,15 @@ mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 stabilityZucknick(features = feats, sim.mat = mat)
 }
 \references{
-Bommert A, Rahnenführer J, Lang M (2017).
-\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
-\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
-\doi{10.1155/2017/7907163}.
 Zucknick M, Richardson S, Stronach EA (2008).
 \dQuote{Comparing the Characteristics of Gene Expression Profiles Derived by Univariate and Multivariate Classification Methods.}
 \emph{Statistical Applications in Genetics and Molecular Biology}, \bold{7}(1).
 \doi{10.2202/1544-6115.1307}.
+
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
 }
 \seealso{
 \link{listStabilityMeasures}

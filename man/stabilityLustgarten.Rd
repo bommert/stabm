@@ -58,14 +58,15 @@ feats = list(1:3, 1:4, 1:5)
 stabilityLustgarten(features = feats, p = 10)
 }
 \references{
-Bommert A, Rahnenführer J, Lang M (2017).
-\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
-\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
-\doi{10.1155/2017/7907163}.
 Lustgarten, L J, Gopalakrishnan, Vanathi, Visweswaran, Shyam (2009).
 \dQuote{Measuring stability of feature selection in biomedical datasets.}
 In \emph{AMIA annual symposium proceedings}, volume 2009, 406.
 American Medical Informatics Association.
+
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
 }
 \seealso{
 \link{listStabilityMeasures}

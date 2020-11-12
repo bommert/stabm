@@ -4,9 +4,9 @@
 #' @inherit uncorrectedDocumentation
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\max \left\{ 0, \frac{1}{|V|} \sum_{j=1}^p \frac{h_j}{m} - \frac{penalty}{p}
-#' \cdot median \{ |V_1|, \ldots, |V_m| \}  \right\}.}
+#' \cdot \mathop{\mathrm{median}} \{ |V_1|, \ldots, |V_m| \}  \right\}.}
 #' @references
-#' `r tools::toRd(bibentries[c("Davis2006", "Bommert2017")])`
+#' `r format_bib("Davis2006", "Bommert2017")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -27,7 +27,7 @@ stabilityDavis = function(features, p,
 #' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
 #' \frac{2 |V_i \cap V_j|}{|V_i| + |V_j|}.}
 #' @references
-#' `r tools::toRd(bibentries[c("Dice1945", "Bommert2017")])`
+#' `r format_bib("Dice1945", "Bommert2017")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -49,7 +49,7 @@ stabilityDice = function(features, p = NULL,
 #' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
 #' \frac{|V_i \cap V_j| + |V_i^c \cap V_j^c|}{p}.}
 #' @references
-#' `r tools::toRd(bibentries[c("Dunne2002")])`
+#' `r format_bib("Dunne2002")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -70,7 +70,7 @@ stabilityHamming = function(features, p,
 #' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
 #' \frac{|V_i \cap V_j|}{|V_i \cup V_j|}.}
 #' @references
-#' `r tools::toRd(bibentries[c("Jaccard1901", "Bommert2017")])`
+#' `r format_bib("Jaccard1901", "Bommert2017")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -90,7 +90,7 @@ stabilityJaccard = function(features, p = NULL,
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{1}{q \log_2(m)} \sum_{j: X_j \in V} h_j \log_2(h_j).}
 #' @references
-#' `r tools::toRd(bibentries[c("Novovicov2009", "Bommert2017")])`
+#' `r format_bib("Novovicov2009", "Bommert2017")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -111,7 +111,7 @@ stabilityNovovicova = function(features, p = NULL,
 #' \deqn{\frac{2}{m (m - 1)} \sum_{i=1}^{m-1} \sum_{j = i+1}^m
 #' \frac{|V_i \cap V_j|}{\sqrt{|V_i| \cdot |V_j|}}.}
 #' @references
-#' `r tools::toRd(bibentries[c("Ochiai1957", "Bommert2017")])`
+#' `r format_bib("Ochiai1957", "Bommert2017")`
 #' @encoding UTF-8
 #' @md
 #' @examples

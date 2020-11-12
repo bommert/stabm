@@ -14,6 +14,8 @@
 #' This however changes the minimal value.
 #' For the adjusted stability measures, the minimal value depends
 #' on the similarity structure.
+#' @examples 
+#' listStabilityMeasures()
 listStabilityMeasures = function() {
   l = list(
     data.frame(Name = "stabilityDavis", Corrected = FALSE, Adjusted = FALSE,

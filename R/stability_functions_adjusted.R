@@ -11,7 +11,7 @@
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary similarity measures.
 #' @references
-#' `r tools::toRd(bibentries[c("Zucknick2008", "Bommert2017")])`
+#' `r format_bib("Zucknick2008", "Bommert2017")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -42,7 +42,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary datasets and similarity measures and applicable in situations with \eqn{|V_i| \neq |V_j|}.
 #' @references
-#' `r tools::toRd(bibentries[c("LeiYu2012", "Zhang2009")])`
+#' `r format_bib("LeiYu2012", "Zhang2009")`
 #' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
@@ -72,7 +72,7 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' \geq threshold.}
 #' Requires the package \CRANpkg{igraph}.
 #' @references
-#' `r tools::toRd(bibentries["Bommert2020"])`
+#' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -99,7 +99,7 @@ stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
 #' \eqn{GMBM(V_i \backslash V_j, V_j \backslash V_i)} denotes a greedy approximation
 #' of \eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
 #' @references
-#' `r tools::toRd(bibentries["Bommert2020"])`
+#' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -125,7 +125,7 @@ stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
 #' \deqn{C(V_k, V_l) = |\{x \in  V_k \backslash V_l : \exists y \in
 #' V_l \backslash V_k \ with \ Similarity (x,y) \geq threshold \}|.}
 #' @references
-#' `r tools::toRd(bibentries["Bommert2020"])`
+#' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -152,7 +152,7 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 #' \frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ Similarity (x,y)} and
 #' \deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ Similarity (x, y) \geq threshold \}.}
 #' @references
-#' `r tools::toRd(bibentries["Bommert2020"])`
+#' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -184,7 +184,7 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 #' This is because for \code{stabilitySechidis}, no finite upper bound is known at the moment,
 #' see \link{listStabilityMeasures}.
 #' @references
-#' `r tools::toRd(bibentries["Sechidis2020"])`
+#' `r format_bib("Sechidis2020")`
 #' @encoding UTF-8
 #' @md
 #' @examples

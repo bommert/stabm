@@ -68,7 +68,7 @@ using stability measures.
 \details{
 The stability measure is defined as (see Notation)
 \deqn{\max \left\{ 0, \frac{1}{|V|} \sum_{j=1}^p \frac{h_j}{m} - \frac{penalty}{p}
-\cdot median \{ |V_1|, \ldots, |V_m| \}  \right\}.}
+\cdot \mathop{\mathrm{median}} \{ |V_1|, \ldots, |V_m| \}  \right\}.}
 }
 \section{Notation}{
  For the definition of all stability measures in this package,
@@ -88,14 +88,15 @@ feats = list(1:3, 1:4, 1:5)
 stabilityDavis(features = feats, p = 10)
 }
 \references{
-Bommert A, Rahnenführer J, Lang M (2017).
-\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
-\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
-\doi{10.1155/2017/7907163}.
 Davis CA, Gerick F, Hintermair V, Friedel CC, Fundel K, Kuffner R, Zimmer R (2006).
 \dQuote{Reliable gene signatures for microarray classification: assessment of stability and performance.}
 \emph{Bioinformatics}, \bold{22}(19), 2356--2363.
 \doi{10.1093/bioinformatics/btl400}.
+
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
 }
 \seealso{
 \link{listStabilityMeasures}

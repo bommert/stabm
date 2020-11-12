@@ -1,3 +1,9 @@
+#' @importFrom tools toRd
+format_bib = function(...) {
+  str = vapply(list(...), function(entry) toRd(bibentries[[entry]]), FUN.VALUE = "")
+  paste0(str, collapse = "\n\n")
+}
+
 #' @importFrom utils bibentry
 bibentries       = c(
   Davis2006      = bibentry("article",
