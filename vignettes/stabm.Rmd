@@ -19,7 +19,7 @@ The anticipated usecase is comparing sets of selected features, but other sets, 
 Quantifying the similarity of feature sets is necessary when assessing the feature selection stability.
 The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution [@kalousis2007stability].
 Stability measures quantify the similarity of the sets of selected features for different training data sets.
-Many stability measures have been proposed in the literature, see for example @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018quantifying for comparative studies.
+Many stability measures have been proposed in the literature, see for example @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018stability for comparative studies.
 The `R` package `stabm` provides an implementation of many stability measures.
 
 
