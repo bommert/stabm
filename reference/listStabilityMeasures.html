@@ -142,6 +142,29 @@ This however changes the minimal value.
 For the adjusted stability measures, the minimal value depends
 on the similarity structure.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>listStabilityMeasures</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                           Name Corrected Adjusted Minimum Maximum
+#&gt; 1               stabilityDavis     FALSE    FALSE       0       1
+#&gt; 2                stabilityDice     FALSE    FALSE       0       1
+#&gt; 3             stabilityHamming     FALSE    FALSE       0       1
+#&gt; 4   stabilityIntersectionCount      TRUE     TRUE    &lt;NA&gt;       1
+#&gt; 5  stabilityIntersectionGreedy      TRUE     TRUE    &lt;NA&gt;       1
+#&gt; 6     stabilityIntersectionMBM      TRUE     TRUE    &lt;NA&gt;       1
+#&gt; 7    stabilityIntersectionMean      TRUE     TRUE    &lt;NA&gt;       1
+#&gt; 8             stabilityJaccard     FALSE    FALSE       0       1
+#&gt; 9               stabilityKappa      TRUE    FALSE      -1       1
+#&gt; 10         stabilityLustgarten      TRUE    FALSE      -1       1
+#&gt; 11           stabilityNogueira      TRUE    FALSE      -1       1
+#&gt; 12         stabilityNovovicova     FALSE    FALSE       0       1
+#&gt; 13             stabilityOchiai     FALSE    FALSE       0       1
+#&gt; 14                stabilityPhi      TRUE    FALSE      -1       1
+#&gt; 15           stabilitySechidis     FALSE     TRUE    &lt;NA&gt;      NA
+#&gt; 16              stabilitySomol      TRUE    FALSE       0       1
+#&gt; 17         stabilityUnadjusted      TRUE    FALSE      -1       1
+#&gt; 18               stabilityWald      TRUE    FALSE     1-p       1
+#&gt; 19                 stabilityYu      TRUE     TRUE    &lt;NA&gt;       1
+#&gt; 20           stabilityZucknick     FALSE     TRUE       0       1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
