@@ -213,7 +213,7 @@ With which value should these missing values be imputed? <code>NULL</code> means
     <p>The stability measure is defined as
 $$\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 \frac{|V_i \cap V_j| + C(V_i, V_j) + C(V_j, V_i)}{|V_i \cup V_j|}$$ with
-$$C(V_k, V_l) = \frac{1}{|V_l|} \sum_{(x, y) \in V_k \times (V_l \backslash V_k) \ \mathrm{with Similarity}(x,y) \geq \mathrm{threshold}} \mathop{\mathrm{Similarity}}(x,y).$$
+$$C(V_k, V_l) = \frac{1}{|V_l|} \sum_{(x, y) \in V_k \times (V_l \setminus V_k) \ \mathrm{with Similarity}(x,y) \geq \mathrm{threshold}} \mathop{\mathrm{Similarity}}(x,y).$$
 Note that this definition slightly differs from its original in order to make it suitable
 for arbitrary similarity measures.</p>
     <h2 class="hasAnchor" id="notation"><a class="anchor" href="#notation"></a>Notation</h2>
