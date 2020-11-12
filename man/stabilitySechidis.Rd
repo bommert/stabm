@@ -47,7 +47,7 @@ using stability measures.
 }
 \details{
 The stability measure is defined as
-\deqn{1 - \frac{trace(CS)}{trace(C \Sigma)}} with (\eqn{p \times p})-matrices
+\deqn{1 - \frac{\mathop{\mathrm{trace}}(CS)}{\mathop{\mathrm{trace}}(C \Sigma)}} with (\eqn{p \times p})-matrices
 \deqn{(S)_{ij} = \frac{m}{m-1}\left(\frac{h_{ij}}{m} - \frac{h_i}{m} \frac{h_j}{m}\right)} and
 \deqn{(\Sigma)_{ii} = \frac{q}{mp} \left(1 - \frac{q}{mp}\right),}
 \deqn{(\Sigma)_{ij} = \frac{\frac{1}{m} \sum_{i=1}^{m} |V_i|^2 - \frac{q}{m}}{p^2 - p} - \frac{q^2}{m^2 p^2}, i \neq j.}

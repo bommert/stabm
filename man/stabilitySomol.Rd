@@ -38,8 +38,8 @@ using stability measures.
 The stability measure is defined as (see Notation)
 \deqn{\frac{\left(\sum\limits_{j=1}^p \frac{h_j}{q} \frac{h_j - 1}{m-1}\right) -
 c_{\min}}{c_{\max} - c_{\min}}} with
-\deqn{c_{\min} = \frac{q^2 - p(q - q \ mod \ p) - \left(q \ mod \ p\right)^2}{p q (m-1)},}
-\deqn{c_{\max} = \frac{\left(q \ mod \ m\right)^2 + q(m-1) - \left(q \ mod \ m\right)m}{q(m-1)}.}
+\deqn{c_{\min} = \frac{q^2 - p(q - q \ \mathop{mod} \ p) - \left(q \ \mathop{mod} \ p\right)^2}{p q (m-1)},}
+\deqn{c_{\max} = \frac{\left(q \ \mathop{mod} \ m\right)^2 + q(m-1) - \left(q \ \mathop{mod} \ m\right)m}{q(m-1)}.}
 }
 \section{Notation}{
  For the definition of all stability measures in this package,

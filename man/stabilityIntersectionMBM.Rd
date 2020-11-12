@@ -72,12 +72,12 @@ using stability measures.
 The stability measure is defined as (see Notation)
 \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
-with \deqn{I(V_i, V_j) = |V_i \cap V_j| + MBM(V_i \backslash V_j, V_j \backslash V_i).}
-\eqn{MBM(V_i \backslash V_j, V_j \backslash V_i)} denotes the size of the
+with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \mathop{\mathrm{MBM}}(V_i \backslash V_j, V_j \backslash V_i).}
+\eqn{\mathop{\mathrm{MBM}}(V_i \backslash V_j, V_j \backslash V_i)} denotes the size of the
 maximum bipartite matching based on the graph whose vertices are the features
 of \eqn{V_i \backslash V_j} on the one side and the features of \eqn{V_j \backslash V_i}
-on the other side. Vertices x and y are connected if and only if \eqn{Similarity(x, y)
-\geq threshold.}
+on the other side. Vertices x and y are connected if and only if \eqn{\mathrm{Similarity}(x, y)
+\geq \mathrm{threshold}.}
 Requires the package \CRANpkg{igraph}.
 }
 \section{Notation}{
