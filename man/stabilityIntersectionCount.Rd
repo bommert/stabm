@@ -73,8 +73,8 @@ The stability measure is defined as (see Notation)
 \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
 with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i))} and
-\deqn{C(V_k, V_l) = |\{x \in  V_k \backslash V_l : \exists y \in
-V_l \backslash V_k \ \mathrm{with \ Similarity} (x,y) \geq \mathrm{threshold} \}|.}
+\deqn{C(V_k, V_l) = |\{x \in  V_k \setminus V_l : \exists y \in
+V_l \setminus V_k \ \mathrm{with Similarity} (x,y) \geq \mathrm{threshold} \}|.}
 }
 \section{Notation}{
  For the definition of all stability measures in this package,

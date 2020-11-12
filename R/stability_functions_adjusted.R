@@ -6,7 +6,7 @@
 #' @details The stability measure is defined as
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 #' \frac{|V_i \cap V_j| + C(V_i, V_j) + C(V_j, V_i)}{|V_i \cup V_j|}} with
-#' \deqn{C(V_k, V_l) = \frac{1}{|V_l|} \sum_{(x, y) \in V_k \times (V_l \backslash V_k) \ \mathrm{with Similarity}(x,y) \geq \mathrm{threshold}} \mathop{\mathrm{Similarity}}(x,y).}
+#' \deqn{C(V_k, V_l) = \frac{1}{|V_l|} \sum_{(x, y) \in V_k \times (V_l \setminus V_k) \ \mathrm{with Similarity}(x,y) \geq \mathrm{threshold}} \mathop{\mathrm{Similarity}}(x,y).}
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary similarity measures.
 #' @references
@@ -32,7 +32,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' @inherit adjustedDocumentation
 #' @details Let \eqn{O_{ij}} denote the number of features in \eqn{V_i} that are not
 #' shared with \eqn{V_j} but that have a highly simlar feature in \eqn{V_j}:
-#' \deqn{O_{ij} = |\{ x \in (V_i \backslash V_j) : \exists y \in (V_j \backslash V_i) \ with \
+#' \deqn{O_{ij} = |\{ x \in (V_i \setminus V_j) : \exists y \in (V_j \backslash V_i) \ with \
 #' Similarity(x,y) \geq threshold \}|.}
 #' Then the stability measure is defined as (see Notation)
 #'  \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
@@ -63,10 +63,10 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 #' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
-#' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \mathop{\mathrm{MBM}}(V_i \backslash V_j, V_j \backslash V_i).}
-#' \eqn{\mathop{\mathrm{MBM}}(V_i \backslash V_j, V_j \backslash V_i)} denotes the size of the
+#' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \mathop{\mathrm{MBM}}(V_i \setminus V_j, V_j \backslash V_i).}
+#' \eqn{\mathop{\mathrm{MBM}}(V_i \setminus V_j, V_j \backslash V_i)} denotes the size of the
 #' maximum bipartite matching based on the graph whose vertices are the features
-#' of \eqn{V_i \backslash V_j} on the one side and the features of \eqn{V_j \backslash V_i}
+#' of \eqn{V_i \setminus V_j} on the one side and the features of \eqn{V_j \backslash V_i}
 #' on the other side. Vertices x and y are connected if and only if \eqn{\mathrm{Similarity}(x, y)
 #' \geq \mathrm{threshold}.}
 #' Requires the package \CRANpkg{igraph}.
@@ -94,9 +94,9 @@ stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
 #' @details The stability measure is defined as (see Notation)
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 #' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}} with
-#' \deqn{I(V_i, V_j) = |V_i \cap V_j| + \mathop{\mathrm{GMBM}}(V_i \backslash V_j, V_j \backslash V_i).}
-#' \eqn{\mathop{\mathrm{GMBM}}(V_i \backslash V_j, V_j \backslash V_i)} denotes a greedy approximation
-#' of \eqn{\mathop{\mathrm{MBM}}(V_i \backslash V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
+#' \deqn{I(V_i, V_j) = |V_i \cap V_j| + \mathop{\mathrm{GMBM}}(V_i \setminus V_j, V_j \backslash V_i).}
+#' \eqn{\mathop{\mathrm{GMBM}}(V_i \setminus V_j, V_j \backslash V_i)} denotes a greedy approximation
+#' of \eqn{\mathop{\mathrm{MBM}}(V_i \setminus V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
 #' @references
 #' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
@@ -121,8 +121,8 @@ stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 #' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
 #' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i))} and
-#' \deqn{C(V_k, V_l) = |\{x \in  V_k \backslash V_l : \exists y \in
-#' V_l \backslash V_k \ \mathrm{with \ Similarity} (x,y) \geq \mathrm{threshold} \}|.}
+#' \deqn{C(V_k, V_l) = |\{x \in  V_k \setminus V_l : \exists y \in
+#' V_l \setminus V_k \ \mathrm{with Similarity} (x,y) \geq \mathrm{threshold} \}|.}
 #' @references
 #' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
@@ -147,9 +147,9 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 #' \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
 #' \frac{I(V_i, V_j) - E(I(V_i, V_j))}{\sqrt{|V_i| \cdot |V_j|} - E(I(V_i, V_j))}}
 #' with \deqn{I(V_i, V_j) = |V_i \cap V_j| + \min (C(V_i, V_j), C(V_j, V_i)),}
-#' \deqn{C(V_k, V_l) = \sum_{x \in V_k \backslash V_l : |G^{kl}_x| > 0}
+#' \deqn{C(V_k, V_l) = \sum_{x \in V_k \setminus V_l : |G^{kl}_x| > 0}
 #' \frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ \mathrm{Similarity} (x,y)} and
-#' \deqn{G^{kl}_x = \{y \in V_l \backslash V_k: \ \mathrm{Similarity} (x, y) \geq \mathrm{threshold} \}.}
+#' \deqn{G^{kl}_x = \{y \in V_l \setminus V_k: \ \mathrm{Similarity} (x, y) \geq \mathrm{threshold} \}.}
 #' @references
 #' `r format_bib("Bommert2020")`
 #' @encoding UTF-8
