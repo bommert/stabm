@@ -74,7 +74,7 @@
       <h1 data-toc-skip>stabm</h1>
                         <h4 class="author">Andrea Bommert</h4>
             
-            <h4 class="date">2020-11-12</h4>
+            <h4 class="date">2020-12-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bommert/stabm/blob/master/vignettes/stabm.Rmd"><code>vignettes/stabm.Rmd</code></a></small>
       <div class="hidden name"><code>stabm.Rmd</code></div>
@@ -86,14 +86,14 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The <code>R</code> package <code>stabm</code> provides functionality for quantifying the similarity of two or more sets. The anticipated usecase is comparing sets of selected features, but other sets, e.g. gene list, can be analyzed as well. Quantifying the similarity of feature sets is necessary when assessing the feature selection stability. The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution <span class="citation">(Kalousis, Prados, and Hilario 2007)</span>. Stability measures quantify the similarity of the sets of selected features for different training data sets. Many stability measures have been proposed in the literature, see for example <span class="citation">Bommert, Rahnenführer, and Lang (2017)</span>, <span class="citation">Bommert and Rahnenführer (2020)</span>, and <span class="citation">(<span class="citeproc-not-found" data-reference-id="nogueira2018quantifying"><strong>???</strong></span>)</span> for comparative studies. The <code>R</code> package <code>stabm</code> provides an implementation of many stability measures.</p>
+<p>The <code>R</code> package <code>stabm</code> provides functionality for quantifying the similarity of two or more sets. The anticipated usecase is comparing sets of selected features, but other sets, e.g. gene list, can be analyzed as well. Quantifying the similarity of feature sets is necessary when assessing the feature selection stability. The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution <span class="citation">(Kalousis, Prados, and Hilario 2007)</span>. Stability measures quantify the similarity of the sets of selected features for different training data sets. Many stability measures have been proposed in the literature, see for example <span class="citation">Bommert, Rahnenführer, and Lang (2017)</span>, <span class="citation">Bommert and Rahnenführer (2020)</span>, and <span class="citation">Nogueira, Sechidis, and Brown (2018)</span> for comparative studies. The <code>R</code> package <code>stabm</code> provides an implementation of many stability measures.</p>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h1>
 <p>A list of all stability measures implemented in <code>stabm</code> is available with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="../reference/listStabilityMeasures.html">listStabilityMeasures</a></span><span class="op">(</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/listStabilityMeasures.html">listStabilityMeasures</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>##                           Name Corrected Adjusted Minimum Maximum
 ## 1               stabilityDavis     FALSE    FALSE       0       1
 ## 2                stabilityDice     FALSE    FALSE       0       1
@@ -128,22 +128,22 @@
 <li><span class="math inline">\(V_3 = \{X_1, X_2, X_3, X_5, X_6, X_7\}\)</span></li>
 </ul>
 <p>and a total number of 10 features. We can evaluate the feature selection stability with stability measures of our choice.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">feats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/stabilityJaccard.html">stabilityJaccard</a></span><span class="op">(</span>features <span class="op">=</span> <span class="va">feats</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">feats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/stabilityJaccard.html">stabilityJaccard</a></span><span class="op">(</span>features <span class="op">=</span> <span class="va">feats</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.5595238</code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="../reference/stabilityNogueira.html">stabilityNogueira</a></span><span class="op">(</span>features <span class="op">=</span> <span class="va">feats</span>, p <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/stabilityNogueira.html">stabilityNogueira</a></span><span class="op">(</span>features <span class="op">=</span> <span class="va">feats</span>, p <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.4570136</code></pre>
 <p>For adjusted stability measures, a matrix indicating the similarities between the features has to be specified.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">mat</span> <span class="op">=</span> <span class="fl">0.92</span> <span class="op">^</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/outer.html">outer</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mat</span> <span class="op">=</span> <span class="fl">0.92</span> <span class="op">^</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/outer.html">outer</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="st">"-"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="../reference/stabilityIntersectionCount.html">stabilityIntersectionCount</a></span><span class="op">(</span>features <span class="op">=</span> <span class="va">feats</span>, sim.mat <span class="op">=</span> <span class="va">mat</span>, N <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/stabilityIntersectionCount.html">stabilityIntersectionCount</a></span><span class="op">(</span>features <span class="op">=</span> <span class="va">feats</span>, sim.mat <span class="op">=</span> <span class="va">mat</span>, N <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 0.4138325</code></pre>
 <p>Finally, <code>stabm</code> also provides a visualization of the feature sets.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/plotFeatures.html">plotFeatures</a></span><span class="op">(</span><span class="va">feats</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotFeatures.html">plotFeatures</a></span><span class="op">(</span><span class="va">feats</span><span class="op">)</span></code></pre></div>
 <p><img src="stabm_files/figure-html/unnamed-chunk-5-1.png" width="432" style="display: block; margin: auto;"></p>
 </div>
 <div id="references" class="section level1 unnumbered">
