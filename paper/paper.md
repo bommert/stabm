@@ -15,7 +15,7 @@ authors:
 affiliations:
  - name: Faculty of Statistics, TU Dortmund University, 44221 Dortmund, Germany
    index: 1
-date: 13 October 2020
+date: 07 December 2020
 bibliography: paper.bib
 ---
 
