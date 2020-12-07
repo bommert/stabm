@@ -32,14 +32,14 @@ Then, the feature selection algorithm of interest is applied to each of the *m* 
 To quantify the stability of the feature selection algorithm, the similarity of the *m* sets is calculated.
 In the context of feature selection stability, set similarity measures are called stability measures.
 
-The R package *stabm* provides an open source implementation of many stability measures.
-It is publicly available under on CRAN and Github and it has only few dependencies.
+The R package *stabm* provides an open-source implementation of many stability measures.
+It is publicly available on CRAN and on Github and it has only a few dependencies.
 
 
 # Statement of Need
 The R package *stabm* provides an implementation of many stability measures.
 For theoretical and empirical comparative studies of the stability measures implemented in *stabm*, we refer to @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018stability.
-It has be demonstrated that considering the feature selection stability when fitting a predictive model often is beneficial for obtaining models with high predictive accuracy [@bommert2017multicriteria; @schirra2016selection].
+It has been demonstrated that considering the feature selection stability when fitting a predictive model often is beneficial for obtaining models with high predictive accuracy [@bommert2017multicriteria; @schirra2016selection].
 The stability measures implemented in the R package *stabm* have been employed in @bommert2017multicriteria, @bommert2020benchmark, and @bommert2020adjusted.
 
 # Related Software
@@ -50,6 +50,6 @@ The source code for the publication @nogueira2018stability includes an implement
 
 # Acknowledgements
 
-This work was supported by German Research Foundation (DFG), Project RA 870/7-1 and Collaborative Research Center SFB 876, A3.
+This work was supported by the German Research Foundation (DFG), Project RA 870/7-1, and Collaborative Research Center SFB 876, A3.
 
 # References
