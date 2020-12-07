@@ -1,10 +1,13 @@
-colMaxsSparse = function(m) {
-  maxs = numeric(m@Dim[2])
-  l = unlist(lapply(split(m@x, m@j), max))
-  pos = as.numeric(names(l)) + 1
-  maxs[pos] = l
-  return(maxs)
+measureScoreHelper = function(features, measureFun) {
+  n = length(features)
+  scores = unlist(lapply(1:(n - 1), function(i) {
+    sapply((i + 1):n, function(j) {
+      measureFun(features[[i]], features[[j]])
+    })
+  }))
+  return(scores)
 }
+
 
 meansWithoutZeros = function(x, dim.of.interest, len) {
   res = numeric(len)
@@ -22,3 +25,4 @@ colMeansWithoutZeros = function(m) {
 rowMeansWithoutZeros = function(m) {
   return(meansWithoutZeros(m@x, m@i, m@Dim[1]))
 }
+

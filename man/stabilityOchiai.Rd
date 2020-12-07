@@ -75,6 +75,7 @@ for the \eqn{m} datasets, i.e. \code{features} has length \eqn{m} and
 Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 is chosen.
+Analogously, let \eqn{h_{ij}} denote the number of sets that include both \eqn{X_i} and \eqn{X_j}.
 Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 }
 
@@ -83,15 +84,15 @@ feats = list(1:3, 1:4, 1:5)
 stabilityOchiai(features = feats)
 }
 \references{
-\itemize{
-\item A. Ochiai, "Zoogeographic studies on the soleoid fishes found
-in Japan and its neighbouring regions", Bulletin of the Japanese Society
-for the Science of Fish, vol. 22, no. 9, pp. 526-530, 1957.
-\item A. Bommert, J. Rahnenführer, and M. Lang,
-"A multi-criteria approach to find predictive and sparse models with
-stable feature selection for high-dimensional data",
-Computational and mathematical methods in medicine, 2017.
-}
+Ochiai A (1957).
+\dQuote{Zoogeographical Studies on the Soleoid Fishes Found in Japan and its Neighbouring Regions-III.}
+\emph{Nippon Suisan Gakkaishi}, \bold{22}(9), 531-535.
+\doi{10.2331/suisan.22.531}.
+
+Bommert A, Rahnenführer J, Lang M (2017).
+\dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
+\emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
+\doi{10.1155/2017/7907163}.
 }
 \seealso{
 \link{listStabilityMeasures}

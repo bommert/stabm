@@ -3,7 +3,7 @@ stability = function(features, measure, correction.for.chance, N,
 
   # Checks
 
-  adjusted.measures = c("yu", "zucknick", "intersection.mbm",
+  adjusted.measures = c("yu", "zucknick", "sechidis", "intersection.mbm",
     "intersection.greedy", "intersection.count", "intersection.mean")
   unadjusted.measures = c("davis", "dice", "hamming", "intersection.common",
     "jaccard", "kappa.coefficient", "lustgarten", "nogueira", "novovicova",
@@ -37,9 +37,10 @@ stability = function(features, measure, correction.for.chance, N,
   # features
   checkmate::assertList(features, any.missing = FALSE, min.len = 2L,
     types = c("integerish", "character"))
-  type.numeric = sapply(features, is.numeric)
   type.character = sapply(features, is.character)
-  checkmate::assertTRUE(all(type.numeric) || all(type.character))
+  if (any(type.character) && !all(type.character)) {
+    stop("All features must numeric or all features must be character")
+  }
 
   if (is.adj.measure) {
     # sim.mat
@@ -47,7 +48,7 @@ stability = function(features, measure, correction.for.chance, N,
 
     if (is.null(pck) || pck != "Matrix") {
       checkmate::assertMatrix(sim.mat, any.missing = FALSE, min.rows = 1L, min.cols = 1L, null.ok = FALSE)
-      checkmate::assertTRUE(base::isSymmetric(unname(sim.mat)))
+      checkmate::assertTRUE(isSymmetric(unname(sim.mat)))
       checkmate::assertNumeric(sim.mat, lower = 0, upper = 1)
     } else {
       checkmate::assertTRUE(Matrix::isSymmetric(sim.mat))
@@ -129,38 +130,34 @@ stability = function(features, measure, correction.for.chance, N,
     }
   }
 
-  # Stability Assessment
 
-  measure.list = get(measure)
-
-  if (is.adj.measure) {
-
-    # similar features
-    calc.sim.feats = measure %in% c("intersection.mbm", "intersection.greedy")
-
-    if (calc.sim.feats) {
-      if (nrow(sim.mat) > 1) {
-        maxs = unlist(lapply(seq_len(nrow(sim.mat)), function(i) max(sim.mat[i, -i])))
-      } else {
-        maxs = -Inf
+  # avoid computation of expectation if no similar features in data set
+  adjusted.intersections = c("yu", paste("intersection", c("mbm", "greedy", "mean", "count"), sep = "."))
+  if (measure %in% adjusted.intersections) {
+    if (nrow(sim.mat) > 1) {
+      any.sim.feats = FALSE
+      i = 1
+      while (!any.sim.feats && i <= nrow(sim.mat)) {
+        any.sim.feats = any(sim.mat[i, -i] >= threshold)
+        i = i + 1
       }
 
-      sim.feats = which(maxs >= threshold)
-
-      # if no similar features at all
-      if (length(sim.feats) == 0) {
+      if (!any.sim.feats) {
         measure = "intersection.common"
 
         if (correction.for.chance != "none") {
           correction.for.chance = "unadjusted"
         }
       }
-    } else {
-      sim.feats = NULL
     }
+  }
 
-    measure.args = list(features = features, F.all = F.all, sim.mat = sim.mat,
-      threshold = threshold, sim.feats = sim.feats)
+  # Stability Assessment
+  measure.list = get(measure)
+
+  if (is.adj.measure) {
+    measure.args = list(features = features, F.all = F.all,
+      sim.mat = sim.mat, threshold = threshold)
   } else {
     measure.args = list(features = features, p = p, penalty = penalty)
   }
@@ -186,6 +183,12 @@ stability = function(features, measure, correction.for.chance, N,
     maxima = do.call(measure.list$maxValueFun, measure.args)
 
     scores = (scores - expecteds) / (maxima - expecteds)
+
+    # replace NaN by NA
+    nan.scores = is.nan(scores)
+    if (length(nan.scores) > 0) {
+      scores[nan.scores] = NA_real_
+    }
   }
 
   if (!is.null(impute.na)) {

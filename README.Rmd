@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 # stabm
 
 [![R-CMD-check](https://github.com/bommert/stabm/workflows/R-CMD-check/badge.svg)](https://github.com/bommert/stabm/actions)
+[![CRAN Status](https://www.r-pkg.org/badges/version-ago/stabm)](https://cran.r-project.org/package=stabm)
+
 
 `stabm` provides an implementation of many measures which assess the stability of feature selection.
 The following stability measures are currently included:
@@ -36,3 +38,8 @@ For the development version, use [devtools](https://cran.r-project.org/package=d
 ```{r, eval = FALSE}
 devtools::install_github("bommert/stabm")
 ```
+
+
+## Pull requests
+
+Pull requests are welcome.

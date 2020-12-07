@@ -14,9 +14,12 @@
 #' This however changes the minimal value.
 #' For the adjusted stability measures, the minimal value depends
 #' on the similarity structure.
+#' @examples 
+#' listStabilityMeasures()
 listStabilityMeasures = function() {
   l = list(
-    data.frame(Name = "stabilityDavis", Corrected = FALSE, Adjusted = FALSE, Minimum = 0, Maximum = 1),
+    data.frame(Name = "stabilityDavis", Corrected = FALSE, Adjusted = FALSE,
+      Minimum = 0, Maximum = 1, stringsAsFactors = FALSE),
     list("stabilityDice", FALSE, FALSE, 0, 1),
     list("stabilityHamming", FALSE, FALSE, 0, 1),
     list("stabilityIntersectionCount", TRUE, TRUE, NA, 1),
@@ -30,6 +33,7 @@ listStabilityMeasures = function() {
     list("stabilityNovovicova", FALSE, FALSE, 0, 1),
     list("stabilityOchiai", FALSE, FALSE, 0, 1),
     list("stabilityPhi", TRUE, FALSE, -1, 1),
+    list("stabilitySechidis", FALSE, TRUE, NA, NA),
     list("stabilitySomol", TRUE, FALSE, 0, 1),
     list("stabilityUnadjusted", TRUE, FALSE, -1, 1),
     list("stabilityWald", TRUE, FALSE, "1-p", 1),
@@ -37,6 +41,5 @@ listStabilityMeasures = function() {
     list("stabilityZucknick", FALSE, TRUE, 0, 1)
   )
 
-  l = Reduce(rbind, l)
-  return(l)
+  do.call(rbind, l)
 }

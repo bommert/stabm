@@ -42,6 +42,7 @@
 #' Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 #' \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 #' is chosen.
+#' Analogously, let \eqn{h_{ij}} denote the number of sets that include both \eqn{X_i} and \eqn{X_j}.
 #' Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 #' @return \code{numeric(1)} Stability value.
 #' @seealso \link{listStabilityMeasures}

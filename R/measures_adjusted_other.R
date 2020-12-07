@@ -42,6 +42,11 @@ zucknick = list(
   scoreFun = function(features, F.all, sim.mat, threshold, sim.feats, ...) {
     measureScoreHelper(features = features,
       measureFun = function(F1, F2) {
+        lu = length(union(F1, F2))
+        if (lu == 0) {
+          return(NA_real_)
+        }
+
         indices.1 = which(F.all %in% F1)
         indices.2 = which(F.all %in% F2)
 
@@ -61,7 +66,7 @@ zucknick = list(
         }
 
         res = length(intersect(F1, F2)) + add.sim1 + add.sim2
-        res = res / length(union(F1, F2))
+        res = res / lu
         return(res)
       })
   },
@@ -71,5 +76,44 @@ zucknick = list(
         1
       }
     )
+  }
+)
+
+
+sechidis = list(
+  scoreFun = function(features, sim.mat, F.all, ...) {
+    ns = lengths(features)
+    ns.mean = mean(ns)
+    p = ncol(sim.mat)
+    if (ns.mean == 0 || ns.mean == p) {
+      return(NA_real_)
+    }
+
+    n = length(features)
+    Z = matrix(0, nrow = n, ncol = p)
+    for (i in seq_along(features)) {
+      Z[i, ] = as.numeric(F.all %in% features[[i]])
+    }
+    S = cov(Z)
+
+    k.bar = mean(rowSums(Z))
+    k2.bar = mean(rowSums(Z)^2)
+    diag.element = k.bar/p * (1  - k.bar/p)
+    off.diag.element = (k2.bar - k.bar) / (p^2 - p) - k.bar^2 / p^2
+    Sigma0 = matrix(off.diag.element, nrow = p, ncol = p)
+    diag(Sigma0) = diag.element
+
+    num = sum(diag(sim.mat %*% S))
+    denom = sum(diag(sim.mat %*% Sigma0))
+
+    if (denom == 0) {
+      return(NA_real_)
+    } else {
+      score = 1 - num / denom
+      return(score)
+    }
+  },
+  maxValueFun = function(features, ...) {
+    NA_real_
   }
 )

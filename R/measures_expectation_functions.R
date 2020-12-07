@@ -55,7 +55,7 @@ calculate.expectation = function(features, F.all, fun, ...) {
       samples = lapply(seq_len(nrow(combs.all)), function(i) {
         lapply(s.inds, function(inds) {
           ret = combs.all[i, inds]
-          if (any(is.na(ret))) {
+          if (checkmate::anyMissing(ret)) {
             if (is.character(F.all)) {
               ret = character(0L)
             } else {

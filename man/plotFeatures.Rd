@@ -29,6 +29,9 @@ The sets are ordered according to average linkage hierarchical clustering based 
 distance. If \code{sim.mat} is given, the features are ordered according to average linkage
 hierarchical clustering based on \code{1 - sim.mat}. Otherwise, the features are ordered in
 the same way as the feature sets.
+
+Note that this function needs the packages \CRANpkg{ggplot2}, \CRANpkg{cowplot} and 
+\CRANpkg{ggdendro} installed.
 }
 \examples{
 feats = list(1:3, 1:4, 1:5)

@@ -75,6 +75,7 @@ for the \eqn{m} datasets, i.e. \code{features} has length \eqn{m} and
 Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 is chosen.
+Analogously, let \eqn{h_{ij}} denote the number of sets that include both \eqn{X_i} and \eqn{X_j}.
 Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 }
 
@@ -83,11 +84,9 @@ feats = list(1:3, 1:4, 1:5)
 stabilityHamming(features = feats, p = 10)
 }
 \references{
-\itemize{
-\item K. Dunne, P. Cunningham, and F. Azuaje, "Solutions to instability
-problems with sequential wrapper-based approaches to feature selection",
-Technical Report, 2002.
-}
+Dunne, Kevin, Cunningham, Padraig, Azuaje, Francisco (2002).
+\dQuote{Solutions to instability problems with sequential wrapper-based approaches to feature selection.}
+Machine Learning Group, Department of Computer Science, Trinity College, Dublin.
 }
 \seealso{
 \link{listStabilityMeasures}

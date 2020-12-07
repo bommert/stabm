@@ -70,7 +70,7 @@ using stability measures.
 \details{
 Let \eqn{O_{ij}} denote the number of features in \eqn{V_i} that are not
 shared with \eqn{V_j} but that have a highly simlar feature in \eqn{V_j}:
-\deqn{O_{ij} = |\{ x \in (V_i \backslash V_j) : \exists y \in (V_j \backslash V_i) \ with \
+\deqn{O_{ij} = |\{ x \in (V_i \setminus V_j) : \exists y \in (V_j \backslash V_i) \ with \
 Similarity(x,y) \geq threshold \}|.}
 Then the stability measure is defined as (see Notation)
 \deqn{\frac{2}{m(m-1)}\sum_{i=1}^{m-1} \sum_{j=i+1}^{m}
@@ -88,6 +88,7 @@ for the \eqn{m} datasets, i.e. \code{features} has length \eqn{m} and
 Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 is chosen.
+Analogously, let \eqn{h_{ij}} denote the number of sets that include both \eqn{X_i} and \eqn{X_j}.
 Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 }
 
@@ -97,17 +98,15 @@ mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 stabilityYu(features = feats, sim.mat = mat, N = 1000)
 }
 \references{
-\itemize{
-\item L. Yu, Y. Han, and M. E. Berens,
-"Stable gene selection from microarray data via sample weighting",
-IEEE/ACM Transactions on Computational Biology and Bioinformatics,
-vol. 9, no. 1, pp. 262-272, 2012.
-\item M. Zhang, L. Zhang, J. Zou, C. Yao, H. Xiao, Q. Liu, J. Wang, D. Wang,
-C. Wang, and Z. Guo,
-"Evaluating reproducibility of differential expression discoveries in microarray
-studies by considering correlated molecular changes", Bioinformatics,
-vol. 25, no. 13, pp. 1662-1668, 2009.
-}
+Yu L, Han Y, Berens ME (2012).
+\dQuote{Stable Gene Selection from Microarray Data via Sample Weighting.}
+\emph{IEEE/ACM Transactions on Computational Biology and Bioinformatics}, \bold{9}(1), 262--272.
+\doi{10.1109/tcbb.2011.47}.
+
+Zhang M, Zhang L, Zou J, Yao C, Xiao H, Liu Q, Wang J, Wang D, Wang C, Guo Z (2009).
+\dQuote{Evaluating reproducibility of differential expression discoveries in microarray studies by considering correlated molecular changes.}
+\emph{Bioinformatics}, \bold{25}(13), 1662--1668.
+\doi{10.1093/bioinformatics/btp295}.
 }
 \seealso{
 \link{listStabilityMeasures}

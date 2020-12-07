@@ -19,7 +19,7 @@ The anticipated usecase is comparing sets of selected features, but other sets, 
 Quantifying the similarity of feature sets is necessary when assessing the feature selection stability.
 The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution [@kalousis2007stability].
 Stability measures quantify the similarity of the sets of selected features for different training data sets.
-Many stability measures have been proposed in the literature, see for example @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018quantifying for comparative studies.
+Many stability measures have been proposed in the literature, see for example @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018stability for comparative studies.
 The `R` package `stabm` provides an implementation of many stability measures.
 
 
@@ -32,7 +32,7 @@ listStabilityMeasures()
 
 This list states the names of the stability measures and some information about them.
 
-- Corrected: Does a measure fulfill the property *correction for chance* as defined in @nogueira2018quantifying? This property indicates whether the expected value of the stability measure is independent of the number of selected features. Stability measures not fulfilling this property, usually attain the higher values, the more features are selected. For the measures that are not corrected for chance in their original definition, `stabm` provides the possibility to transform these measures, such that they are corrected for chance.
+- Corrected: Does a measure fulfill the property *correction for chance* as defined in @nogueira2018stability? This property indicates whether the expected value of the stability measure is independent of the number of selected features. Stability measures not fulfilling this property, usually attain the higher values, the more features are selected. For the measures that are not corrected for chance in their original definition, `stabm` provides the possibility to transform these measures, such that they are corrected for chance.
 - Adjusted: Does a measure consider similarities between features when evaluating the feature selection stability? Adjusted measures have been created based on traditional stability measures by including an adjustment term that takes into account feature similarities, see @bommert2020adjusted for details.
 - Minimum and Maximum: Bounds for the stability measures, useful for interpreting obtained stability values.
 

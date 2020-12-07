@@ -49,6 +49,7 @@ for the \eqn{m} datasets, i.e. \code{features} has length \eqn{m} and
 Furthermore, let \eqn{h_j} denote the number of sets that contain feature
 \eqn{X_j} so that \eqn{h_j} is the absolute frequency with which feature \eqn{X_j}
 is chosen.
+Analogously, let \eqn{h_{ij}} denote the number of sets that include both \eqn{X_i} and \eqn{X_j}.
 Also, let \eqn{q = \sum_{j=1}^p h_j = \sum_{i=1}^m |V_i|} and \eqn{V = \bigcup_{i=1}^m V_i}.
 }
 
@@ -57,10 +58,10 @@ feats = list(1:3, 1:4, 1:5)
 stabilityWald(features = feats, p = 10)
 }
 \references{
-\itemize{
-\item Wald, R., T. M. Khoshgoftaar, and A. Napolitano (2013). “Stability of filter-and wrapper-based feature
-subset selection.” In: 2013 IEEE 25th International Conference on Tools with Artificial Intelligence, pp. 374–380.
-}
+Wald R, Khoshgoftaar TM, Napolitano A (2013).
+\dQuote{Stability of Filter- and Wrapper-Based Feature Subset Selection.}
+In \emph{2013 IEEE 25th International Conference on Tools with Artificial Intelligence}.
+\doi{10.1109/ictai.2013.63}.
 }
 \seealso{
 \link{listStabilityMeasures}

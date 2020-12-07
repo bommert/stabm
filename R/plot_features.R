@@ -1,9 +1,15 @@
 #' @title Plot Selected Features
-#' @description Creates a heatmap of the features which are selected in at least one feature set.
+#'
+#' @description 
+#' Creates a heatmap of the features which are selected in at least one feature set.
 #' The sets are ordered according to average linkage hierarchical clustering based on the Manhattan
 #' distance. If \code{sim.mat} is given, the features are ordered according to average linkage
 #' hierarchical clustering based on \code{1 - sim.mat}. Otherwise, the features are ordered in
 #' the same way as the feature sets.
+#'
+#' Note that this function needs the packages \CRANpkg{ggplot2}, \CRANpkg{cowplot} and 
+#' \CRANpkg{ggdendro} installed.
+#'
 #' @inheritParams stabilityDocumentation
 #' @return Object of class \code{ggplot}.
 #' @examples
@@ -20,16 +26,17 @@ plotFeatures = function(features, sim.mat = NULL) {
   # Checks
   checkmate::assertList(features, any.missing = FALSE, min.len = 2L,
     types = c("integerish", "character"))
-  type.numeric = sapply(features, is.numeric)
   type.character = sapply(features, is.character)
-  checkmate::assertTRUE(all(type.numeric) || all(type.character))
+  if (any(type.character) && !all(type.character)) {
+    stop("All features must numeric or all features must be character")
+  }
 
   if (!is.null(sim.mat)) {
     pck = attr(class(sim.mat), "package")
 
     if (is.null(pck) || pck != "Matrix") {
       checkmate::assertMatrix(sim.mat, any.missing = FALSE, min.rows = 1L, min.cols = 1L, null.ok = FALSE)
-      checkmate::assertTRUE(base::isSymmetric(unname(sim.mat)))
+      checkmate::assertTRUE(isSymmetric(unname(sim.mat)))
       checkmate::assertNumeric(sim.mat, lower = 0, upper = 1)
     } else {
       checkmate::assertTRUE(Matrix::isSymmetric(sim.mat))
@@ -55,13 +62,13 @@ plotFeatures = function(features, sim.mat = NULL) {
     })
   }
 
-  all.feats = Reduce(union, features)
+  all.feats = unique(unlist(features, use.names = FALSE))
 
   if (length(all.feats) == 0) {
     stop("No feature selected in any set!")
   }
 
-  mat = Reduce(rbind, lapply(features, function(f) all.feats %in% f))
+  mat = do.call(rbind, lapply(features, function(f) all.feats %in% f))
   colnames(mat) = NULL
   rownames(mat) = NULL
 
@@ -87,12 +94,15 @@ plotFeatures = function(features, sim.mat = NULL) {
   colnames(mat) = paste0("V", all.feats[o.feats])
   rownames(mat) = paste0("S", o.repls)
 
-  mat.data = reshape2::melt(mat, id.vars = rownames(mat))
-  colnames(mat.data) = c("repl", "feature", "selected")
-  mat.data$selected = factor(ifelse(mat.data$selected, "Yes", "No"), levels = c("No", "Yes"))
+  # this is a poor man's melt of mat
+  mat.data = data.frame(
+    repl = rep(rownames(mat), ncol(mat)),
+    feature = rep(colnames(mat), each = nrow(mat)),
+    selected = factor(ifelse(as.logical(mat), "Yes", "No"), levels = c("No", "Yes"))
+  )
 
   # nchar
-  max.char = max(sapply(all.feats, nchar))
+  max.char = max(nchar(all.feats))
   if (max.char > 2) {
     angle.feats = 90
   } else {
@@ -138,4 +148,3 @@ plotFeatures = function(features, sim.mat = NULL) {
   }
   cowplot::ggdraw(final.plot)
 }
-
