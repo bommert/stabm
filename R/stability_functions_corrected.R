@@ -73,7 +73,7 @@ stabilityPhi = function(features, p, impute.na = NULL) {
 #' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
 #' {\frac{|V_i| + |V_j|}{2} - \frac{|V_i| \cdot |V_j|}{p}}.}
 #' @references
-#' `r format_bib("Cohen1960")`
+#' `r format_bib("Carletta1996")`
 #' @encoding UTF-8
 #' @md
 #' @examples

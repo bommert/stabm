@@ -60,10 +60,9 @@ feats = list(1:3, 1:4, 1:5)
 stabilityKappa(features = feats, p = 10)
 }
 \references{
-Cohen J (1960).
-\dQuote{A Coefficient of Agreement for Nominal Scales.}
-\emph{Educational and Psychological Measurement}, \bold{20}(1), 37--46.
-\doi{10.1177/001316446002000104}.
+Carletta, Jean (1996).
+\dQuote{Assessing Agreement on Classification Tasks: The Kappa Statistic.}
+\emph{Computational Linguistics}, \bold{22}(2), 249--254.
 }
 \seealso{
 \link{listStabilityMeasures}
