@@ -15,7 +15,7 @@ authors:
 affiliations:
  - name: Faculty of Statistics, TU Dortmund University, 44221 Dortmund, Germany
    index: 1
-date: 07 December 2020
+date: 08 December 2020
 bibliography: paper.bib
 ---
 
@@ -32,9 +32,31 @@ Then, the feature selection algorithm of interest is applied to each of the *m* 
 To quantify the stability of the feature selection algorithm, the similarity of the *m* sets is calculated.
 In the context of feature selection stability, set similarity measures are called stability measures.
 
-The R package *stabm* provides an open-source implementation of many stability measures.
+The R package *stabm* provides an open-source implementation of the 20 stability measures displayed in the table below.
 It is publicly available on CRAN and on Github and it has only a few dependencies.
 
+|Name | Reference|
+|-----|----------|
+|stabilityDavis | @davis2006reliable|
+|stabilityDice | @dice1945measures|
+|stabilityHamming | @dunne2002solutions|
+|stabilityIntersectionCount | @bommert2020adjusted|
+|stabilityIntersectionGreedy | @bommert2020adjusted|
+|stabilityIntersectionMBM | @bommert2020adjusted|
+|stabilityIntersectionMean | @bommert2020adjusted|
+|stabilityJaccard | @jaccard1901etude|
+|stabilityKappa | @carletta1996assessing|
+|stabilityLustgarten | @lustgarten2009measuring|
+|stabilityNogueira | @nogueira2018stability|
+|stabilityNovovicova | @novovicova2009new|
+|stabilityOchiai | @ochiai1957zoogeographic|
+|stabilityPhi | @nogueira2016measuring|
+|stabilitySechidis | @sechidis2020stability|
+|stabilitySomol | @somol2008evaluating|
+|stabilityUnadjusted | @bommert2020adjusted|
+|stabilityWald | @wald2013stability|
+|stabilityYu | @yu2012stable|
+|stabilityZucknick | @zucknick2008comparing|
 
 # Statement of Need
 The R package *stabm* provides an implementation of many stability measures.
@@ -45,8 +67,8 @@ The stability measures implemented in the R package *stabm* have been employed i
 # Related Software
 A subset of the implemented stability measures is also available in other R or Python packages.
 The R package *sets* [@meyer2009sets] and the Python package *scikit-learn* [@pedregosa2011scikit] provide an implementation of the Jaccard index [@jaccard1901etude] to assess the similarity of two sets.
-The Python package *GSimPy* [@zhang2020gsimpy] implements several similarity measures including the Jaccard index and the Dice index [@dice1945measures].
-The source code for the publication @nogueira2018stability includes an implementation of stability measures in Python.
+The Python package *GSimPy* [@zhang2020gsimpy] implements the Jaccard index, the Dice index [@dice1945measures], and the Ochiai index [@ochiai1957zoogeographic].
+The source code for the publication @nogueira2018stability provides an implementation of their stability measure in R, Python, and Matlab.
 
 # Acknowledgements
 
