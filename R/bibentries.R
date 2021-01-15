@@ -45,9 +45,10 @@ bibentries       = c(
   Bommert2020    = bibentry("inproceedings",
     title        = "Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features",
     author       = "Andrea Bommert and J\u00f6rg Rahnenf\u00fchrer",
-    booktitle    = "International Conference on Machine Learning, Optimization, and Data Science - {LOD} 2020, in print",
+    booktitle    = "Machine Learning, Optimization, and Data Science",
     year         = "2020",
-    url          = "https://arxiv.org/abs/2009.12075"
+    pages        = "203--214",
+    doi          = "10.1007/978-3-030-64583-0_19"
   ),
 
   LeiYu2012      = bibentry("article",

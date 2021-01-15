@@ -97,8 +97,8 @@ stabilityIntersectionGreedy(features = feats, sim.mat = mat, N = 1000)
 \references{
 Bommert A, Rahnenführer J (2020).
 \dQuote{Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features.}
-In \emph{International Conference on Machine Learning, Optimization, and Data Science - LOD 2020, in print}.
-\url{https://arxiv.org/abs/2009.12075}.
+In \emph{Machine Learning, Optimization, and Data Science}, 203--214.
+\doi{10.1007/978-3-030-64583-0_19}.
 }
 \seealso{
 \link{listStabilityMeasures}
