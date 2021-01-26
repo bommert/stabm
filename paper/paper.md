@@ -23,7 +23,7 @@ bibliography: paper.bib
 The R [@R] package *stabm* provides functionality for quantifying the similarity of two or more sets.
 For example, consider the two sets $\{A, B, C, D\}$ and $\{A, B, C, E\}$.
 Intuitively, these sets are quite similar because their overlap is large compared to the cardinality of the two sets.
-The R package *stabm* implements many set similarity measures that express the similarity of sets are by a real number.
+The R package *stabm* implements functions to express the similarity of sets by a real valued score.
 Quantifying the similarity of sets is useful for comparing sets of selected features.
 But also for many other tasks like similarity analyses of gene sets or text corpora, the R package *stabm* can be employed.
 
