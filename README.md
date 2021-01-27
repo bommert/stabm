@@ -52,6 +52,12 @@ For the development version, use
 devtools::install_github("bommert/stabm")
 ```
 
-## Pull requests
+## Issues
 
-Pull requests are welcome.
+If you encounter any problems with the software or seek support, please
+open an issue.
+
+## Contributions
+
+Pull requests are welcome. Please try to stick to the coding style used
+in the `stabm` package.
