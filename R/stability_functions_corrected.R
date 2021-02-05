@@ -7,7 +7,7 @@
 #' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
 #' {\min \{|V_i|, |V_j|\} - \max \{ 0, |V_i| + |V_j| - p \}}.}
 #' @references
-#' `r format_bib("Lustgarten2009", "Bommert2017")`
+#' `r format_bib("Lustgarten2009", "Bommert2017", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -29,7 +29,7 @@ stabilityLustgarten = function(features, p, impute.na = NULL) {
 #' \deqn{c_{\min} = \frac{q^2 - p(q - q \ \mathop{mod} \ p) - \left(q \ \mathop{mod} \ p\right)^2}{p q (m-1)},}
 #' \deqn{c_{\max} = \frac{\left(q \ \mathop{mod} \ m\right)^2 + q(m-1) - \left(q \ \mathop{mod} \ m\right)m}{q(m-1)}.}
 #' @references
-#' `r format_bib("Somol2010", "Bommert2017")`
+#' `r format_bib("Somol2010", "Bommert2017", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -51,7 +51,7 @@ stabilitySomol = function(features, p, impute.na = NULL) {
 #' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
 #' {\sqrt{|V_i| (1 - \frac{|V_i|}{p}) \cdot |V_j| (1 - \frac{|V_j|}{p})}}.}
 #' @references
-#' `r format_bib("Nogueira2016", "Bommert2017")`
+#' `r format_bib("Nogueira2016", "Bommert2017", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -73,7 +73,7 @@ stabilityPhi = function(features, p, impute.na = NULL) {
 #' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
 #' {\frac{|V_i| + |V_j|}{2} - \frac{|V_i| \cdot |V_j|}{p}}.}
 #' @references
-#' `r format_bib("Carletta1996")`
+#' `r format_bib("Carletta1996", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -93,7 +93,7 @@ stabilityKappa = function(features, p, impute.na = NULL) {
 #' \deqn{1 - \frac{\frac{1}{p} \sum_{j=1}^p \frac{m}{m-1} \frac{h_j}{m} \left(1 - \frac{h_j}{m}\right)}
 #' {\frac{q}{mp} (1 - \frac{q}{mp})}.}
 #' @references
-#' `r format_bib("Nogueira2018")`
+#' `r format_bib("Nogueira2018", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -118,7 +118,7 @@ stabilityNogueira = function(features, p, impute.na = NULL) {
 #' \link{stabilityIntersectionCount} and \link{stabilityIntersectionMean}
 #' become, when there are no similar features.
 #' @references
-#' `r format_bib("Bommert2020")`
+#' `r format_bib("Bommert2020", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -140,7 +140,7 @@ stabilityUnadjusted = function(features, p, impute.na = NULL) {
 #' \frac{|V_i \cap V_j| - \frac{|V_i| \cdot |V_j|}{p}}
 #' {\min \{|V_i|, |V_j|\} - \frac{|V_i| \cdot |V_j|}{p}}.}
 #' @references
-#' `r format_bib("Wald2013")`
+#' `r format_bib("Wald2013", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples

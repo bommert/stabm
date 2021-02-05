@@ -10,7 +10,7 @@
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary similarity measures.
 #' @references
-#' `r format_bib("Zucknick2008", "Bommert2017")`
+#' `r format_bib("Zucknick2008", "Bommert2017", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -41,7 +41,7 @@ stabilityZucknick = function(features, sim.mat, threshold = 0.9,
 #' Note that this definition slightly differs from its original in order to make it suitable
 #' for arbitrary datasets and similarity measures and applicable in situations with \eqn{|V_i| \neq |V_j|}.
 #' @references
-#' `r format_bib("LeiYu2012", "Zhang2009")`
+#' `r format_bib("LeiYu2012", "Zhang2009", "BommertPHD")`
 #' @md
 #' @examples
 #' feats = list(1:3, 1:4, 1:5)
@@ -71,7 +71,7 @@ stabilityYu = function(features, sim.mat, threshold = 0.9,
 #' \geq \mathrm{threshold}.}
 #' Requires the package \CRANpkg{igraph}.
 #' @references
-#' `r format_bib("Bommert2020")`
+#' `r format_bib("Bommert2020", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -98,7 +98,7 @@ stabilityIntersectionMBM = function(features, sim.mat, threshold = 0.9,
 #' \eqn{\mathop{\mathrm{GMBM}}(V_i \setminus V_j, V_j \backslash V_i)} denotes a greedy approximation
 #' of \eqn{\mathop{\mathrm{MBM}}(V_i \setminus V_j, V_j \backslash V_i)}, see \link{stabilityIntersectionMBM}.
 #' @references
-#' `r format_bib("Bommert2020")`
+#' `r format_bib("Bommert2020", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -124,7 +124,7 @@ stabilityIntersectionGreedy = function(features, sim.mat, threshold = 0.9,
 #' \deqn{C(V_k, V_l) = |\{x \in  V_k \setminus V_l : \exists y \in
 #' V_l \setminus V_k \ \mathrm{with Similarity} (x,y) \geq \mathrm{threshold} \}|.}
 #' @references
-#' `r format_bib("Bommert2020")`
+#' `r format_bib("Bommert2020", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -151,7 +151,7 @@ stabilityIntersectionCount = function(features, sim.mat, threshold = 0.9,
 #' \frac{1}{|G^{kl}_x|} \sum_{y \in G^{kl}_x} \ \mathrm{Similarity} (x,y)} and
 #' \deqn{G^{kl}_x = \{y \in V_l \setminus V_k: \ \mathrm{Similarity} (x, y) \geq \mathrm{threshold} \}.}
 #' @references
-#' `r format_bib("Bommert2020")`
+#' `r format_bib("Bommert2020", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples
@@ -183,7 +183,7 @@ stabilityIntersectionMean = function(features, sim.mat, threshold = 0.9,
 #' This is because for \code{stabilitySechidis}, no finite upper bound is known at the moment,
 #' see \link{listStabilityMeasures}.
 #' @references
-#' `r format_bib("Sechidis2020")`
+#' `r format_bib("Sechidis2020", "BommertPHD")`
 #' @encoding UTF-8
 #' @md
 #' @examples

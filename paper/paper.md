@@ -15,7 +15,7 @@ authors:
 affiliations:
  - name: Faculty of Statistics, TU Dortmund University, 44221 Dortmund, Germany
    index: 1
-date: 08 December 2020
+date: 05 February 2021
 bibliography: paper.bib
 ---
 
@@ -63,9 +63,9 @@ It is publicly available on CRAN and on Github and it has only a few dependencie
 
 # Statement of Need
 The R package *stabm* provides an implementation of many stability measures.
-For theoretical and empirical comparative studies of the stability measures implemented in *stabm*, we refer to @bommert2017multicriteria, @bommert2020adjusted, and @nogueira2018stability.
-It has been demonstrated that considering the feature selection stability when fitting a predictive model often is beneficial for obtaining models with high predictive accuracy [@bommert2017multicriteria; @schirra2016selection].
-The stability measures implemented in the R package *stabm* have been employed in @bommert2017multicriteria, @bommert2020benchmark, and @bommert2020adjusted.
+For theoretical and empirical comparative studies of the stability measures implemented in *stabm*, we refer to @bommert2017multicriteria, @bommert2020adjusted, @bommert2020integration, and @nogueira2018stability.
+It has been demonstrated that considering the feature selection stability when fitting a predictive model often is beneficial for obtaining models with high predictive accuracy [@bommert2017multicriteria; @bommert2020integration; @schirra2016selection].
+The stability measures implemented in the R package *stabm* have been employed in @bommert2017multicriteria, @bommert2020benchmark, @bommert2020adjusted, and @bommert2020integration.
 
 # Related Software
 A subset of the implemented stability measures is also available in other R or Python packages.

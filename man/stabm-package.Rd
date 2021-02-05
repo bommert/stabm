@@ -9,7 +9,7 @@
 An implementation of many measures for the
     assessment of the stability of feature selection. Both simple measures
     and measures which take into account the similarities between features
-    are available, see Bommert et al. (2017) <doi:10.1155/2017/7907163>.
+    are available, see Bommert (2020) <doi:10.17877/DE290R-21906>.
 }
 \seealso{
 Useful links:

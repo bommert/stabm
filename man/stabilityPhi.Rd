@@ -70,6 +70,11 @@ Bommert A, Rahnenführer J, Lang M (2017).
 \dQuote{A Multicriteria Approach to Find Predictive and Sparse Models with Stable Feature Selection for High-Dimensional Data.}
 \emph{Computational and Mathematical Methods in Medicine}, \bold{2017}, 1--18.
 \doi{10.1155/2017/7907163}.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

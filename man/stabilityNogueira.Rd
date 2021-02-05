@@ -61,6 +61,11 @@ Nogueira S, Sechidis K, Brown G (2018).
 \dQuote{On the Stability of Feature Selection Algorithms.}
 \emph{Journal of Machine Learning Research}, \bold{18}(174), 1--54.
 \url{https://jmlr.org/papers/v18/17-514.html}.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

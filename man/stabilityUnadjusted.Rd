@@ -65,6 +65,11 @@ Bommert A, Rahnenführer J (2020).
 \dQuote{Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features.}
 In \emph{Machine Learning, Optimization, and Data Science}, 203--214.
 \doi{10.1007/978-3-030-64583-0_19}.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

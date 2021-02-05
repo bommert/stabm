@@ -62,6 +62,11 @@ Wald R, Khoshgoftaar TM, Napolitano A (2013).
 \dQuote{Stability of Filter- and Wrapper-Based Feature Subset Selection.}
 In \emph{2013 IEEE 25th International Conference on Tools with Artificial Intelligence}.
 \doi{10.1109/ictai.2013.63}.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

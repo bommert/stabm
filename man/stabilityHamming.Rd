@@ -87,6 +87,11 @@ stabilityHamming(features = feats, p = 10)
 Dunne, Kevin, Cunningham, Padraig, Azuaje, Francisco (2002).
 \dQuote{Solutions to instability problems with sequential wrapper-based approaches to feature selection.}
 Machine Learning Group, Department of Computer Science, Trinity College, Dublin.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

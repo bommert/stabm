@@ -51,6 +51,14 @@ bibentries       = c(
     doi          = "10.1007/978-3-030-64583-0_19"
   ),
 
+  BommertPHD    = bibentry("phdthesis",
+    title        = "Integration of Feature Selection Stability in Model Fitting",
+    author       = "Andrea Bommert",
+    year         = "2020",
+    school       = "TU Dortmund University, Germany",
+    doi          = "10.17877/DE290R-21906"
+  ),
+
   LeiYu2012      = bibentry("article",
     doi          = "10.1109/tcbb.2011.47",
     year         = "2012",

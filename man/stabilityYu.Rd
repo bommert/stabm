@@ -107,6 +107,11 @@ Zhang M, Zhang L, Zou J, Yao C, Xiao H, Liu Q, Wang J, Wang D, Wang C, Guo Z (20
 \dQuote{Evaluating reproducibility of differential expression discoveries in microarray studies by considering correlated molecular changes.}
 \emph{Bioinformatics}, \bold{25}(13), 1662--1668.
 \doi{10.1093/bioinformatics/btp295}.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

@@ -85,6 +85,11 @@ Sechidis K, Papangelou K, Nogueira S, Weatherall J, Brown G (2020).
 In \emph{Machine Learning and Knowledge Discovery in Databases}, 327--342.
 Springer International Publishing.
 \doi{10.1007/978-3-030-46150-8_20}.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}

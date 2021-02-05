@@ -63,6 +63,11 @@ stabilityKappa(features = feats, p = 10)
 Carletta, Jean (1996).
 \dQuote{Assessing Agreement on Classification Tasks: The Kappa Statistic.}
 \emph{Computational Linguistics}, \bold{22}(2), 249--254.
+
+Bommert A (2020).
+\emph{Integration of Feature Selection Stability in Model Fitting}.
+Ph.D. thesis, TU Dortmund University, Germany.
+\doi{10.17877/DE290R-21906}.
 }
 \seealso{
 \link{listStabilityMeasures}
