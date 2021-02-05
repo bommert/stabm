@@ -73,7 +73,7 @@
       <h1 data-toc-skip>stabm</h1>
                         <h4 class="author">Andrea Bommert</h4>
             
-            <h4 class="date">2021-01-27</h4>
+            <h4 class="date">2021-02-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bommert/stabm/blob/master/vignettes/stabm.Rmd"><code>vignettes/stabm.Rmd</code></a></small>
       <div class="hidden name"><code>stabm.Rmd</code></div>
@@ -85,7 +85,7 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The <code>R</code> package <code>stabm</code> provides functionality for quantifying the similarity of two or more sets. The anticipated usecase is comparing sets of selected features, but other sets, e.g. gene list, can be analyzed as well. Quantifying the similarity of feature sets is necessary when assessing the feature selection stability. The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution <span class="citation">(Kalousis, Prados, and Hilario 2007)</span>. Stability measures quantify the similarity of the sets of selected features for different training data sets. Many stability measures have been proposed in the literature, see for example <span class="citation">Bommert, Rahnenführer, and Lang (2017)</span>, <span class="citation">Bommert and Rahnenführer (2020)</span>, and <span class="citation">Nogueira, Sechidis, and Brown (2018)</span> for comparative studies. The <code>R</code> package <code>stabm</code> provides an implementation of many stability measures.</p>
+<p>The <code>R</code> package <code>stabm</code> provides functionality for quantifying the similarity of two or more sets. The anticipated usecase is comparing sets of selected features, but other sets, e.g. gene list, can be analyzed as well. Quantifying the similarity of feature sets is necessary when assessing the feature selection stability. The stability of a feature selection algorithm is defined as the robustness of the set of selected features towards different data sets from the same data generating distribution <span class="citation">(Kalousis, Prados, and Hilario 2007)</span>. Stability measures quantify the similarity of the sets of selected features for different training data sets. Many stability measures have been proposed in the literature, see for example <span class="citation">Bommert, Rahnenführer, and Lang (2017)</span>, <span class="citation">Bommert and Rahnenführer (2020)</span>, <span class="citation">Bommert (2020)</span> and <span class="citation">Nogueira, Sechidis, and Brown (2018)</span> for comparative studies. The <code>R</code> package <code>stabm</code> provides an implementation of many stability measures. Detailed definitions and analyses of all stability measures implemented in <code>stabm</code> are given in <span class="citation">Bommert (2020)</span>.</p>
 </div>
 <div id="usage" class="section level1">
 <h1 class="hasAnchor">
@@ -117,7 +117,7 @@
 <p>This list states the names of the stability measures and some information about them.</p>
 <ul>
 <li>Corrected: Does a measure fulfill the property <em>correction for chance</em> as defined in <span class="citation">Nogueira, Sechidis, and Brown (2018)</span>? This property indicates whether the expected value of the stability measure is independent of the number of selected features. Stability measures not fulfilling this property, usually attain the higher values, the more features are selected. For the measures that are not corrected for chance in their original definition, <code>stabm</code> provides the possibility to transform these measures, such that they are corrected for chance.</li>
-<li>Adjusted: Does a measure consider similarities between features when evaluating the feature selection stability? Adjusted measures have been created based on traditional stability measures by including an adjustment term that takes into account feature similarities, see <span class="citation">Bommert and Rahnenführer (2020)</span> for details.</li>
+<li>Adjusted: Does a measure consider similarities between features when evaluating the feature selection stability? Adjusted measures have been created based on traditional stability measures by including an adjustment term that takes into account feature similarities, see <span class="citation">Bommert (2020)</span> for details.</li>
 <li>Minimum and Maximum: Bounds for the stability measures, useful for interpreting obtained stability values.</li>
 </ul>
 <p>Now, let us consider an example with 3 sets of selected features</p>
@@ -149,6 +149,9 @@
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references">
+<div id="ref-bommert2020integration">
+<p>Bommert, Andrea. 2020. “Integration of Feature Selection Stability in Model Fitting.” PhD thesis, TU Dortmund University, Germany. <a href="https://doi.org/10.17877/DE290R-21906">https://doi.org/10.17877/DE290R-21906</a>.</p>
+</div>
 <div id="ref-bommert2020adjusted">
 <p>Bommert, Andrea, and Jörg Rahnenführer. 2020. “Adjusted Measures for Feature Selection Stability for Data Sets with Similar Features.” In <em>Machine Learning, Optimization, and Data Science</em>, 203–14. <a href="https://doi.org/10.1007/978-3-030-64583-0_19">https://doi.org/10.1007/978-3-030-64583-0_19</a>.</p>
 </div>
