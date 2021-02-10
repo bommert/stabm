@@ -74,18 +74,18 @@ on the `BostonHousing2` data set from the [mlbench package](https://cran.r-proje
 library(rpart) # for classification trees
 data("BostonHousing2", package = "mlbench")
 
-# remove variable that is a version of the target variable
+# remove feature that is a version of the target variable
 dataset = subset(BostonHousing2, select = -cmedv)
 ```
 
 We write a small function which subsamples the `BostonHousing2` data frame to `ratio` percent of the observations, fits a regression tree and then returns the used features as character vector:
 
 ```{r}
-fit_tree = function(ratio = 0.67) {
+fit_tree = function(ratio = 0.67, cp = 0.01) {
     n = nrow(dataset)
     i = sample(n, n * ratio)
     model = rpart::rpart(medv ~ ., data = dataset, subset = i, 
-      control = rpart.control(maxsurrogate = 0))
+      control = rpart.control(maxsurrogate = 0, cp = cp))
     names(model$variable.importance)
 }
 
@@ -100,12 +100,12 @@ set.seed(1)
 selected_features = replicate(30, fit_tree(), simplify = FALSE)
 ```
 
-A quick analysis of the list reveals that three variables are selected in all repetitions while six other variables are only selected in some of the repetitions:
+A quick analysis of the list reveals that three features are selected in all repetitions while six other features are only selected in some of the repetitions:
 ```{r}
 # Selected in each repetition:
 Reduce(intersect, selected_features)
 
-# Sorted selection frequency across all 30 repetitions
+# Sorted selection frequency across all 30 repetitions:
 sort(table(unlist(selected_features)), decreasing = TRUE)
 ```
 
@@ -119,5 +119,12 @@ To finally express the selection frequencies with one number, e.g. to compare th
 stabilityJaccard(selected_features)
 ```
 
+We consider a second parametrization of regression trees and observe that this parametrization provides a more stable feature selection than the default parametrization: the value of the Jaccard stability measure is higher here:
+```{r}
+set.seed(1)
+selected_features2 = replicate(30, fit_tree(cp = 0.02), simplify = FALSE)
+stabilityJaccard(selected_features2)
+plotFeatures(selected_features2)
+```
 
 # References

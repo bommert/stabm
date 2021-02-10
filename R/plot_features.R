@@ -1,13 +1,13 @@
 #' @title Plot Selected Features
 #'
-#' @description 
+#' @description
 #' Creates a heatmap of the features which are selected in at least one feature set.
 #' The sets are ordered according to average linkage hierarchical clustering based on the Manhattan
 #' distance. If \code{sim.mat} is given, the features are ordered according to average linkage
 #' hierarchical clustering based on \code{1 - sim.mat}. Otherwise, the features are ordered in
 #' the same way as the feature sets.
 #'
-#' Note that this function needs the packages \CRANpkg{ggplot2}, \CRANpkg{cowplot} and 
+#' Note that this function needs the packages \CRANpkg{ggplot2}, \CRANpkg{cowplot} and
 #' \CRANpkg{ggdendro} installed.
 #'
 #' @inheritParams stabilityDocumentation
@@ -96,8 +96,8 @@ plotFeatures = function(features, sim.mat = NULL) {
 
   # this is a poor man's melt of mat
   mat.data = data.frame(
-    repl = rep(rownames(mat), ncol(mat)),
-    feature = rep(colnames(mat), each = nrow(mat)),
+    repl = factor(rep(rownames(mat), ncol(mat)), levels = rownames(mat)),
+    feature = factor(rep(colnames(mat), each = nrow(mat)), levels = colnames(mat)),
     selected = factor(ifelse(as.logical(mat), "Yes", "No"), levels = c("No", "Yes"))
   )
 
