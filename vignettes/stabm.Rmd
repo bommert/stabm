@@ -67,21 +67,25 @@ plotFeatures(feats)
 
 # Example: Feature Selection
 
-In this example, we will analyse the stability of the feature selection of regression trees
+In this example, we will analyze the stability of the feature selection of regression trees
 on the `BostonHousing2` data set from the [mlbench package](https://cran.r-project.org/package=mlbench).
 
 ```{r}
 library(rpart) # for classification trees
 data("BostonHousing2", package = "mlbench")
+
+# remove variable that is a version of the target variable
+dataset = subset(BostonHousing2, select = -cmedv)
 ```
 
 We write a small function which subsamples the `BostonHousing2` data frame to `ratio` percent of the observations, fits a regression tree and then returns the used features as character vector:
 
 ```{r}
 fit_tree = function(ratio = 0.67) {
-    n = nrow(BostonHousing2)
+    n = nrow(dataset)
     i = sample(n, n * ratio)
-    model = rpart::rpart(medv ~ ., data = BostonHousing2, subset = i)
+    model = rpart::rpart(medv ~ ., data = dataset, subset = i, 
+      control = rpart.control(maxsurrogate = 0))
     names(model$variable.importance)
 }
 
@@ -96,12 +100,8 @@ set.seed(1)
 selected_features = replicate(30, fit_tree(), simplify = FALSE)
 ```
 
-A quick analysis of the list reveals that nearly all features have been selected at least once:
-
+A quick analysis of the list reveals that three variables are selected in all repetitions while six other variables are only selected in some of the repetitions:
 ```{r}
-# Not selected at all:
-setdiff(names(BostonHousing2), c("medv", unlist(selected_features)))
-
 # Selected in each repetition:
 Reduce(intersect, selected_features)
 
@@ -114,7 +114,7 @@ The selection frequency can be visualized with the `plotFeatures()` function:
 plotFeatures(selected_features)
 ```
 
-To finally quantify the selection frequencies, e.g. to compare the stability of regression trees to the stability of a different modeling approach, one of the implemented stability measures can be calculated:
+To finally express the selection frequencies with one number, e.g. to compare the stability of regression trees to the stability of a different modeling approach, any of the implemented stability measures can be calculated:
 ```{r}
 stabilityJaccard(selected_features)
 ```
