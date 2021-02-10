@@ -68,14 +68,14 @@ plotFeatures(feats)
 # Example: Feature Selection
 
 In this example, we will analyse the stability of the feature selection of regression trees
-on the [mlbench::BostonHousing] data set.
+on the `BostonHousing2` data set from the [mlbench package](https://cran.r-project.org/package=mlbench).
 
 ```{r}
 library(rpart) # for classification trees
 data("BostonHousing2", package = "mlbench")
 ```
 
-We write a small function which subsamples the BostonHousing2 data frame to `ratio` percent of the observations, fits a regression tree and then returns the used features as character vector:
+We write a small function which subsamples the `BostonHousing2` data frame to `ratio` percent of the observations, fits a regression tree and then returns the used features as character vector:
 
 ```{r}
 fit_tree = function(ratio = 0.67) {
@@ -85,13 +85,37 @@ fit_tree = function(ratio = 0.67) {
     names(model$variable.importance)
 }
 
+set.seed(1)
 fit_tree()
 ```
 
 
-We repeat this step 30 times and then calculate the Jaccard index on the list of character vectors of selected features:
+We repeat this step 30 times, resulting in a list of character vectors of selected features:
 ```{r}
-selected_features = replicate(30, fit_tree())
+set.seed(1)
+selected_features = replicate(30, fit_tree(), simplify = FALSE)
+```
+
+A quick analysis of the list reveals that nearly all features have been selected at least once:
+
+```{r}
+# Not selected at all:
+setdiff(names(BostonHousing2), c("medv", unlist(selected_features)))
+
+# Selected in each repetition:
+Reduce(intersect, selected_features)
+
+# Sorted selection frequency across all 30 repetitions
+sort(table(unlist(selected_features)), decreasing = TRUE)
+```
+
+The selection frequency can be visualized with the `plotFeatures()` function:
+```{r}
+plotFeatures(selected_features)
+```
+
+To finally quantify the selection frequencies, e.g. to compare the stability of regression trees to the stability of a different modeling approach, one of the implemented stability measures can be calculated:
+```{r}
 stabilityJaccard(selected_features)
 ```
 
