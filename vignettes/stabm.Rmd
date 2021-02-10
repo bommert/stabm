@@ -37,11 +37,11 @@ This list states the names of the stability measures and some information about 
 - Adjusted: Does a measure consider similarities between features when evaluating the feature selection stability? Adjusted measures have been created based on traditional stability measures by including an adjustment term that takes into account feature similarities, see @bommert2020integration for details.
 - Minimum and Maximum: Bounds for the stability measures, useful for interpreting obtained stability values.
 
-Now, let us consider an example with 3 sets of selected features 
+Now, let us consider an example with 3 sets of selected features
 
 - $V_1 = \{X_1, X_2, X_3\}$
 - $V_2 = \{X_1, X_2, X_3, X_4\}$
-- $V_3 = \{X_1, X_2, X_3, X_5, X_6, X_7\}$ 
+- $V_3 = \{X_1, X_2, X_3, X_5, X_6, X_7\}$
 
 and a total number of 10 features. We can evaluate the feature selection stability with stability measures of our choice.
 
@@ -64,5 +64,36 @@ Finally, `stabm` also provides a visualization of the feature sets.
 ```{r, fig.width=4.5, fig.height=3, fig.align="center", message=FALSE}
 plotFeatures(feats)
 ```
+
+# Example: Feature Selection
+
+In this example, we will analyse the stability of the feature selection of regression trees
+on the [mlbench::BostonHousing] data set.
+
+```{r}
+library(rpart) # for classification trees
+data("BostonHousing2", package = "mlbench")
+```
+
+We write a small function which subsamples the BostonHousing2 data frame to `ratio` percent of the observations, fits a regression tree and then returns the used features as character vector:
+
+```{r}
+fit_tree = function(ratio = 0.67) {
+    n = nrow(BostonHousing2)
+    i = sample(n, n * ratio)
+    model = rpart::rpart(medv ~ ., data = BostonHousing2, subset = i)
+    names(model$variable.importance)
+}
+
+fit_tree()
+```
+
+
+We repeat this step 30 times and then calculate the Jaccard index on the list of character vectors of selected features:
+```{r}
+selected_features = replicate(30, fit_tree())
+stabilityJaccard(selected_features)
+```
+
 
 # References
