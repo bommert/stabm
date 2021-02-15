@@ -40,8 +40,15 @@ devtools::install_github("bommert/stabm")
 ```
 
 
-## Issues
-If you encounter any problems with the software or seek support, please open an issue.
-
 ## Contributions
-Pull requests are welcome. Please try to stick to the coding style used in the `stabm` package.
+
+This R package is licensed under the [LGPL-3](https://www.gnu.org/licenses/lgpl-3.0.en.html).
+If you encounter problems using this software (lack of documentation, misleading or wrong documentation, unexpected behaviour, bugs, ...) or just want to suggest features,
+please open an issue in the [issue tracker](https://github.com/bommert/stabm/issues).
+Pull requests are welcome and will be included at the discretion of the author.
+
+
+## Code of Conduct
+
+Please note that the `stabm` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
