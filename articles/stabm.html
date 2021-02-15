@@ -145,6 +145,152 @@
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotFeatures.html">plotFeatures</a></span><span class="op">(</span><span class="va">feats</span><span class="op">)</span></code></pre></div>
 <p><img src="stabm_files/figure-html/unnamed-chunk-5-1.png" width="432" style="display: block; margin: auto;"></p>
 </div>
+<div id="example-feature-selection" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-feature-selection" class="anchor"></a>Example: Feature Selection</h1>
+<p>In this example, we will analyze the stability of the feature selection of regression trees on the <code>BostonHousing2</code> data set from the <a href="https://cran.r-project.org/package=mlbench">mlbench package</a>.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bethatkinson/rpart">rpart</a></span><span class="op">)</span> <span class="co"># for classification trees</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"BostonHousing2"</span>, package <span class="op">=</span> <span class="st">"mlbench"</span><span class="op">)</span>
+
+<span class="co"># remove feature that is a version of the target variable</span>
+<span class="va">dataset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">BostonHousing2</span>, select <span class="op">=</span> <span class="op">-</span><span class="va">cmedv</span><span class="op">)</span></code></pre></div>
+<p>We write a small function which subsamples the <code>BostonHousing2</code> data frame to <code>ratio</code> percent of the observations, fits a regression tree and then returns the used features as character vector:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fit_tree</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">target</span> <span class="op">=</span> <span class="st">"medv"</span>, <span class="va">data</span> <span class="op">=</span> <span class="va">dataset</span>, <span class="va">ratio</span> <span class="op">=</span> <span class="fl">0.67</span>, <span class="va">cp</span> <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">n</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span>
+    <span class="va">i</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">n</span> <span class="op">*</span> <span class="va">ratio</span><span class="op">)</span>
+    <span class="va">formula</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/formula.html">as.formula</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">target</span>,  <span class="st">"~ ."</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">model</span> <span class="op">=</span> <span class="fu">rpart</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rpart/man/rpart.html">rpart</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">formula</span>, data <span class="op">=</span> <span class="va">data</span>, subset <span class="op">=</span> <span class="va">i</span>, 
+      control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rpart/man/rpart.control.html">rpart.control</a></span><span class="op">(</span>maxsurrogate <span class="op">=</span> <span class="fl">0</span>, cp <span class="op">=</span> <span class="va">cp</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">variable.importance</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="fu">fit_tree</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "rm"    "lstat" "town"  "crim"</code></pre>
+<p>We repeat this step 30 times, resulting in a list of character vectors of selected features:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">selected_features</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fu">fit_tree</span><span class="op">(</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>A quick analysis of the list reveals that three features are selected in all repetitions while six other features are only selected in some of the repetitions:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Selected in each repetition:</span>
+<span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span><span class="op">(</span><span class="va">intersect</span>, <span class="va">selected_features</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "rm"    "lstat" "town"</code></pre>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Sorted selection frequency across all 30 repetitions:</span>
+<span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">selected_features</span><span class="op">)</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## 
+##   lstat      rm    town    crim     dis     age     lon ptratio   tract 
+##      30      30      30       6       4       3       2       2       1</code></pre>
+<p>The selection frequency can be visualized with the <code><a href="../reference/plotFeatures.html">plotFeatures()</a></code> function:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotFeatures.html">plotFeatures</a></span><span class="op">(</span><span class="va">selected_features</span><span class="op">)</span></code></pre></div>
+<p><img src="stabm_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p>To finally express the selection frequencies with one number, e.g. to compare the stability of regression trees to the stability of a different modeling approach, any of the implemented stability measures can be calculated:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/stabilityJaccard.html">stabilityJaccard</a></span><span class="op">(</span><span class="va">selected_features</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.7622989</code></pre>
+<p>We consider a second parametrization of regression trees and observe that this parametrization provides a more stable feature selection than the default parametrization: the value of the Jaccard stability measure is higher here:</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">selected_features2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fu">fit_tree</span><span class="op">(</span>cp <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/stabilityJaccard.html">stabilityJaccard</a></span><span class="op">(</span><span class="va">selected_features2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.9089655</code></pre>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotFeatures.html">plotFeatures</a></span><span class="op">(</span><span class="va">selected_features2</span><span class="op">)</span></code></pre></div>
+<p><img src="stabm_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p>Now, we consider a different regression problem, for which there are highly correlated features. Again, we repeatedly select features using regression trees:</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dataset2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">BostonHousing2</span>, select <span class="op">=</span> <span class="op">-</span><span class="va">town</span><span class="op">)</span>
+<span class="va">dataset2</span><span class="op">$</span><span class="va">chas</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">dataset2</span><span class="op">$</span><span class="va">chas</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">selected_features3</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fu">fit_tree</span><span class="op">(</span>target <span class="op">=</span> <span class="st">"rm"</span>, data <span class="op">=</span> <span class="va">dataset2</span>, cp <span class="op">=</span> <span class="fl">0.075</span><span class="op">)</span>, 
+  simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p>We choose to assess the similarities between the features with absolute Pearson correlations, but other similarity measures could be used as well. The similarity values of the selected features show that the two features <em>medv</em> and <em>cmedv</em> are almost perfectly correlated:</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># similarity matrix</span>
+<span class="va">sim.mat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">dataset2</span>, select <span class="op">=</span> <span class="op">-</span><span class="va">rm</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">sel.feats</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="va">selected_features3</span><span class="op">)</span><span class="op">)</span>
+<span class="va">sim.mat</span><span class="op">[</span><span class="va">sel.feats</span>, <span class="va">sel.feats</span><span class="op">]</span></code></pre></div>
+<pre><code>##            medv       dis     cmedv     lstat
+## medv  1.0000000 0.2499287 0.9984759 0.7376627
+## dis   0.2499287 1.0000000 0.2493148 0.4969958
+## cmedv 0.9984759 0.2493148 1.0000000 0.7408360
+## lstat 0.7376627 0.4969958 0.7408360 1.0000000</code></pre>
+<p>Also, each of the 30 feature sets includes either <em>medv</em> or <em>cmedv</em>:</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotFeatures.html">plotFeatures</a></span><span class="op">(</span><span class="va">selected_features3</span>, sim.mat <span class="op">=</span> <span class="va">sim.mat</span><span class="op">)</span></code></pre></div>
+<p><img src="stabm_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
+<p>When evaluating the feature selection stability, we want that the choice of <em>medv</em> instead of <em>cmedv</em> or vice versa is not seen as a lack of stability, because they contain almost the same information. Therefore, we use one of the <em>adjusted</em> stability measures, see <code><a href="../reference/listStabilityMeasures.html">listStabilityMeasures()</a></code> in Section <em>Usage</em>.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/stabilityIntersectionCount.html">stabilityIntersectionCount</a></span><span class="op">(</span><span class="va">selected_features3</span>, sim.mat <span class="op">=</span> <span class="va">sim.mat</span>, N <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.7673059</code></pre>
+<p>The effect of the feature similarities for stability assessment can be quantified by considering the identity matrix as similarity matrix and thereby neglecting all similarities. Without taking into account the feature similarities, the stability value is much lower:</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">no.sim.mat</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sim.mat</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">no.sim.mat</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html">row.names</a></span><span class="op">(</span><span class="va">no.sim.mat</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">sim.mat</span><span class="op">)</span>
+<span class="fu"><a href="../reference/stabilityIntersectionCount.html">stabilityIntersectionCount</a></span><span class="op">(</span><span class="va">selected_features3</span>, sim.mat <span class="op">=</span> <span class="va">no.sim.mat</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.4168795</code></pre>
+</div>
+<div id="example-clustering" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-clustering" class="anchor"></a>Example: Clustering</h1>
+<p>As a second example, we analyze the stability of the clusters resulting from k-means clustering.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+
+<span class="co"># select a subset of instances for visualization purposes</span>
+<span class="va">inds</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dataset2</span><span class="op">)</span>, <span class="fl">50</span><span class="op">)</span>
+<span class="va">dataset.cluster</span> <span class="op">=</span> <span class="va">dataset2</span><span class="op">[</span><span class="va">inds</span>, <span class="op">]</span>
+
+<span class="co"># run k-means clustering with k = 3 30 times</span>
+<span class="va">km</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fu"><a href="https://rdrr.io/r/stats/kmeans.html">kmeans</a></span><span class="op">(</span><span class="va">dataset.cluster</span>, centers <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>, simplify <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># change cluster names for comparability</span>
+<span class="va">best</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">km</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span><span class="op">$</span><span class="va">tot.withinss</span><span class="op">)</span><span class="op">)</span>
+<span class="va">best.centers</span> <span class="op">=</span> <span class="va">km</span><span class="op">[[</span><span class="va">best</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">centers</span>
+<span class="va">km.clusters</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">km</span>, <span class="kw">function</span><span class="op">(</span><span class="va">kmi</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">dst</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">best.centers</span>, <span class="va">kmi</span><span class="op">$</span><span class="va">centers</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>
+  <span class="co"># greedy choice of best matches of clusters</span>
+  <span class="va">new.cluster.names</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>
+  <span class="kw">while</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">min.dst</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/which.min.html">which.min</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span>
+    <span class="va">row</span> <span class="op">=</span> <span class="op">(</span><span class="va">min.dst</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span>
+    <span class="va">row.o</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span><span class="op">[</span><span class="va">row</span><span class="op">]</span><span class="op">)</span>
+    <span class="va">col</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">min.dst</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">col.o</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">dst</span><span class="op">)</span><span class="op">[</span><span class="va">col</span><span class="op">]</span><span class="op">)</span>
+    <span class="va">new.cluster.names</span><span class="op">[</span><span class="va">row.o</span><span class="op">]</span> <span class="op">=</span> <span class="va">col.o</span>
+    <span class="va">dst</span> <span class="op">=</span> <span class="va">dst</span><span class="op">[</span><span class="op">-</span><span class="va">row</span>, <span class="op">-</span><span class="va">col</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span>
+  <span class="op">}</span>
+  <span class="va">new.cluster.names</span><span class="op">[</span><span class="va">kmi</span><span class="op">$</span><span class="va">cluster</span><span class="op">]</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="co"># for each cluster, create a list containing the instances </span>
+<span class="co"># belonging to this cluster over the 30 repetitions</span>
+<span class="va">clusters</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">km.clusters</span>, <span class="kw">function</span><span class="op">(</span><span class="va">kmc</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">kmc</span> <span class="op">==</span> <span class="va">i</span><span class="op">)</span>
+  <span class="op">}</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
+<p>For each cluster, we evaluate the stability of the instances assigned to this cluster:</p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">stab.cl</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">clusters</span>, <span class="va">stabilityJaccard</span><span class="op">)</span>
+<span class="va">stab.cl</span></code></pre></div>
+<pre><code>## [1] 0.8488756 0.8037725 0.5485411</code></pre>
+<p>We average these stability values with a weighted mean based on the average cluster sizes:</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">w</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">clusters</span>, <span class="kw">function</span><span class="op">(</span><span class="va">cl</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">stab.cl</span> <span class="op">*</span> <span class="va">w</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.7730162</code></pre>
+</div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
