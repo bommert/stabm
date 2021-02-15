@@ -37,11 +37,11 @@ This list states the names of the stability measures and some information about 
 - Adjusted: Does a measure consider similarities between features when evaluating the feature selection stability? Adjusted measures have been created based on traditional stability measures by including an adjustment term that takes into account feature similarities, see @bommert2020integration for details.
 - Minimum and Maximum: Bounds for the stability measures, useful for interpreting obtained stability values.
 
-Now, let us consider an example with 3 sets of selected features 
+Now, let us consider an example with 3 sets of selected features
 
 - $V_1 = \{X_1, X_2, X_3\}$
 - $V_2 = \{X_1, X_2, X_3, X_4\}$
-- $V_3 = \{X_1, X_2, X_3, X_5, X_6, X_7\}$ 
+- $V_3 = \{X_1, X_2, X_3, X_5, X_6, X_7\}$
 
 and a total number of 10 features. We can evaluate the feature selection stability with stability measures of our choice.
 
@@ -63,6 +63,167 @@ Finally, `stabm` also provides a visualization of the feature sets.
 
 ```{r, fig.width=4.5, fig.height=3, fig.align="center", message=FALSE}
 plotFeatures(feats)
+```
+
+
+# Example: Feature Selection
+
+In this example, we will analyze the stability of the feature selection of regression trees
+on the `BostonHousing2` data set from the [mlbench package](https://cran.r-project.org/package=mlbench).
+
+```{r}
+library(rpart) # for classification trees
+data("BostonHousing2", package = "mlbench")
+
+# remove feature that is a version of the target variable
+dataset = subset(BostonHousing2, select = -cmedv)
+```
+
+We write a small function which subsamples the `BostonHousing2` data frame to `ratio` percent of the observations, fits a regression tree and then returns the used features as character vector:
+
+```{r}
+fit_tree = function(target = "medv", data = dataset, ratio = 0.67, cp = 0.01) {
+    n = nrow(data)
+    i = sample(n, n * ratio)
+    formula = as.formula(paste(target,  "~ ."))
+    model = rpart::rpart(formula = formula, data = data, subset = i, 
+      control = rpart.control(maxsurrogate = 0, cp = cp))
+    names(model$variable.importance)
+}
+
+set.seed(1)
+fit_tree()
+```
+
+
+We repeat this step 30 times, resulting in a list of character vectors of selected features:
+```{r}
+set.seed(1)
+selected_features = replicate(30, fit_tree(), simplify = FALSE)
+```
+
+A quick analysis of the list reveals that three features are selected in all repetitions while six other features are only selected in some of the repetitions:
+```{r}
+# Selected in each repetition:
+Reduce(intersect, selected_features)
+
+# Sorted selection frequency across all 30 repetitions:
+sort(table(unlist(selected_features)), decreasing = TRUE)
+```
+
+The selection frequency can be visualized with the `plotFeatures()` function:
+```{r}
+plotFeatures(selected_features)
+```
+
+To finally express the selection frequencies with one number, e.g. to compare the stability of regression trees to the stability of a different modeling approach, any of the implemented stability measures can be calculated:
+```{r}
+stabilityJaccard(selected_features)
+```
+
+We consider a second parametrization of regression trees and observe that this parametrization provides a more stable feature selection than the default parametrization: the value of the Jaccard stability measure is higher here:
+```{r}
+set.seed(1)
+selected_features2 = replicate(30, fit_tree(cp = 0.02), simplify = FALSE)
+stabilityJaccard(selected_features2)
+plotFeatures(selected_features2)
+```
+
+Now, we consider a different regression problem, for which there are highly correlated features.
+Again, we repeatedly select features using regression trees:
+```{r}
+dataset2 = subset(BostonHousing2, select = -town)
+dataset2$chas = as.numeric(dataset2$chas)
+
+set.seed(1)
+selected_features3 = replicate(30, fit_tree(target = "rm", data = dataset2, cp = 0.075), 
+  simplify = FALSE)
+```
+
+We choose to assess the similarities between the features with absolute Pearson correlations, but other similarity measures could be used as well.
+The similarity values of the selected features show that the two features *medv* and *cmedv* are almost perfectly correlated:
+```{r}
+# similarity matrix
+sim.mat = abs(cor(subset(dataset2, select = -rm)))
+
+sel.feats = unique(unlist(selected_features3))
+sim.mat[sel.feats, sel.feats]
+```
+Also, each of the 30 feature sets includes either *medv* or *cmedv*:
+```{r}
+plotFeatures(selected_features3, sim.mat = sim.mat)
+```
+
+When evaluating the feature selection stability, we want that the choice of *medv* instead of *cmedv* or vice versa is not seen as a lack of stability, because they contain almost the same information.
+Therefore, we use one of the *adjusted* stability measures, see `listStabilityMeasures()` in Section *Usage*.
+```{r}
+stabilityIntersectionCount(selected_features3, sim.mat = sim.mat, N = 1000)
+```
+
+The effect of the feature similarities for stability assessment can be quantified by considering the identity matrix as similarity matrix and thereby neglecting all similarities.
+Without taking into account the feature similarities, the stability value is much lower:
+```{r}
+no.sim.mat = diag(nrow(sim.mat))
+colnames(no.sim.mat) = row.names(no.sim.mat) = colnames(sim.mat)
+stabilityIntersectionCount(selected_features3, sim.mat = no.sim.mat)
+```
+
+
+# Example: Clustering
+
+As a second example, we analyze the stability of the clusters resulting from k-means clustering.
+```{r}
+set.seed(1)
+
+# select a subset of instances for visualization purposes
+inds = sample(nrow(dataset2), 50)
+dataset.cluster = dataset2[inds, ]
+
+# run k-means clustering with k = 3 30 times
+km = replicate(30, kmeans(dataset.cluster, centers = 3), simplify = FALSE)
+
+# change cluster names for comparability
+best = which.min(sapply(km, function(x) x$tot.withinss))
+best.centers = km[[best]]$centers
+km.clusters = lapply(km, function(kmi) {
+  dst = as.matrix(dist(rbind(best.centers, kmi$centers)))[4:6, 1:3]
+  rownames(dst) = colnames(dst) = 1:3
+  # greedy choice of best matches of clusters
+  new.cluster.names = numeric(3)
+  while(nrow(dst) > 0) {
+    min.dst = which.min(dst)
+    row = (min.dst - 1) %% nrow(dst) + 1
+    row.o = as.numeric(rownames(dst)[row])
+    col = ceiling(min.dst / nrow(dst))
+    col.o = as.numeric(colnames(dst)[col])
+    new.cluster.names[row.o] = col.o
+    dst = dst[-row, -col, drop = FALSE]
+  }
+  new.cluster.names[kmi$cluster]
+})
+
+# for each cluster, create a list containing the instances 
+# belonging to this cluster over the 30 repetitions
+clusters = lapply(1:3, function(i) {
+  lapply(km.clusters, function(kmc) {
+    which(kmc == i)
+  })
+})
+```
+
+For each cluster, we evaluate the stability of the instances assigned to this cluster:
+```{r}
+stab.cl = sapply(clusters, stabilityJaccard)
+stab.cl
+```
+
+We average these stability values with a weighted mean based on the average cluster sizes:
+```{r}
+w = sapply(clusters, function(cl) {
+  mean(lengths(cl))
+})
+
+sum(stab.cl * w) / sum(w)
 ```
 
 # References
