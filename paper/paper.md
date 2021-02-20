@@ -36,6 +36,7 @@ To quantify the stability of the feature selection algorithm, the similarity of 
 In the context of feature selection stability, set similarity measures are called stability measures.
 
 The R package *stabm* provides an open-source implementation of the 20 stability measures displayed in the table below.
+Argument checks are performed with checkmate [lang2017checkmate] to provide helpful error messages.
 It is publicly available on CRAN and on Github and it has only a few dependencies.
 
 |Name | Reference|
