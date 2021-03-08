@@ -30,7 +30,7 @@ distance. If \code{sim.mat} is given, the features are ordered according to aver
 hierarchical clustering based on \code{1 - sim.mat}. Otherwise, the features are ordered in
 the same way as the feature sets.
 
-Note that this function needs the packages \CRANpkg{ggplot2}, \CRANpkg{cowplot} and 
+Note that this function needs the packages \CRANpkg{ggplot2}, \CRANpkg{cowplot} and
 \CRANpkg{ggdendro} installed.
 }
 \examples{
