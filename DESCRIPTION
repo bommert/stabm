@@ -1,6 +1,6 @@
 Package: stabm
 Title: Stability Measures for Feature Selection
-Version: 1.1.4
+Version: 1.2.0
 Authors@R: 
     c(person(given = "Andrea",
              family = "Bommert",
