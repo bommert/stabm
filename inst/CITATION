@@ -1,0 +1,16 @@
+bibentry(
+  bibtype = "article",
+  key = "stabm",
+  title = "{stabm}: Stability Measures for Feature Selection",
+  author = c(
+    person(given = "Andrea", family = "Bommert"),
+    person(given = "Michel", family = "Lang")
+  ),
+  journal = "Journal of Open Source Software",
+  year = 2021,
+  doi = "10.21105/joss.03010",
+  publisher = "The Open Journal",
+  volume = "6",
+  number = "59",
+  pages = "3010"
+)

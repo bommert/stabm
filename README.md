@@ -69,3 +69,20 @@ Please note that the `stabm` project is released with a [Contributor
 Code of
 Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
+
+## Citation
+
+If you use stabm, please cite our [JOSS
+article](https://doi.org/10.21105/joss.03010):
+
+    @Article{stabm,
+      title = {{stabm}: Stability Measures for Feature Selection},
+      author = {Andrea Bommert and Michel Lang},
+      journal = {Journal of Open Source Software},
+      year = {2021},
+      doi = {10.21105/joss.03010},
+      publisher = {The Open Journal},
+      volume = {6},
+      number = {59},
+      pages = {3010},
+    }
