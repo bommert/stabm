@@ -6,6 +6,7 @@
 [![R-CMD-check](https://github.com/bommert/stabm/workflows/R-CMD-check/badge.svg)](https://github.com/bommert/stabm/actions)
 [![CRAN
 Status](https://www.r-pkg.org/badges/version-ago/stabm)](https://cran.r-project.org/package=stabm)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.03010/status.svg)](https://doi.org/10.21105/joss.03010)
 
 `stabm` provides an implementation of many measures which assess the
 stability of feature selection. The following stability measures are
