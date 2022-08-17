@@ -33,7 +33,7 @@ sim.mat4[1:3, ] = sim.mat4[, 3:1] = 1
 diag(sim.mat4) = 1
 sim.mat5 = Matrix(sim.mat1)
 sim.mat6 = Matrix(sim.mat1, sparse = TRUE)
-sim.mat7 = as(sim.mat6, "dgCMatrix")
+sim.mat7 = as(as(as(sim.mat6, "dMatrix"), "generalMatrix"), "CsparseMatrix")
 sim.mat8 = matrix(1, nrow = 1, ncol = 1)
 
 feats1 = list(1:3, 2:5)

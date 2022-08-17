@@ -6,10 +6,7 @@
 \alias{stabm-package}
 \title{stabm: Stability Measures for Feature Selection}
 \description{
-An implementation of many measures for the
-    assessment of the stability of feature selection. Both simple measures
-    and measures which take into account the similarities between features
-    are available, see Bommert (2020) <doi:10.17877/DE290R-21906>.
+An implementation of many measures for the assessment of the stability of feature selection. Both simple measures and measures which take into account the similarities between features are available, see Bommert (2020) \doi{10.17877/DE290R-21906}.
 }
 \seealso{
 Useful links:

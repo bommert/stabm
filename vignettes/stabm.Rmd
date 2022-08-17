@@ -56,7 +56,7 @@ For adjusted stability measures, a matrix indicating the similarities between th
 ```{r}
 mat = 0.92 ^ abs(outer(1:10, 1:10, "-"))
 set.seed(1)
-stabilityIntersectionCount(features = feats, sim.mat = mat, N = 1000)
+stabilityIntersectionCount(features = feats, sim.mat = mat, N = 100)
 ```
 
 Finally, `stabm` also provides a visualization of the feature sets.
@@ -157,7 +157,7 @@ plotFeatures(selected_features3, sim.mat = sim.mat)
 When evaluating the feature selection stability, we want that the choice of *medv* instead of *cmedv* or vice versa is not seen as a lack of stability, because they contain almost the same information.
 Therefore, we use one of the *adjusted* stability measures, see `listStabilityMeasures()` in Section *Usage*.
 ```{r}
-stabilityIntersectionCount(selected_features3, sim.mat = sim.mat, N = 1000)
+stabilityIntersectionCount(selected_features3, sim.mat = sim.mat, N = 100)
 ```
 
 The effect of the feature similarities for stability assessment can be quantified by considering the identity matrix as similarity matrix and thereby neglecting all similarities.

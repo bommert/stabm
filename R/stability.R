@@ -78,10 +78,10 @@ stability = function(features, measure, correction.for.chance, N,
         symmetric = TRUE, dims = c(nrow(sim.mat), ncol(sim.mat)))
       colnames(sparse.mat) = rownames(sparse.mat) = colnames(sim.mat)
       sim.mat = sparse.mat
-      sim.mat = as(sim.mat, "dsTMatrix")
+      sim.mat = as(as(as(sim.mat, "dMatrix"), "symmetricMatrix"), "TsparseMatrix")
     } else {
-      if (class(sim.mat) != "dsTMatrix") {
-        sim.mat = as(sim.mat, "dsTMatrix")
+      if (!inherits(sim.mat, "dsTMatrix")) {
+        sim.mat = as(as(as(sim.mat, "dMatrix"), "symmetricMatrix"), "TsparseMatrix")
       }
       if (min(sim.mat@x) < threshold) {
         keep = sim.mat@x >= threshold
@@ -91,7 +91,7 @@ stability = function(features, measure, correction.for.chance, N,
         sparse.mat = sparseMatrix(i = i, j = j, x = x, symmetric = TRUE)
         colnames(sparse.mat) = rownames(sparse.mat) = colnames(sim.mat)
         sim.mat = sparse.mat
-        sim.mat = as(sim.mat, "dsTMatrix")
+        sim.mat = as(as(as(sim.mat, "dMatrix"), "symmetricMatrix"), "TsparseMatrix")
       }
     }
 
