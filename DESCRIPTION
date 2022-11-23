@@ -1,6 +1,6 @@
 Package: stabm
 Title: Stability Measures for Feature Selection
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: 
     c(person(given = "Andrea",
              family = "Bommert",
@@ -24,7 +24,7 @@ Depends:
     R (>= 3.5.0)
 Imports: 
     checkmate (>= 1.8.5),
-    Matrix (>= 1.4-2),
+    Matrix (>= 1.5-0),
     methods,
     stats,
     utils
@@ -41,4 +41,4 @@ Suggests:
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
