@@ -22,6 +22,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -34,18 +36,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">stabm</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/stabm.html">Get started</a>
 </li>
@@ -55,7 +51,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bommert/stabm/">
+  <a href="https://github.com/bommert/stabm/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -72,129 +68,126 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="stabm" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#stabm" class="anchor"></a>stabm</h1></div>
-
+<div class="section level1">
+<div class="page-header"><h1 id="stabm">stabm<a class="anchor" aria-label="anchor" href="#stabm"></a>
+</h1></div>
+<p><a href="https://github.com/bommert/stabm/actions" class="external-link"><img src="https://github.com/bommert/stabm/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <a href="https://cran.r-project.org/package=stabm" class="external-link"><img src="https://www.r-pkg.org/badges/version-ago/stabm" alt="CRAN Status"></a> <a href="https://doi.org/10.21105/joss.03010" class="external-link"><img src="https://joss.theoj.org/papers/10.21105/joss.03010/status.svg" alt="DOI"></a></p>
 <p><code>stabm</code> provides an implementation of many measures which assess the stability of feature selection. The following stability measures are currently included:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">stabm</span><span class="fu">::</span><span class="fu"><a href="reference/listStabilityMeasures.html">listStabilityMeasures</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;                           Name Corrected Adjusted Minimum Maximum</span>
-<span class="co">#&gt; 1               stabilityDavis     FALSE    FALSE       0       1</span>
-<span class="co">#&gt; 2                stabilityDice     FALSE    FALSE       0       1</span>
-<span class="co">#&gt; 3             stabilityHamming     FALSE    FALSE       0       1</span>
-<span class="co">#&gt; 4   stabilityIntersectionCount      TRUE     TRUE    &lt;NA&gt;       1</span>
-<span class="co">#&gt; 5  stabilityIntersectionGreedy      TRUE     TRUE    &lt;NA&gt;       1</span>
-<span class="co">#&gt; 6     stabilityIntersectionMBM      TRUE     TRUE    &lt;NA&gt;       1</span>
-<span class="co">#&gt; 7    stabilityIntersectionMean      TRUE     TRUE    &lt;NA&gt;       1</span>
-<span class="co">#&gt; 8             stabilityJaccard     FALSE    FALSE       0       1</span>
-<span class="co">#&gt; 9               stabilityKappa      TRUE    FALSE      -1       1</span>
-<span class="co">#&gt; 10         stabilityLustgarten      TRUE    FALSE      -1       1</span>
-<span class="co">#&gt; 11           stabilityNogueira      TRUE    FALSE      -1       1</span>
-<span class="co">#&gt; 12         stabilityNovovicova     FALSE    FALSE       0       1</span>
-<span class="co">#&gt; 13             stabilityOchiai     FALSE    FALSE       0       1</span>
-<span class="co">#&gt; 14                stabilityPhi      TRUE    FALSE      -1       1</span>
-<span class="co">#&gt; 15           stabilitySechidis     FALSE     TRUE    &lt;NA&gt;      NA</span>
-<span class="co">#&gt; 16              stabilitySomol      TRUE    FALSE       0       1</span>
-<span class="co">#&gt; 17         stabilityUnadjusted      TRUE    FALSE      -1       1</span>
-<span class="co">#&gt; 18               stabilityWald      TRUE    FALSE     1-p       1</span>
-<span class="co">#&gt; 19                 stabilityYu      TRUE     TRUE    &lt;NA&gt;       1</span>
-<span class="co">#&gt; 20           stabilityZucknick     FALSE     TRUE       0       1</span></code></pre></div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of stabm from <a href="https://cran.r-project.org/package=stabm">CRAN</a> with:</p>
+<code class="sourceCode R"><span><span class="fu">stabm</span><span class="fu">::</span><span class="fu"><a href="reference/listStabilityMeasures.html">listStabilityMeasures</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                           Name Corrected Adjusted Minimum Maximum</span></span>
+<span><span class="co">#&gt; 1               stabilityDavis     FALSE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 2                stabilityDice     FALSE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 3             stabilityHamming     FALSE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 4   stabilityIntersectionCount      TRUE     TRUE    &lt;NA&gt;       1</span></span>
+<span><span class="co">#&gt; 5  stabilityIntersectionGreedy      TRUE     TRUE    &lt;NA&gt;       1</span></span>
+<span><span class="co">#&gt; 6     stabilityIntersectionMBM      TRUE     TRUE    &lt;NA&gt;       1</span></span>
+<span><span class="co">#&gt; 7    stabilityIntersectionMean      TRUE     TRUE    &lt;NA&gt;       1</span></span>
+<span><span class="co">#&gt; 8             stabilityJaccard     FALSE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 9               stabilityKappa      TRUE    FALSE      -1       1</span></span>
+<span><span class="co">#&gt; 10         stabilityLustgarten      TRUE    FALSE      -1       1</span></span>
+<span><span class="co">#&gt; 11           stabilityNogueira      TRUE    FALSE      -1       1</span></span>
+<span><span class="co">#&gt; 12         stabilityNovovicova     FALSE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 13             stabilityOchiai     FALSE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 14                stabilityPhi      TRUE    FALSE      -1       1</span></span>
+<span><span class="co">#&gt; 15           stabilitySechidis     FALSE     TRUE    &lt;NA&gt;      NA</span></span>
+<span><span class="co">#&gt; 16              stabilitySomol      TRUE    FALSE       0       1</span></span>
+<span><span class="co">#&gt; 17         stabilityUnadjusted      TRUE    FALSE      -1       1</span></span>
+<span><span class="co">#&gt; 18               stabilityWald      TRUE    FALSE     1-p       1</span></span>
+<span><span class="co">#&gt; 19                 stabilityYu      TRUE     TRUE    &lt;NA&gt;       1</span></span>
+<span><span class="co">#&gt; 20           stabilityZucknick     FALSE     TRUE       0       1</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of stabm from <a href="https://cran.r-project.org/package=stabm" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"stabm"</span><span class="op">)</span></code></pre></div>
-<p>For the development version, use <a href="https://cran.r-project.org/package=devtools">devtools</a>:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"stabm"</span><span class="op">)</span></span></code></pre></div>
+<p>For the development version, use <a href="https://cran.r-project.org/package=devtools" class="external-link">devtools</a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bommert/stabm"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bommert/stabm"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="contributions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributions" class="anchor"></a>Contributions</h2>
-<p>This R package is licensed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html">LGPL-3</a>. If you encounter problems using this software (lack of documentation, misleading or wrong documentation, unexpected behaviour, bugs, …) or just want to suggest features, please open an issue in the <a href="https://github.com/bommert/stabm/issues">issue tracker</a>. Pull requests are welcome and will be included at the discretion of the author.</p>
+<div class="section level2">
+<h2 id="contributions">Contributions<a class="anchor" aria-label="anchor" href="#contributions"></a>
+</h2>
+<p>This R package is licensed under the <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html" class="external-link">LGPL-3</a>. If you encounter problems using this software (lack of documentation, misleading or wrong documentation, unexpected behaviour, bugs, …) or just want to suggest features, please open an issue in the <a href="https://github.com/bommert/stabm/issues" class="external-link">issue tracker</a>. Pull requests are welcome and will be included at the discretion of the author.</p>
 </div>
-<div id="code-of-conduct" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h2>
-<p>Please note that the <code>stabm</code> project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the <code>stabm</code> project is released with a <a href="https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
 </div>
-<div id="citation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#citation" class="anchor"></a>Citation</h2>
-<p>If you use stabm, please cite our <a href="https://doi.org/10.21105/joss.03010">JOSS article</a>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">@</span>Article{stabm,</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  title =<span class="st"> </span>{{stabm}<span class="op">:</span><span class="st"> </span>Stability Measures <span class="cf">for</span> Feature Selection},</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  author =<span class="st"> </span>{Andrea Bommert and Michel Lang},</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  journal =<span class="st"> </span>{Journal of Open Source Software},</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  year =<span class="st"> </span>{<span class="dv">2021</span>},</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  doi =<span class="st"> </span>{<span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.03010</span>},</span>
-<span id="cb4-7"><a href="#cb4-7"></a>  publisher =<span class="st"> </span>{The Open Journal},</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  volume =<span class="st"> </span>{<span class="dv">6</span>},</span>
-<span id="cb4-9"><a href="#cb4-9"></a>  number =<span class="st"> </span>{<span class="dv">59</span>},</span>
-<span id="cb4-10"><a href="#cb4-10"></a>  pages =<span class="st"> </span>{<span class="dv">3010</span>},</span>
-<span id="cb4-11"><a href="#cb4-11"></a>}</span></code></pre></div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use stabm, please cite our <a href="https://doi.org/10.21105/joss.03010" class="external-link">JOSS article</a>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>Article{stabm,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">=</span> {{stabm}<span class="sc">:</span> Stability Measures <span class="cf">for</span> Feature Selection},</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  author <span class="ot">=</span> {Andrea Bommert and Michel Lang},</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  journal <span class="ot">=</span> {Journal of Open Source Software},</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2021</span>},</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.21105</span><span class="sc">/</span>joss<span class="fl">.03010</span>},</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  publisher <span class="ot">=</span> {The Open Journal},</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  volume <span class="ot">=</span> {<span class="dv">6</span>},</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  number <span class="ot">=</span> {<span class="dv">59</span>},</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  pages <span class="ot">=</span> {<span class="dv">3010</span>},</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=stabm">https://​cloud.r-project.org/​package=stabm</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/bommert/stabm/">https://​github.com/​bommert/​stabm/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/bommert/stabm/issues">https://​github.com/​bommert/​stabm/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=stabm" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/bommert/stabm/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/bommert/stabm/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/LGPL-3">LGPL-3</a></li>
+<li><a href="https://www.r-project.org/Licenses/LGPL-3" class="external-link">LGPL-3</a></li>
 </ul>
 </div>
+
 <div class="community">
-<h2>Community</h2>
+<h2 data-toc-skip>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing stabm</a></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>Andrea Bommert <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1005-9351" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Michel Lang <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9754-0393" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing stabm</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/bommert/stabm/actions"><img src="https://github.com/bommert/stabm/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://cran.r-project.org/package=stabm"><img src="https://www.r-pkg.org/badges/version-ago/stabm" alt="CRAN Status"></a></li>
-<li><a href="https://doi.org/10.21105/joss.03010"><img src="https://joss.theoj.org/papers/10.21105/joss.03010/status.svg" alt="DOI"></a></li>
+<li>Andrea Bommert <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1005-9351" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Michel Lang <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-9754-0393" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
-</div>
+
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Andrea Bommert, Michel Lang.</p>
+  <p></p>
+<p>Developed by Andrea Bommert, Michel Lang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -202,6 +195,8 @@
 
   
 
+
+  
 
   </body>
 </html>
