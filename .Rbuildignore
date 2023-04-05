@@ -1,12 +1,12 @@
 ^LICENSE$
-^.github$
 ^docs$
-^.*\.Rproj$
+^\.*\.Rproj$
 ^\.Rproj\.user$
-.Rhistory
+\.Rhistory
 Rplots.pdf
 ^README\.Rmd$
 ^doc$
 ^Meta$
 ^paper$
 ^CODE_OF_CONDUCT\.md$
+^\.github$
