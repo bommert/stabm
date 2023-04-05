@@ -3,7 +3,7 @@
 
 # stabm
 
-[![R-CMD-check](https://github.com/bommert/stabm/workflows/R-CMD-check/badge.svg)](https://github.com/bommert/stabm/actions)
+[![R-CMD-check](https://github.com/bommert/stabm/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bommert/stabm/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 Status](https://www.r-pkg.org/badges/version-ago/stabm)](https://cran.r-project.org/package=stabm)
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.03010/status.svg)](https://doi.org/10.21105/joss.03010)
